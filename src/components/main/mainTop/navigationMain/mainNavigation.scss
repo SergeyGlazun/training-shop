@@ -1,0 +1,91 @@
+.sectionNavMain {
+    display: grid;
+    grid-template-rows: 200px 260px;
+    grid-row-gap: 30px;
+  
+    .sectionNavMainTop {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 30px;
+  
+      .btnTopLeft{
+        background: no-repeat center url('../../../../Img/main/mainTop/women.jpg');
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+  
+      .btnTopRight{
+        background: no-repeat center url('../../../../Img/main/mainTop/men.jpg');
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+       
+      }
+  
+      .womenTopMain,
+      .menTopMain{
+        padding: 12px 24px;
+        text-align: center;
+        background-color: #ffffff;
+        border-radius: 4px;
+        max-width: 100%;
+        min-width: 118px;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+        letter-spacing: 0.06em;
+      }
+    }
+  
+    .btnTopBtn{
+        background: no-repeat center url('../../../../Img/main/mainTop/accessories.jpg');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+  
+      .accessoriesTopMain{
+        padding: 12px 24px;
+        text-align: center;
+        background-color: #ffffff;
+        border-radius: 4px;
+        max-width: 100%;
+        min-width: 166px;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+        letter-spacing: 0.06em;
+      }
+    }
+  }
+  
+  @media all and (max-width: 1190px) {
+    .sectionNavMain {
+      .sectionNavMainTop {
+        .btnTopLeft,
+        .btnTopRight{
+          background-size: cover;
+        }
+      }
+  
+      .btnTopBtn {
+        background-size: cover;
+      }
+    }
+  }
+  
+  @media all and (max-width: 600px) {
+    .sectionNavMain {
+      .sectionNavMainTop {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 30px;
+      }
+    }
+  }

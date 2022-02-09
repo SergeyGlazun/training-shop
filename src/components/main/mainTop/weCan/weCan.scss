@@ -1,0 +1,27 @@
+.benefits {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 0;
+    border-bottom: 2px solid #f8f8f8;
+  }
+  
+  .weCanItem {
+    display: flex;
+  
+    .weCanItemImg {
+      padding-right: 8px;
+    }
+  
+    .weCanItemText {
+      .title {
+        font-weight: 600;
+      }
+    }
+  }
+  
+  @media all and (max-width: 650px) {
+    .benefits {
+      flex-direction: column;
+      row-gap: 20px;
+    }
+  }

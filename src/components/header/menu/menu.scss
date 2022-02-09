@@ -1,0 +1,19 @@
+.menu {
+    display: flex;
+  
+    .menuItem {     
+      font-size: 14px;
+      line-height: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      color: #121212;
+    }
+  }
+  
+  @media all and (max-width: 996px) {
+    .menu {
+      display: none;
+    }
+  }
+  

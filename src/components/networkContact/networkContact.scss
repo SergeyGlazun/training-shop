@@ -1,0 +1,12 @@
+.social-network {
+    display: flex;
+    align-items: center;
+  
+    .social-network-item {
+      padding-right: 10px;
+  
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }

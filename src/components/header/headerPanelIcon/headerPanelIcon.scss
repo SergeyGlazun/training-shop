@@ -1,0 +1,17 @@
+.headerPanelIcon {
+    display: flex;
+    column-gap: 24px;
+  
+    .headerPanelIconItem{
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  @media all and (max-width: 470px) {
+    .headerPanelIconItem {
+      .headerPanelIconItemImg {
+        width: 80%;
+      }
+    }
+  }

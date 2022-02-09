@@ -1,0 +1,26 @@
+.mainTop{
+    display: grid;
+    margin-top: 32px;
+    grid-column-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+    min-height: 490px;
+}
+
+@media all and (max-width: 600px) {
+    .mainTop {
+      grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+    }
+  }
+  
+  @media all and (max-width: 490px) {
+    .mainTop {
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    }
+  }
+  
+  @media all and (max-width: 490px) {
+    .mainTop {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+  }
+  
