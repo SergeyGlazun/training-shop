@@ -14,9 +14,9 @@ const App = () => {
         <Header />
            
             <Switch>
-            {/* <Route exact path='/training-shop'>
+            <Route exact path='/training-shop'>
                    <MainPage/>
-                </Route> */}
+                </Route>
                 <Route exact path='/'>
                    <MainPage/>
                 </Route>
