@@ -30,7 +30,9 @@
     
   
       .blogItem{
-        
+      &:hover{
+        transform: scale(1.1);
+      }
       position: relative;
       .blogContenerText{
         background-color: #c5bdbd;

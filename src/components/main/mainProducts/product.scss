@@ -36,6 +36,8 @@
         grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
         gap: 30px;
         margin: 48px 0;
+       
+        
       }
       .productButton {
         width: 100%;
@@ -50,8 +52,8 @@
         cursor: pointer;
     
         &:hover {
-          background: #e7e7e7;
-          transition: all 0.3s;
+          background: #f18f8f;
+          transition: all 1s;
         }
       }
 }
@@ -60,9 +62,12 @@
 
 .cardsItem {
   position: relative;
-
+  &:hover {
+    transform: scale(1.1);
+  }
   .cardsItemImg {
     width: 100%;
+   
   }
 
   .sale {

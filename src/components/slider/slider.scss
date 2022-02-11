@@ -1,24 +1,28 @@
 .slider{ 
+
     .sliderBloc{
     display: flex;
     flex-direction: column;
-    // row-gap: 14px;
+    
    }
 }
 
 .sliderBloc{
     position: relative; 
+
+    width: 540px;
+    height:490px;
+   margin: auto;
   
-   
     .sliderImg {    
         width: 100%;
-
-        
+        height: 100%;
       }
       .prevImg {
         position: absolute;
         left: 4%;
         top: 46%;
+     
       }
     
       .nextImg {
@@ -63,9 +67,9 @@
 
 @media all and (max-width: 1180px) {
     .slider {
-      background-color: #f1f1f1;
+      background-color: rgb(240, 240, 240);
       margin-bottom: 30px;
-  
+    
       .sliderBloc {
         display: flex;
         justify-content: center;
@@ -76,6 +80,8 @@
   @media all and (max-width: 590px) {
     .slider {
      .sliderBloc{
+      width: 490px;
+      height:490px;
         .btn {
           .text {
             font-size: 16px;
