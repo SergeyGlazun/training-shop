@@ -4,14 +4,14 @@ import { Route, Switch } from 'react-router-dom'
 import Header from "../header";
 import MainPage from "../../pages/mainPage/mainPage.jsx";
 import ManPage from "../../pages/productPage/manPage/manPage.jsx";
-
+import Footer from "../footer";
 import './app.scss';
 
 const App = () => {
     
     return (
         <div className='app' data-test-id='app'>
-            <Header />
+        <Header />
            
             <Switch>
             <Route exact path='/training-shop'>
@@ -24,7 +24,9 @@ const App = () => {
                 <Route exact path='/men'>
                    <ManPage/>
                 </Route>
-            </Switch>     
+            </Switch> 
+              
+        <Footer/>
         </div>
     );
 }

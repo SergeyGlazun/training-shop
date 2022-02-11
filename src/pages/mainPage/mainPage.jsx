@@ -5,6 +5,7 @@ import WeCan from '../../components/main/mainTop/weCan';
 import Products from '../../components/main/mainProducts';
 import MainNews from '../../components/main/mainNews';
 import MainSpecialOffer from '../../components/main/mainSpecialOffer/mainSpecialOffer';
+import MainBlog from '../../components/main/mainBlog';
 const MainPage = () => {
     return(
         <>
@@ -17,7 +18,7 @@ const MainPage = () => {
         </div>
         <MainSpecialOffer/>
         <div className='wrapper'>
-      {/* <MainBlog /> */}
+      <MainBlog />
     </div>
         </>
     );

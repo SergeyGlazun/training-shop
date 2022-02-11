@@ -1,0 +1,30 @@
+.footerInf{
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    .footerInfItem {
+        width: 100%;
+    
+        .link {
+          cursor: pointer;
+          line-height: 34px;
+          color: #414141;
+          display: flex;
+    
+          .footerInfImg {
+            padding-right: 8px;
+          }
+    
+          .mailText {
+            text-decoration: underline;
+          }
+        }
+    
+        .link:first-child {
+          font-weight: 600;
+          line-height: 13px;
+          letter-spacing: 0.06em;
+          margin-bottom: 8px;
+        }
+      }
+}
