@@ -15,8 +15,8 @@ const FooteInformation = () =>{
             <div className='footerInf '>
             {arrFoterInformation.map(({ id, links }) => (
                 <div className='footerInfItem ' key={id}>
-                    {links.map(({ text, path }, index) => (
-                    <Link  to={`/${path}`} data-test-id={`footer-nav-link-${path}`} className='link' key={index.toString()}>
+                    {links.map(({ text, href }, index) => (
+                    <Link  to={`/${href}`} data-test-id={`footer-nav-link-${href}`} className='link' key={index.toString()}>
                         {text}
                     </Link>
                     ))}
