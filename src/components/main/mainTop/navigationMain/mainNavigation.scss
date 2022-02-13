@@ -7,7 +7,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 30px;
-  
+
       .btnTopLeft{
         background: no-repeat center url('../../../../Img/main/mainTop/women.jpg');
         display: flex;
@@ -87,10 +87,11 @@
         .btnTopLeft,
         .btnTopRight{
           background-size: cover;
+   
         }
       }
   
-      .btnTopBtn {
+      .btnTopBtn {     
         background-size: cover;
       }
     }

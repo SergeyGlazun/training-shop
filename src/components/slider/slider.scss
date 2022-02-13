@@ -94,3 +94,17 @@
       }
     }
   }
+
+  @media all and (max-width: 590px){
+    .slider {
+      .sliderBloc{
+       width: auto;      
+         .btn {
+           .text {
+             font-size: 16px;
+             line-height: 18px;
+           }
+         }
+       }
+     }
+  }
