@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
 import Contacts from "./contacts";
 import NetworkContact from '../networkContact';
 import logo from '../../Img/header/logoImg/logo.svg';
 import Menu from "./menu";
 import HeaderPanelIcon from "./headerPanelIcon";
-
+import BurgerMenu from './burgerMenu';
+import BurgerItem from './burgerMenu/burgerItem';
 
 import './header.scss';
 
  const Header = () => {
-    return( 
+  const [condition, setCondition] = useState(false);
+    return(   
      <div className="header" data-test-id='header'>
       <div className="headerContacts">
         <div className="wrapper">
@@ -27,6 +31,8 @@ import './header.scss';
 
        <Menu/>
        <HeaderPanelIcon/>
+       <BurgerMenu condition={condition} setCondition={setCondition}/>
+       <BurgerItem condition={condition} setCondition={setCondition}/>
         </div>
       </div>
 

@@ -17,7 +17,7 @@ const MainBlog = () =>{
             <div className='blogContener'>
                 {arrMainBlog.map(({ id, imageSrc, name, title, text }) => (       
                 <div className='blogItem' key={id}>
-                <img src={imageSrc} alt={name} className='blogItemImg' />
+                <img  src={imageSrc} alt={name} className='blogItemImg' />
             
                   <div className='blogContenerText'>
                     <div className='blogTitle'>{title}</div>

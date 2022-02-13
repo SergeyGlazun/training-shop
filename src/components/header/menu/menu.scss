@@ -1,6 +1,5 @@
 .menu {
     display: flex;
-  
     .menuItem {     
       font-size: 14px;
       line-height: 16px;
@@ -8,6 +7,10 @@
       display: flex;
       align-items: center;
       color: #121212;
+
+      &:hover {
+        transform: scale(1.2);      
+      }
     }
   }
   

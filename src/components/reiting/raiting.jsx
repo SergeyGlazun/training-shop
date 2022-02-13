@@ -9,10 +9,10 @@ function reiting(rating){
   let arrStar = [];
     for(let i=0;i<5;i++){
         if(rating>i){
-            arrStar.push(<img src={fulStar}  alt='imgUser' width={14}/>);
+            arrStar.push(<img key={i} src={fulStar}  alt='imgUser' width={14}/>);
          
         }else{
-            arrStar.push(<img src={star}  alt='imgUser' width={14}/>);
+            arrStar.push(<img key={i} src={star}  alt='imgUser' width={14}/>);
         }
       
     }

@@ -17,7 +17,7 @@ function Example(array) {
     }
 
     return (
-      <div key={ array[count].id} className="sliderBloc">
+      <div  className="sliderBloc">
         {<div><img src={Prev} alt='prev'  onClick={(e) =>setCount(--count)} className="prevImg"/></div>}
         {<div><img src={Next}alt='next' onClick={(e) =>setCount(count+1)} className="nextImg"/></div>}
         <img src={ array[count].imageSrc} alt='img' className='sliderImg' />                

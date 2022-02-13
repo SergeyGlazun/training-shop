@@ -1,0 +1,24 @@
+.setings{
+    display: flex;
+    justify-content: space-between;
+    margin: 36px 0;
+
+    .filteImg{
+        cursor: pointer;
+    }
+
+    .filter{
+        display: flex;
+        align-items: center;
+        column-gap: 16px;
+        background: #ffffff;
+        border: none;
+    }
+    .listOrTable{
+        display: flex;
+        column-gap: 32px;
+        justify-content: center;
+        cursor: pointer;
+    }
+}
+

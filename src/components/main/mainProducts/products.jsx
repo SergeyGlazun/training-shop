@@ -8,7 +8,7 @@ import './product.scss';
 const Products = ({ productType }) =>{
     return(
       <div className='product' data-test-id={`clothes-${productType}`}>
-       <div  className='productContener'>
+       <div   className='productContener'>
        <div className='productTipe'>{`${productType}’s`}</div>
           <div className='productMenu'>
                 {arrProductsMenu.map(({ id, name }) => (
@@ -24,7 +24,7 @@ const Products = ({ productType }) =>{
     
 {
      arrCards[productType].map(({ name, price, imageSrc, rating, sale, id }) => (
-        <Link to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
+        <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
             {sale && <span className='sale'>{sale}</span>}
           <img src={imageSrc}  alt='imgUser' className='cardsItemImg'/>
           <div className='cardsItemName'>{name}</div>
@@ -36,7 +36,7 @@ const Products = ({ productType }) =>{
 
     </div>
 
-    <Link to={`/${productType}`} >
+    <Link  to={`/${productType}`} >
       <button className='productButton' type='button'>
         SEE ALL
       </button>

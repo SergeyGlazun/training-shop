@@ -1,0 +1,17 @@
+.imgBurger{
+    display: none;
+}
+
+.close{
+  height: 23px;
+}
+
+@media all and (max-width: 996px) {
+    .imgBurger{
+      display: block;
+    }
+  }
+
+  
+    
+ 

@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import Header from "../header";
 import MainPage from "../../pages/mainPage/mainPage.jsx";
-import ManPage from "../../pages/productPage/manPage/manPage.jsx";
+import ProductsPage from "../../pages/productPage";
 import Footer from "../footer";
 import './app.scss';
 
@@ -22,7 +22,11 @@ const App = () => {
                 </Route>
 
                 <Route exact path='/men'>
-                   <ManPage/>
+                   <ProductsPage productType='men'/>
+                </Route>
+
+                <Route exact path='/women'>
+                   <ProductsPage productType='women'/>
                 </Route>
             </Switch> 
               

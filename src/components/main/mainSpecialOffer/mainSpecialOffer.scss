@@ -73,8 +73,10 @@
           color: #ffffff;
           cursor: pointer;
   
+
           &:hover {
-            background: #414141;
+            background: #f80606;
+            color:#0c0c0c;
             transition: all 0.3s;
           }
         }
