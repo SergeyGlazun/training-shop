@@ -1,0 +1,92 @@
+.butonContener {
+    margin-top: 104px;
+
+    .buttonTitle {
+        display: flex;
+        justify-content: space-between;    
+        .butons {
+            display: flex;
+            column-gap:normal
+        }
+    }
+
+    .productsCards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+        gap: 30px;
+        margin: 28px 0;
+
+    }
+
+    .productButton {
+        width: 100%;
+        padding: 16px 0;
+        border: 2px solid #f8f8f8;
+        background: #f8f8f8;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 15px;
+        letter-spacing: 0.06em;
+        color: #404040;
+        cursor: pointer;
+
+        &:hover {
+            background: #E6E6E6;
+            color: #121212;
+            transition: all 0.3s;
+        }
+    }
+
+    .cardsItem {
+        position: relative;
+
+        &:hover {
+            transform: scale(1.1);
+
+            .sale {
+                transform: scale(1.7);
+            }
+        }
+
+        .cardsItemImg {
+            width: 100%;
+
+        }
+
+        .sale {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #e91e63;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 12px;
+            line-height: 13px;
+            padding: 8px;
+
+        }
+
+        .cardsItemName {
+            font-size: 14px;
+            line-height: 16px;
+            color: #707070;
+            padding: 14px 0;
+        }
+
+        .cardsItemPrice {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .productsTitle {
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 25px;
+        letter-spacing: 0.06em;
+        padding-top: 10px;
+    }
+}

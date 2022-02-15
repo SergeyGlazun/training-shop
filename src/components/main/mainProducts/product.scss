@@ -52,55 +52,56 @@
         cursor: pointer;
     
         &:hover {
-          background: #f18f8f;
-          transition: all 1s;
+          background: #E6E6E6;
+          color:#121212;
+          transition: all 0.3s;
         }
       }
 }
 
 
 
-.cardsItem {
-  position: relative;
-  &:hover {
-    transform: scale(1.1);
-   .sale{
-    transform: scale(1.7);
-   }
-  }
-  .cardsItemImg {
-    width: 100%;
+// .cardsItem {
+//   position: relative;
+//   &:hover {
+//     transform: scale(1.1);
+//    .sale{
+//     transform: scale(1.7);
+//    }
+//   }
+//   .cardsItemImg {
+//     width: 100%;
    
-  }
+//   }
 
-  .sale {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #e91e63;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 13px;
-    padding: 8px;
+//   .sale {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     background-color: #e91e63;
+//     color: #ffffff;
+//     font-weight: bold;
+//     font-size: 12px;
+//     line-height: 13px;
+//     padding: 8px;
    
-  }
+//   }
 
-  .cardsItemName {
-    font-size: 14px;
-    line-height: 16px;
-    color: #707070;
-    padding: 14px 0;
-  }
+//   .cardsItemName {
+//     font-size: 14px;
+//     line-height: 16px;
+//     color: #707070;
+//     padding: 14px 0;
+//   }
 
-  .cardsItemPrice {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
-    display: flex;
-    justify-content: space-between;
-  }
-}
+//   .cardsItemPrice {
+//     font-weight: 600;
+//     font-size: 14px;
+//     line-height: 16px;
+//     display: flex;
+//     justify-content: space-between;
+//   }
+// }
 
 
 

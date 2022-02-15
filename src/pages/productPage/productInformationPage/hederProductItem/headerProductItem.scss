@@ -1,0 +1,91 @@
+.headerProductItem{
+    background: #F8F8F8;
+    padding: 6px 0;
+        .contenerHeaderProductItem{
+        display: flex;
+        flex-direction: column;
+           .headerNavigation{
+               display: flex;
+               justify-content: space-between;
+
+               .back {
+                font-weight: 500;
+                font-size: 11px;
+                line-height: 18px;
+          
+                .home {
+                  color: #6e6e6e;
+                  padding-right: 6px;
+                }
+          
+                .arr {
+                  color: #6e6e6e;
+                }
+ 
+                .product {
+                  padding-left: 6px;
+                }
+          
+               
+              }
+          
+              .share {
+                display: flex;
+                align-items: center;
+                color: #6e6e6e;
+                font-weight: 500;
+                font-size: 11px;
+                line-height: 18px;
+                cursor: pointer;
+                &:hover{
+                    transform: scale(1.2);   
+                  }  
+                .shareImg {
+                  margin-right: 10px;
+                  &:hover{
+                    transform: scale(1.2);   
+                  }
+                }
+              }
+           }
+        .titleheaderProduct{       
+            padding: 10px 0 24px;
+            font-weight: 600;
+            font-size: 26px;
+            line-height: 36px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-align: center;
+            }
+
+            .fidbeckHeaderProduct{
+                display: flex;
+                justify-content: space-between;
+                .reviews{
+                    display:flex;
+                    justify-content: space-between;
+                    .reviewsCount{
+                        margin-left: 6px;
+                        font-weight: 500;
+                        font-size: 11px;
+                        line-height: 18px;
+                        color: #6e6e6e;
+                    } 
+                }
+
+                .count {
+                    display: flex;
+                    column-gap: 24px;
+                    font-weight: 500;
+                    font-size: 11px;
+                    line-height: 18px;
+                    color: #6e6e6e;
+              
+                    .bold {
+                      font-weight: 600;
+                      color: #121212;
+                    }
+                }
+            }
+        }
+}

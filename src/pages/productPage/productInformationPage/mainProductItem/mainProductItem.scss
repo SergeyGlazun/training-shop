@@ -1,0 +1,345 @@
+.productSection{
+    margin-top: 38px;
+    display: flex;
+    // justify-content: center;
+    
+    .slidecContener{
+        display: flex;
+        justify-content: space-between;
+
+
+        .tipeItem{
+            display: flex;
+            flex-direction: column;
+
+            padding-right: 16px;
+            row-gap: 21.5px;
+        }
+        .butTipe{
+            display: flex;
+            justify-content: space-around;
+            padding-top: 10px;
+           
+        }
+
+        .sliderItem{
+            position: relative;
+            height: max-content;        
+            .imgItem{
+              width: 100%;
+            }
+
+            .btnleft,.btnright{
+                position: absolute;
+                top:45%
+            }
+            .btnleft{
+                left: 5%;
+            }
+            .btnright{
+                right: 5%;
+            }
+        }
+    }
+
+    .Information{
+        padding-left: 30px;
+        width: 50%;
+        .parametr{
+            display: flex;
+            flex-direction: column;
+            
+            border-bottom: 2px solid #e6e6e6;
+            padding-bottom: 37px;
+            .colorItem{
+                display: flex;               
+                column-gap: 18px;
+               padding-top: 16px;
+            }
+            .bold {
+                font-weight: 600;
+                color: #121212;
+              }
+
+              .size {
+                font-weight: 600;
+                line-height: 18px;
+                margin-top: 32px;
+              }
+        
+              .sizeBtn {
+                display: flex;
+                column-gap: 16px;
+                margin-top: 20px;
+        
+                & button {
+                  border: none;
+                  background: #f8f8f8;
+                  padding: 10px 12px;
+                  cursor: pointer;
+        
+                  &:hover {
+                    background: #ffffff;
+                    outline: 2px solid #121212;
+                  }
+                }
+              }
+        
+              .hanger {
+                display: flex;
+                column-gap: 8px;
+                align-items: center;
+                margin-top: 16px;
+              }
+        }
+
+        .pay {
+           
+            padding: 40px 0;
+          
+            border-bottom: 2px solid #e6e6e6;
+            display: flex;
+            column-gap: 24px;
+    
+            .cost {
+              font-size: 22px;
+              line-height: 36px;
+              font-weight: 600;
+              color: #121212;
+              padding-top: 1.3%;
+            }
+    
+            .payBtn {
+              padding: 16px 24px;
+              cursor: pointer;
+              background: #121212;
+              color: #ffffff;
+              border: none;
+              font-weight: 500;
+              font-size: 13px;
+              line-height: 15px;
+              letter-spacing: 0.06em;
+    
+              &:hover {
+                background: #E6E6E6;
+                color:#121212;
+                transition: all 0.3s;
+              }
+            }
+
+            .heard{
+              padding-top: 3%;
+                img.heartImg:hover{   
+                    background: url('./img/hover/hardHover.svg') no-repeat;                
+                } 
+                img.scaleImg:hover{   
+                    background: url('./img/hover/scaleHover.svg') no-repeat;                
+                }   
+            }
+                  
+
+          }
+    
+          .scope {
+            display: flex;
+            column-gap: 28px;
+            font-weight: 500;
+            line-height: 18px;
+            font-size: 11px;
+            margin: 32px 0;
+    
+            & img {
+              margin-right: 6px;
+            }
+    
+            .car,
+            .repit,
+            .mail {
+              display: flex;
+              align-items: center;
+            }
+          }
+
+          .checkout {
+            .checkoutTitle {
+              display: flex;
+              column-gap: 24px;
+              font-weight: 600;
+              font-size: 11px;
+              line-height: 18px;
+              letter-spacing: 0.06em;
+              color: #121212;
+    
+              hr {
+                width: calc(100% - 230px);
+                height: 2px;
+                background-color: #e6e6e6;
+                border: none;
+              }
+            }
+    
+            .checkoutImg {
+              display: flex;
+              justify-content: space-between;
+              margin-top: 24px;
+            }
+          }
+    
+          .description {
+            border-bottom: 2px solid #e6e6e6;
+            padding-bottom: 32px;
+    
+            .title {
+              margin-top: 32px;
+              font-weight: 600;
+              line-height: 18px;
+              color: #6e6e6e;
+              border-top: 2px solid #e6e6e6;
+              border-bottom: 2px solid #e6e6e6;
+              padding: 32px 0;
+            }
+    
+            .text {
+              margin-top: 32px;
+    
+              .texTitle {
+                font-weight: 600;
+                line-height: 18px;
+                color: #121212;
+                margin-bottom: 32px;
+              }
+    
+              .specifications {
+                display: flex;
+                flex-direction: column;
+                row-gap: 12px;
+    
+                .textColor,
+                .textSize,
+                .textMaterial {
+                  font-weight: 500;
+                  font-size: 14px;
+                  line-height: 22px;
+                }
+    
+                .black {
+                  color: #121212;
+                  opacity: 0.6;
+                }
+              }
+            }
+          }
+
+          .reviewsContener{
+            margin-top: 28px;
+            .reviews {
+              margin-top: 32px;
+              border-bottom: 2px solid #e6e6e6;
+
+
+            
+                .reviewsAbove {
+                  padding-bottom: 27px;
+                  .title {
+                    font-weight: 600;
+                    line-height: 18px;
+                    color: #121212;
+                    letter-spacing: 0.06em;
+                  }
+        
+                  .subtitleText {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 32px;
+        
+                    .ratingReviews {
+                      display: flex;
+                      column-gap: 10px;
+                      align-items: center;
+                      font-weight: 500;
+                      font-size: 11px;
+                      line-height: 8px;
+
+                     
+                      .reiting{
+                        width: 20px;
+                        height: 30px;
+                      }
+                    }
+        
+                    .annotation {
+                      display: flex;
+                      align-items: center;
+                      column-gap: 8px;
+                      font-weight: 500;
+                      line-height: 18px;
+                    }
+                  }
+                }
+
+                .title {
+                  display: flex;
+                  justify-content: space-between;
+            
+                  .name {
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 22px;
+                    color: #121212;
+                  }
+            
+                  .timeRrating {
+                    display: flex;
+                    column-gap: 8px;
+                    font-weight: 500;
+                    font-size: 11px;
+                    line-height: 18px;
+                    color: #a0a0a0;
+                  }
+                }
+            
+                .text {
+                  margin: 20px 0 48px;
+                  font-size: 14px;
+                  line-height: 22px;
+                  color: #504f4f;
+            
+                  &:last-child {
+                    margin-bottom: 32px;
+                  }
+                }
+             
+            }
+          }
+         
+    }
+}
+
+@media all and (max-width: 900px) {
+    .productSection{
+        flex-direction: column;
+        .slidecContener{
+            width: 100%;
+            .sliderItem{
+                width: 100%;
+            }
+            .tipeItem{
+                display: none;
+                
+            }
+        }
+
+        .Information{
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+            padding-left: 0px;
+            width: 100%;
+            .patametr{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    } 
+}
+

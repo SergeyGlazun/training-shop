@@ -45,8 +45,9 @@
         line-height: 22px;
         letter-spacing: 0.06em;
         &:hover {
-        background-color:rgb(143, 133, 133);  
-        color:#ffffff;   
+          background: #E6E6E6;
+          color:#121212;
+          transition: all 0.3s; 
         }
       }
     }
@@ -74,8 +75,9 @@
         letter-spacing: 0.06em;
 
         &:hover {
-          background-color:rgb(143, 133, 133);  
-          color:#ffffff;   
+          background: #E6E6E6;
+          color:#121212;
+          transition: all 0.3s;
           }
       }
     }

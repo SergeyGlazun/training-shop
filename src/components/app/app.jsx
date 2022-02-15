@@ -5,6 +5,8 @@ import Header from "../header";
 import MainPage from "../../pages/mainPage/mainPage.jsx";
 import ProductsPage from "../../pages/productPage";
 import Footer from "../footer";
+import ProductItem from "../../pages/productPage/productInformationPage";
+
 import './app.scss';
 
 const App = () => {
@@ -28,6 +30,15 @@ const App = () => {
                 <Route exact path='/women'>
                    <ProductsPage productType='women'/>
                 </Route>
+
+                <Route exact path='/women/:id'>
+                         <ProductItem productType='women'/>
+                </Route>
+
+                <Route path='/men/:id'>
+                    <ProductItem productType='men' />
+                </Route>
+
             </Switch> 
               
         <Footer/>

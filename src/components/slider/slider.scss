@@ -45,10 +45,11 @@
     transition: all 0.3s;
         
     &:hover {
-      background-color:rgb(143, 133, 133);  
-      color:#ffffff;  
+      background: #E6E6E6;
+      color:#121212;
+      transition: all 0.3s;
       .title, .text{
-        color:#ffffff;
+        color:#121212;
       }
       }
       .title {

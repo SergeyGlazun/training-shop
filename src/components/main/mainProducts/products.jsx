@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 
 import { arrProductsMenu } from '../../../db/productMenu';
 import { arrCards } from '../../../db/cards';
-import Raiting from '../../reiting/raiting';
+
+import CardProduct from '../../cardProduct';
+
 import './product.scss';
 
 const Products = ({ productType }) =>{
@@ -19,22 +21,7 @@ const Products = ({ productType }) =>{
           </div>
        </div>
 
-       <div className='cards'>
-
-    
-{
-     arrCards[productType].map(({ name, price, imageSrc, rating, sale, id }) => (
-        <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
-            {sale && <span className='sale'>{sale}</span>}
-          <img src={imageSrc}  alt='imgUser' className='cardsItemImg'/>
-          <div className='cardsItemName'>{name}</div>
-          <div className='cardsItemPrice'>${price}   <Raiting rating={rating} /></div>
-          </Link>
-        
-      ))
-}
-
-    </div>
+<CardProduct arrCards={arrCards} productType={productType}/>
 
     <Link  to={`/${productType}`} >
       <button className='productButton' type='button'>
