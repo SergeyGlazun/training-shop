@@ -92,6 +92,7 @@
       
       height: max-content; 
       margin-top: -17%;
+    
      }
     
     }
@@ -111,12 +112,25 @@
     .mainBlog {
       .blogContener {
         gap: 0;
+        .blogItem{
+          .blogContenerText{
+            margin-top: -30%;
+          }
+        }
       }
     }
   }
   
   @media all and (max-width: 450px) {
     .mainBlog {
+      .blogContener {
+        gap: 0;
+        .blogItem{
+          .blogContenerText{
+            margin-top: -50%;
+          }
+        }
+      }
       .blogHeader {
         .title {
           font-size: 16px;
