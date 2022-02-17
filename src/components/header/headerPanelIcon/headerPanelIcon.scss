@@ -12,9 +12,13 @@
   }
   
   @media all and (max-width: 470px) {
-    .headerPanelIconItem {
-      .headerPanelIconItemImg {
-        width: 80%;
+    .headerPanelIcon{
+      column-gap: 4px;
+      .headerPanelIconItem {
+        .headerPanelIconItemImg {
+          width: 80%;
+      
+        }
       }
-    }
-  }
+    }  
+}
