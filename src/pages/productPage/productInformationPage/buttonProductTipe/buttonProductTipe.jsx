@@ -16,8 +16,8 @@ const ButtonProductTipe = ({productType}) =>{
                <div className='buttonTitle'>
                <div className='productsTitle'>RELATED PRODUCTS</div>
                         <div className='butons'>
-                        <img src={Next} alt="Next" />
-                           <img src={Prev} alt="Prev" />                       
+                        <img src={Next} alt="Next" className='but'/>
+                        <img src={Prev} alt="Prev" className='but'/>                       
                         </div>
                </div>
              
