@@ -6,9 +6,16 @@
   height: 23px;
 }
 
+
+@media all and (max-width: 998px) {
+  body.lock{
+    overflow:hidden;
+  }
+}
+
 @media all and (max-width: 996px) {
     .imgBurger{
-      display: block;
+      display: block;    
     }
   }
  

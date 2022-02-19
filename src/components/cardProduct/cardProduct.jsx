@@ -11,8 +11,11 @@ const CardProduct = ({arrCards,productType}) =>{
                     <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
                         {sale && <span className='sale'>{sale}</span>}
                     <img src={imageSrc}  alt='imgUser' className='cardsItemImg'/>
-                    <div className='cardsItemName'>{name}</div>
-                    <div className='cardsItemPrice'>${price}   <Raiting rating={rating} size={14}/></div>
+                    <div className='foterCard'>
+                        <div className='cardsItemName'>{name}</div>
+                        <div className='cardsItemPrice'>${price}   <Raiting rating={rating} size={14}/></div>
+                    </div>
+                    
                     </Link>                   
                 ))
             }

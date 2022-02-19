@@ -11,25 +11,34 @@ import BurgerItem from './burgerMenu/burgerItem';
 
 import './header.scss';
 
+      
+
+
  const Header = () => {
   const [condition, setCondition] = useState(false);
+
+  function closeBurger(condition){
+    if(condition)
+    setCondition(false);
+  }
+
     return(   
-     <div className="header" data-test-id='header'>
-      <div className="headerContacts">
-        <div className="wrapper">
+     <div className="header" data-test-id='header' onClick={() => closeBurger(condition)}>
+      <div className="headerContacts" >
+        <div className="wrapper" >
         <Contacts />
          <NetworkContact />
         </div>
       </div>
 
-      <div className='navigation'>
+      <div className='navigation'  >
         <div className='wrapper'>
 
         <Link to='/'  data-test-id='header-logo-link'>
           <img src={logo} alt='Logo' className='navigationLogo'/>
         </Link>
 
-       <Menu/>
+       <Menu />
        <HeaderPanelIcon/>
        <BurgerMenu condition={condition} setCondition={setCondition}/>
        <BurgerItem condition={condition} setCondition={setCondition}/>

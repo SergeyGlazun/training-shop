@@ -7,14 +7,15 @@ import ProductsPage from "../../pages/productPage";
 import Footer from "../footer";
 import ProductItem from "../../pages/productPage/productInformationPage";
 
+
 import './app.scss';
 
 const App = () => {
-    
+ 
     return (
         <div className='app' data-test-id='app'>
-        <Header />
            
+        <Header/>          
             <Switch>
             <Route exact path='/training-shop'>
                    <MainPage/>
