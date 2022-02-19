@@ -2,10 +2,6 @@
   .sliderBloc {
     display: flex;
     flex-direction: column;
-
-    .sliderImg {
-      height: 500px;
-    }
   }
 }
 
@@ -151,13 +147,3 @@
   }
 }
 
-@media screen and (max-width: 400px) {
-  .swiper {
-    .swiper-button-prev {
-      display: none;
-    }
-    .swiper-button-next {
-      display: none;
-    }
-  }
-}
