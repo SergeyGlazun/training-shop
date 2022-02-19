@@ -15,27 +15,10 @@ function Example(condition,setCondition) {
  }
 
 
-
- function componentDidMount() {
-    document.addEventListener('mousedown', handleClickOutside);
-   }
-
-   function componentWillUnmount() {
-    document.removeEventListener('mousedown', handleClickOutside);
-   }
-
-   function handleClickOutside(event) {
-    if (this.state.isActive && this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-        this.setState({isActive:false})
-     }
-   }
-
 function filterSeting(click){
-    componentDidMount();
-    componentWillUnmount();
+  
     let Body =  document.body;
- 
-    if(click){    
+    if(click){           
         Body.classList.add('lock');          
         return  <img src={close} alt='filter' className='imgBurger close' />
     }else{           
