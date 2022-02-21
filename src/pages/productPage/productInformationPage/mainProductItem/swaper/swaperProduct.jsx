@@ -68,7 +68,7 @@ const ProductSwiper = () =>{
         </div>
 
          <Swiper 
-         data-test-id='main-slider'
+         data-test-id='product-slider'
           onSwiper={setControlledSwiper}
           modules={[FreeMode, Navigation, Thumbs, Controller]}
           spaceBetween={10}
