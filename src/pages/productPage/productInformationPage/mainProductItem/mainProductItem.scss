@@ -6,7 +6,7 @@
     .slidecContener{
         display: flex;
         justify-content: space-between;
-
+        height: max-content;  
 
         .tipeItem{
             display: flex;
@@ -40,6 +40,7 @@
                 right: 5%;
             }
         }
+        
     }
 
     .Information{
@@ -314,7 +315,32 @@
          
     }
 }
+@media all and (max-width:1100px){
+  .Information{
+    .checkout {
+    
+      .checkoutTitle {
+        display: flex;
+        column-gap: 24px;
+        font-weight: 600;
+        font-size: 11px;
+        line-height: 18px;
+        letter-spacing: 0.06em;
+        color: #121212;
 
+      
+      }
+
+      .checkoutImg {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: stretch;
+        height: 100%;
+        row-gap: 15px;
+      }
+    }
+  }
+}
 @media all and (max-width: 900px) {
     .productSection{
         flex-direction: column;
@@ -322,11 +348,7 @@
             width: 100%;
             .sliderItem{
                 width: 100%;
-            }
-            .tipeItem{
-                display: none;
-                
-            }
+            }          
         }
 
         .Information{
@@ -343,6 +365,22 @@
     } 
 }
 
+@media all and (max-width: 630px) {
+  .productSection{   
+      .slidecContener{
+        display: flex;
+            flex-flow: column-reverse;
+        
+          .sliderItem{
+            flex-flow: row nowrap;
+            height: 100%;
+          }
+        
+      }
+  } 
+}
+
+
 @media all and (max-width: 660px){
   .productSection{
     .Information{
@@ -352,7 +390,7 @@
           align-items: center;
         .checkoutImg{
           display: flex;
-          // flex-direction: column-reverse;
+         
           flex-direction: column;
           row-gap: 10px;
         }

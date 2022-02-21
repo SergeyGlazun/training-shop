@@ -1,7 +1,8 @@
-import tipe1 from '../Img/productItemPage/slider/item_1.png';
-import tipe2 from '../Img/productItemPage/slider/item_2.png';
-import tipe3 from '../Img/productItemPage/slider/item_3.png';
-import tipe4 from '../Img/productItemPage/slider/item_4.png';
+// import tipe1 from '../Img/productItemPage/slider/item_1.png';
+// import tipe2 from '../Img/productItemPage/slider/item_2.png';
+// import tipe3 from '../Img/productItemPage/slider/item_3.png';
+// import tipe4 from '../Img/productItemPage/slider/item_4.png';
+import tipe0 from '../Img/productItemPage/slider/pants.png';
 
 import color1 from '../Img/productItemPage/slider/itemColor4.png';
 import color2 from '../Img/productItemPage/slider/itemColor1.png';
@@ -19,19 +20,19 @@ import masterCard7 from '../pages/productPage/productInformationPage/mainProduct
 export const arrTipeItem = [
     {
         id: '1',
-        imageSrc: tipe1,
+        imageSrc: tipe0,
       },
       {
         id: '2',
-        imageSrc: tipe2,
+        imageSrc: tipe0,
       },
       {
         id: '3',
-        imageSrc: tipe3,
+        imageSrc: tipe0,
       },
       {
         id: '4',
-        imageSrc: tipe4,
+        imageSrc: tipe0,
       },
 ];
 

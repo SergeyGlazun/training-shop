@@ -1,0 +1,125 @@
+
+
+ .swiper {
+
+     .swiper-button-prev,
+     .swiper-button-next {
+
+         border-radius: 50%;
+         width: 40px;
+         height: 40px;
+     }
+
+     .swiper-button-prev {
+         left: 5%;
+     }
+
+     .swiper-button-next {
+         right: 5%;
+     }
+ }
+
+
+ .tipeItem {
+     display: flex;
+     flex-wrap: nowrap;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     row-gap: 16px;
+     max-height: 560px;
+
+     .slider-buttons {
+         display: flex;
+         flex-wrap: wrap;
+         flex-direction: row;
+         column-gap: 14px;
+
+         .slider-button {
+             border: 0;
+             padding: 0;
+             width: 40px;
+             height: 40px;
+             background-image: url(../img/arrow.svg);
+             cursor: pointer;
+         }
+
+         .up-button {
+             transform: rotate(90deg);
+         }
+
+         .down-button {
+             transform: rotate(-90deg);
+         }
+     }
+ }
+
+ .sliderBlocItem {
+     display: flex;
+
+     width: 448px;
+     height: 560px;
+     height: max-content;
+ }
+
+ .sliderBlocTipe {
+     display: flex;
+     width: 94px;
+     overflow: visible;
+     margin: 0;
+     max-height: 560px;
+
+     .swiper-slide {
+         opacity: 0.6;
+         max-height: 114px;
+         cursor: pointer;
+     }
+
+     .swiper-wrapper {
+         flex-direction: column;
+         row-gap: 8px;
+         width: 94px; 
+     }
+
+     img {
+         width: 94px!important;
+         height: 114px;
+      
+     }
+
+     .swiper-button-next,
+     .swiper-button-prev {
+         position: unset;
+         z-index: 10;
+     }
+
+     .swiper-slide-thumb-active {
+         opacity: 1;
+     }
+ }
+
+
+ @media all and (max-width: 630px) {
+    .sliderBlocTipe {
+        width: 100%;
+        .swiper-wrapper {
+          flex-direction: row;
+          justify-content: flex-start;
+        }
+      }
+      .tipeItem {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+     
+     .sliderBlocItem {    
+         width: 100%;
+         height: max-content;  
+         .sliderImg{
+             width: 100%;
+         }  
+     }
+ }
+
+
+  
