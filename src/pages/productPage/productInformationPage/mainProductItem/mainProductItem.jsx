@@ -39,7 +39,7 @@ const MainProductItem = ({ productItem, arrReviews }) => {
 
       <div className='slidecContener'>
       
-      <ProductSwiper data-test-id='main-slider'/>
+      <ProductSwiper />
       </div>
 
       <div className='Information'>

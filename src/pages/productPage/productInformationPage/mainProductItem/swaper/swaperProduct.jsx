@@ -27,9 +27,9 @@ const ProductSwiper = () =>{
        <>
          <div className='tipeItem'>
           
-         <div className='slider-buttons'>
-          <div aria-hidden type='button' className='slider-button up-button' onClick={setPrev} />
-          <div aria-hidden type='button' className='slider-button down-button' onClick={setNext} />
+         <div className='sliderButtons'>
+          <div aria-hidden type='button' className='sliderButton upButton' onClick={setPrev} />
+          <div aria-hidden type='button' className='sliderButton downDutton' onClick={setNext} />
         </div>
           {
            <Swiper
@@ -68,6 +68,7 @@ const ProductSwiper = () =>{
         </div>
 
          <Swiper 
+         data-test-id='main-slider'
           onSwiper={setControlledSwiper}
           modules={[FreeMode, Navigation, Thumbs, Controller]}
           spaceBetween={10}

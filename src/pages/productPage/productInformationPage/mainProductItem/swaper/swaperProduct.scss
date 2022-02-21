@@ -29,13 +29,13 @@
      row-gap: 16px;
      max-height: 560px;
 
-     .slider-buttons {
+     .sliderButtons {
          display: flex;
          flex-wrap: wrap;
          flex-direction: row;
          column-gap: 14px;
 
-         .slider-button {
+         .sliderButton {
              border: 0;
              padding: 0;
              width: 40px;
@@ -44,11 +44,11 @@
              cursor: pointer;
          }
 
-         .up-button {
+         .upButton {
              transform: rotate(90deg);
          }
 
-         .down-button {
+         .downDutton {
              transform: rotate(-90deg);
          }
      }

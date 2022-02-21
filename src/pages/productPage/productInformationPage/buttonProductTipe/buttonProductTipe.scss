@@ -3,6 +3,11 @@
 
     .wrapper {
 
+.relatedSwiper{
+    max-width: 1110px;
+}
+
+
         .buttonTitle {
             display: flex;
             justify-content: space-between;
@@ -43,14 +48,7 @@
         .cardsItem {
             position: relative;
 
-            &:hover {
-                transform: scale(1.1);
-
-                .sale {
-                    transform: scale(1.7);
-                }
-            }
-
+           
             .cardsItemImg {
                 width: 100%;
 
@@ -66,7 +64,7 @@
                 font-size: 12px;
                 line-height: 13px;
                 padding: 8px;
-
+                z-index: 10;
             }
 
             .cardsItemName {
@@ -95,6 +93,25 @@
     }
 }
 
+@media screen and (max-width: 1150px) {
+    .relatedSwiper{
+      width: 900px;
+    }
+  }
+
+  @media screen and (max-width: 940px) {
+    .relatedSwiper{
+      width: 700px;
+    }
+  }
+
+  @media screen and (max-width: 740px) {
+    .relatedSwiper{
+        width: 100%;
+
+    }
+  }
+
 @media all and (max-width: 500px) {
     .butonContener {
         .wrapper {
@@ -110,6 +127,12 @@
         }
     }
 }
+
+@media screen and (max-width: 540px) {
+    .relatedSwiper{
+      width: 300px;
+    }
+  }
 
 @media all and (max-width: 400px) {
     .butonContener {
