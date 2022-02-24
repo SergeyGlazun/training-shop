@@ -14,7 +14,7 @@ import Next from '../../../../components/slider/imgButtonLeftRight/prev.svg';
 import ColorSize from '../../../../components/cardProduct/Cardeliment/colorSize';
 import Basker from '../../../../components/cardProduct/Cardeliment/basket';
 
-import CardProduct from '../../../../components/cardProduct';
+
 
 import './buttonProductTipe.scss';
 
@@ -81,8 +81,7 @@ const ButtonProductTipe = ({ productType }) => {
                                 </Link>
                             </SwiperSlide>
                         ))}
-
-              {/* <CardProduct arrCards={arrCards} productType={productType}/> */}
+         
                     </Swiper>
                 </div>
             </div>

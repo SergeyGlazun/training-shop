@@ -16,7 +16,7 @@ const CardProduct = ({ arrCards, productType }) => {
                         <div className='foterCard'>
                             <div className='PriseReiting'>
                                 <div className='cardsItemName'>{name}</div>
-                                <div className='cardsItemPrice'>${price}   <Raiting rating={rating} size={14} /></div>
+                                <div className='cardsItemPrice'> <span>${price}</span>  <Raiting rating={rating} size={14} /></div>
                             </div>
                             
                                 <ColorSize/>
