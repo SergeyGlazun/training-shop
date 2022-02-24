@@ -11,6 +11,11 @@ import 'swiper/css/bundle';
 import Prev from '../../../../components/slider/imgButtonLeftRight/next.svg';
 import Next from '../../../../components/slider/imgButtonLeftRight/prev.svg';
 
+import ColorSize from '../../../../components/cardProduct/Cardeliment/colorSize';
+import Basker from '../../../../components/cardProduct/Cardeliment/basket';
+
+import CardProduct from '../../../../components/cardProduct';
+
 import './buttonProductTipe.scss';
 
 const ButtonProductTipe = ({ productType }) => {
@@ -35,11 +40,11 @@ const ButtonProductTipe = ({ productType }) => {
                         data-test-id='related-slider'
                         onSwiper={setControlledSwiper}
                         breakpoints={{
-                            400: {
+                            500: {
                                 slidesPerView: 1,
                                 spaceBetween: 10,
                             },
-                            500: {
+                            600: {
                                 slidesPerView: 2,
                                 spaceBetween: 10,
                             },
@@ -63,11 +68,21 @@ const ButtonProductTipe = ({ productType }) => {
                                 <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
                                     {sale && <span className='sale'>{sale}</span>}
                                     <img src={imageSrc} alt='imgUser' className='cardsItemImg' />
-                                    <div className='cardsItemName'>{name}</div>
-                                    <div className='cardsItemPrice'>${price} <Raiting rating={rating} size={14} /></div>
+                                    <div className='foterCard'>
+                                        <div className='PriseReiting'>
+                                            <div className='cardsItemName'>{name}</div>
+                                            <div className='cardsItemPrice'>${price}   <Raiting rating={rating} size={14} /></div>
+                                        </div>
+
+                                        <ColorSize />
+                                        <Basker />
+
+                                    </div>
                                 </Link>
                             </SwiperSlide>
                         ))}
+
+              {/* <CardProduct arrCards={arrCards} productType={productType}/> */}
                     </Swiper>
                 </div>
             </div>

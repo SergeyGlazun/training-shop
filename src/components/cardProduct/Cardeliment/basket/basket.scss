@@ -1,0 +1,34 @@
+.pay{
+    display: flex;
+    column-gap: 24px;
+    .payBtn {
+        padding: 16px 24px;
+        cursor: pointer;
+        background: #121212;
+        color: #ffffff;
+        border: none;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 15px;
+        letter-spacing: 0.06em;
+    
+        &:hover {
+          background: #E6E6E6;
+          color:#121212;
+          transition: all 0.3s;
+        }
+      }
+    
+      .heard{
+        padding-top: 3%;
+          img.heartImg:hover{   
+              background: url('../../../../pages/productPage/productInformationPage/mainProductItem/img/hover/hardHover.svg') no-repeat;                
+          } 
+          img.scaleImg:hover{   
+              background: url('../../../../pages/productPage/productInformationPage/mainProductItem/img/hover/scaleHover.svg') no-repeat;                
+          }   
+      }
+}
+
+
+        

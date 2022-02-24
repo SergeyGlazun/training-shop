@@ -22,6 +22,10 @@ const MainBlog = () =>{
                   <div className='blogContenerText'>
                     <div className='blogTitle'>{title}</div>
                     <div className='blogText'>{text}</div>
+                    <div className='data'>
+                            <div>April 6, 2032</div>
+                            <div className='readMore'>READ MORE</div>
+                    </div>
                   </div>
                 </div>
                 ))}
