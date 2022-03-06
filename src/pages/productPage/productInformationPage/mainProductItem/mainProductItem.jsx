@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { arrColotItemProduct } from '../../../../db/ItemPages';
+// import { arrColotItemProduct } from '../../../../db/ItemPages';
 import Raiting from '../../../../components/reiting/raiting';
 
 

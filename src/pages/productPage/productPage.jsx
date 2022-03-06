@@ -18,32 +18,32 @@ import './productPage.scss';
 
 const ProductsPage = ({ productType }) => {
   const [condition, setCondition] = useState(false);
-  ////////////////////////цыет//////////////////////////////
+ 
   let arrColor = [];
   PRODUCTS[productType].map((item) => item.images.map((item) => arrColor.push(item.color)));
   let arrColorNoRepets = [...new Set(arrColor)];
 
-  ////////////////////////размер//////////////////////////////
+ 
   let arrSize = [];
   PRODUCTS[productType].map((item) => arrSize.push(...item.sizes));
   let arrSizeNoRepets = [...new Set(arrSize)];
 
-  ////////////////////////бренд//////////////////////////////
+ 
   let arrBrand = [];
   PRODUCTS[productType].map((item) => arrBrand.push(item.brand));
   let arrBrandNoRepets = [...new Set(arrBrand)];
 
-  ////////////////////////для цен//////////////////////////////
+
   let arrPrice = [];
   PRODUCTS[productType].map((item) => arrPrice.push(item.price));
   let arrPriceNoRepets = [...new Set(arrPrice)];
-  ////////////////////////......//////////////////////////////
+ 
   let [colorArr] = useState([]);
   let [colorArrBuf, setResult] = useState([]);
   let [sizeArr] = useState([]);
   let [brendArr] = useState([]);
   let [priceArr] = useState([]);
-  /////////////////////////////////////для фильтра///////////////////////////////
+
 
   let [countSetings, setCountSetings] = useState(0);
 
@@ -98,8 +98,6 @@ const ProductsPage = ({ productType }) => {
         if (priceArr.length > 0) {
           setCountSetings(countSetings++);
         }
-
-
       }}
 
     >
