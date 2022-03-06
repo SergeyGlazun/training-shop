@@ -10,7 +10,7 @@ const FilterString = ({ countSetings, sizeArr, colorArr, brendArr, priceArr }) =
                 {title}
                 {
                     arr.map((item, id) => (
-                        <span key={id}>{item}{id !== item.length - 1 ? `, ` : ``}</span>
+                        <span key={id}>{item}{id !== arr.length - 1 ? `, ` : ``}</span>                  
                     ))
                 }
             </span>
