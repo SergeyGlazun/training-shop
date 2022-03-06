@@ -102,7 +102,6 @@ const ProductsPage = ({ productType }) => {
 
       }}
 
-
     >
       <ProductHeaderTipe productType={productType} />
 
