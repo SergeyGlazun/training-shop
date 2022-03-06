@@ -28,7 +28,7 @@ const Setings = ({condition,setCondition}) =>{
   
     return(
         <div className='setings'> 
-            <div  type='button' data-test-id='filter-button'>
+            <div  type='button' >
             { Example(condition,setCondition)}  
             </div>        
           
