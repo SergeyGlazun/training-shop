@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-// import { arrColotItemProduct } from '../../../../db/ItemPages';
 import Raiting from '../../../../components/reiting/raiting';
 
 
@@ -35,11 +34,19 @@ const MainProductItem = ({ productItem}) => {
   arr.push(productItem);
 
   const filteredArray = [];
-  productItem.images.filter((item) => {
+
+  // productItem.images.filter((item) => {
+  //   if (!filteredArray.some((element) => element.color === item.color)) {
+  //     filteredArray.push(item);
+  //   }
+   
+  // });
+
+  productItem.images.forEach(item => {
     if (!filteredArray.some((element) => element.color === item.color)) {
       filteredArray.push(item);
     }
-  });
+});
 
   const [colors, colorCheck] = useState(filteredArray[0].color);
   const [size, sizeCheck] = useState(productItem.sizes[0]);
