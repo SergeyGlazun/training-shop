@@ -105,7 +105,7 @@ const ProductsPage = ({ productType }) => {
 
       <div className='wrapper'>
 
-        <Setings condition={condition} setCondition={setCondition}   data-test-id='filter-button'/>
+        <Setings condition={condition} setCondition={setCondition}   />
         {condition && <Filter
           data-test-id={`filter-${productType}`}
 

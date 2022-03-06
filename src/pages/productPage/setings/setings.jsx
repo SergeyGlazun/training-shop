@@ -10,8 +10,8 @@ import './setings.scss';
 
 function Example(condition,setCondition) {
    return(
-        <div onClick={() =>filterSeting(setCondition(condition ? false : true))} >
-        {filterSeting(condition)}
+        <div onClick={() =>filterSeting(setCondition(condition ? false : true))} className='filter' data-test-id='filter-button'>
+        {filterSeting(condition)} FILTER
        </div>
     ); 
 }
@@ -28,8 +28,8 @@ const Setings = ({condition,setCondition}) =>{
   
     return(
         <div className='setings'> 
-            <div className='filter' type='button'>
-            { Example(condition,setCondition)} FILTER
+            <div  type='button' data-test-id='filter-button'>
+            { Example(condition,setCondition)}  
             </div>        
           
 
