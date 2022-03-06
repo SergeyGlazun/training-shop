@@ -13,7 +13,7 @@ const FilterItem = ({ text, id, type, colorChek, colorArr}) => {
       <input type='checkbox'
         className='checkboxInput'
         id={`${type}-${id}`}
-        data-test-id={`filter-color-${text}`}
+        // data-test-id={`filter-color-${text}`}
         checked={checked}
         onChange={() => {setChecked(!checked)}}
         onClick={() => {!checked ? colorArr.push(colorChek) : colorArr.splice(colorArr.indexOf(colorChek), 1).sort()}}
