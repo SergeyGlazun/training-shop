@@ -46,48 +46,49 @@
         }
 
         .cardsItem {
-     
-              display: flex;
-              position: relative;
-              height: 378px;     
-              width: 100%;
-              overflow: hidden;       
+
+            display: flex;
+            position: relative;
+            height: 378px;
+            width: 100%;
+            overflow: hidden;
+
             .cardsItemImg {
-              width: 100%;
-             
+                width: 100%;
+
             }
-          
+
             .sale {
-              position: absolute;
-              top: 0;
-              left: 0;
-              background-color: #e91e63;
-              color: #ffffff;
-              font-weight: bold;
-              font-size: 12px;
-              line-height: 13px;
-              padding: 8px;
-             
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: #e91e63;
+                color: #ffffff;
+                font-weight: bold;
+                font-size: 12px;
+                line-height: 13px;
+                padding: 8px;
+
             }
-          
+
             .cardsItemName {
-              font-size: 14px;
-              line-height: 16px;
-              color: #707070;
-              padding: 14px 0;
+                font-size: 14px;
+                line-height: 16px;
+                color: #707070;
+                padding: 14px 0;
             }
-          
+
             .cardsItemPrice {
-              font-weight: 600;
-              font-size: 14px;
-              line-height: 16px;
-              display: flex;
-              justify-content: space-between;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 16px;
+                display: flex;
+                justify-content: space-between;
             }
-          
-          
-          
-            .foterCard{
+
+
+
+            .foterCard {
                 width: 100%;
                 height: 312px;
                 position: absolute;
@@ -95,15 +96,16 @@
                 background-color: #ffffff;
                 transition: 500ms;
                 transform: translateY(0px);
-               &:hover{
-                 transform: translateY(-205px);
-               }
-               
-           }
-         
-          
-            
-          }
+
+                &:hover {
+                    transform: translateY(-205px);
+                }
+
+            }
+
+
+
+        }
 
         .productsTitle {
             font-weight: 600;

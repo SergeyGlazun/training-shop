@@ -1,6 +1,4 @@
-
-
- .swiper {
+.swiper {
 
      .swiper-button-prev,
      .swiper-button-next {
@@ -24,7 +22,7 @@
      display: flex;
      flex-wrap: nowrap;
      flex-direction: column;
-     justify-content: center;
+    //  justify-content: center;
      align-items: center;
      row-gap: 16px;
      max-height: 560px;
@@ -56,56 +54,53 @@
 
  .sliderBlocItem {
      display: flex;
-
-     width: 448px;
-     height: 560px;
+     width: 387px;
      height: max-content;
  }
 
  .sliderBlocTipe {
-     display: flex;
-     width: 94px;
-     overflow: visible;
-     margin: 0;
-     max-height: 560px;
+    width: 94px;
+    
+      .swiper-wrapper {
+        display: flex;
+    
+        .swiper-slide {
+          width: 85px !important;
+          height: 114px !important;
+          opacity: 0.4;
+        
+          &.swiper-slide-visible {
+           
+            cursor: pointer;
+          }
 
-     .swiper-slide {
-         opacity: 0.6;
-         max-height: 114px;
-         cursor: pointer;
-     }
-
-     .swiper-wrapper {
-         flex-direction: column;
-         row-gap: 8px;
-         width: 94px; 
-     }
-
-     img {
-         width: 94px!important;
-         height: 114px;
-      
-     }
-
-     .swiper-button-next,
-     .swiper-button-prev {
-         position: unset;
-         z-index: 10;
-     }
-
-     .swiper-slide-thumb-active {
-         opacity: 1;
-     }
+          &.swiper-slide-thumb-active {
+            opacity: 1;
+            cursor: auto;
+          }
+        }
+      }
  }
 
+ @media all and (max-width: 830px){
+
+    .sliderBlocTipe{
+        .swiper-wrapper{
+            width: 200px;
+        }
+    }
+ }
 
  @media all and (max-width: 630px) {
-    .sliderBlocTipe {
-        width: 100%;
-        .swiper-wrapper {
-          flex-direction: row;
-          justify-content: flex-start;
+    .sliderButtons{
+        .sliderButton{
+            display: none;
         }
+       
+    }
+    .sliderBlocTipe {
+        display: none;
+        width: 100%;     
       }
       .tipeItem {
         width: 100%;
@@ -121,5 +116,12 @@
      }
  }
 
+ @media all and (min-width: 640px){
+    .sliderBlocTipe{
+        .swiper-wrapper{
+            width: 200px;
+        }
+    }
+ }
 
   

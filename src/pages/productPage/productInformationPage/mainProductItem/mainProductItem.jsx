@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useState } from 'react';
 import { arrColotItemProduct } from '../../../../db/ItemPages';
 import Raiting from '../../../../components/reiting/raiting';
 
@@ -22,48 +22,63 @@ import './mainProductItem.scss';
 
 function reting(arrRevies) {
   let overallRating = 0;
-
   arrRevies.map(({ rating }) => (
     overallRating += +rating
   ))
-  return overallRating / arrRevies.length;
+
+  return Math.round(overallRating / arrRevies.length);
 }
 
 
-const MainProductItem = ({ productItem, arrReviews }) => {
+const MainProductItem = ({ productItem}) => {
   let arr = [];
-  arr.push(productItem)
+  arr.push(productItem);
+
+  const filteredArray = [];
+  productItem.images.filter((item) => {
+    if (!filteredArray.some((element) => element.color === item.color)) {
+      filteredArray.push(item);
+    }
+  });
+
+  const [colors, colorCheck] = useState(filteredArray[0].color);
+  const [size, sizeCheck] = useState(productItem.sizes[0]);
 
   return (
     <div className='productSection wrapper'>
 
       <div className='slidecContener'>
-      
-      <ProductSwiper />
+
+        <ProductSwiper productItem={productItem}/>
       </div>
 
       <div className='Information'>
         <div className='parametr'>
           <span>
-            COLOR:<span className='bold'>Blue</span>
+            COLOR:<span className='bold'>{colors}</span>
           </span>
           <div className='colorItem'>
             {
-              arrColotItemProduct.map(({ id, imageSrc }) => (
-                <div key={id} >
-                  <img src={imageSrc} alt='imgUser' />
+              filteredArray.map(({ id, url, color }) => (
+                <div key={id} onClick={() => { colorCheck(color) }}>
+                  <img src={`https://training.cleverland.by/shop${url}`} alt='imgUser' className={colors === color ? "coloChek" : "coloChekHover"} />
                 </div>
               ))
             }
           </div>
           <div className='size'>
-            SIZE:<span className='bold'>S</span>
+            SIZE:<span className='bold'>{size}</span>
           </div>
           <div className='sizeBtn'>
-            <button type='button'>XS</button>
-            <button type='button'>S</button>
-            <button type='button'>M</button>
-            <button type='button'>L</button>
+            {
+              productItem.sizes.map((sizes, id) =>
+                <button type='button'
+                  key={id}
+                  onClick={() => sizeCheck(sizes)}
+                  className={sizes === size ? "coloChek" : "coloChekHover"}
+                >{sizes}</button>
+              )
+            }
           </div>
           <div className='hanger'>
             <img src={hanger} alt='hanger' />
@@ -115,13 +130,23 @@ const MainProductItem = ({ productItem, arrReviews }) => {
             <div className='texTitle'>ADDITIONAL INFORMATION</div>
             <div className='specifications'>
               <div className='textColor'>
-                Color:<span className='black'> Blue, White, Black, Grey</span>
+                Color:<span className='black'>
+                  {                  
+                    filteredArray.map(({color, id}) =>
+                    <span key={id}>{color}{id !== filteredArray[filteredArray.length -1].id ? `, ` : ``}</span>                
+                  )
+                  }
+                </span>
               </div>
               <div className='textSize'>
-                Size:<span className='black'>XS, S, M, L</span>
+                Size:<span className='black'>{
+                  productItem.sizes.map((sizes, id) =>
+                    <span key={id}>{sizes}{id !== productItem.sizes.length - 1 ? `, ` : ``}</span>
+                  )
+                }</span>
               </div>
               <div className='textMaterial'>
-                Material:<span className='black'>100% Polyester</span>
+                Material:<span className='black'>{productItem.material}</span>
               </div>
             </div>
 
@@ -134,8 +159,8 @@ const MainProductItem = ({ productItem, arrReviews }) => {
               <div className='title'>REVIEWS</div>
               <div className='subtitleText'>
                 <div className='ratingReviews'>
-                  <Raiting rating={reting(arrReviews)} size={22} />
-                  <span className='amountRreviews'>{arrReviews.length} Reviews</span>
+                  <Raiting rating={reting(productItem.reviews)} size={22} />
+                  <span className='amountRreviews'>{productItem.reviews.length} Reviews</span>
                 </div>
 
                 <div className='annotation'>
@@ -144,9 +169,7 @@ const MainProductItem = ({ productItem, arrReviews }) => {
                 </div>
               </div>
             </div>
-
-
-            {arrReviews.map(({ id, name, text, rating }) => (
+            {productItem.reviews.map(({ id, name, text, rating }) => (
               <div key={id} className='reviewText'>
                 <div className='title'>
                   <div className='name'>{name}</div>

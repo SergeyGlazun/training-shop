@@ -1,93 +1,99 @@
  .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-        gap: 30px;
-        margin: 48px 0;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  flex-flow: column wrap;
+   gap: 30px;
+   margin: 48px 0;
+ }
 
-      }
+ .productButton {
+   width: 100%;
+   padding: 16px 0;
+   border: 2px solid #f8f8f8;
+   background: #f8f8f8;
+   font-weight: 500;
+   font-size: 13px;
+   line-height: 15px;
+   letter-spacing: 0.06em;
+   color: #404040;
+   cursor: pointer;
 
-      .productButton {
-        width: 100%;
-        padding: 16px 0;
-        border: 2px solid #f8f8f8;
-        background: #f8f8f8;
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 15px;
-        letter-spacing: 0.06em;
-        color: #404040;
-        cursor: pointer;
-    
-        &:hover {
-          background: #E6E6E6;
-          color:#121212;
-          transition: all 0.3s;
-        }
-      }
+   &:hover {
+     background: #E6E6E6;
+     color: #121212;
+     transition: all 0.3s;
+   }
+ }
 
-      .cardsItem {
-  position: relative;
-  display: flex;
+ .cardsItem {
+   position: relative;
+   display: flex;
 
-    height: 378px;
+   height: 378px;
+   max-width: 340px;
+   width: 100%;
+   overflow: hidden;
 
-    width: 100%;
-    overflow: hidden;
+   .cardsItemImg {
+     width: 100%;
 
-  .cardsItemImg {
-    width: 100%;
-   
-  }
+   }
 
-  .sale {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #e91e63;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 13px;
-    padding: 8px;
-   
-  }
+   .sale {
+     position: absolute;
+     top: 0;
+     left: 0;
+     background-color: #e91e63;
+     color: #ffffff;
+     font-weight: bold;
+     font-size: 12px;
+     line-height: 13px;
+     padding: 8px;
 
-  .cardsItemName {
-    font-size: 14px;
-    line-height: 16px;
-    color: #707070;
-    padding: 14px 0;
-  }
+   }
 
-  .cardsItemPrice {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
-    display: flex;
-    justify-content: space-between;
-  }
+   .cardsItemName {
+     font-size: 14px;
+     line-height: 16px;
+     color: #707070;
+     padding: 14px 0;
+   }
+
+   .cardsItemPrice {
+     font-weight: 600;
+     font-size: 14px;
+     line-height: 16px;
+     display: flex;
+     justify-content: space-between;
+   }
 
 
 
-  .foterCard{
-   
-      width: 100%;
-      height: 312px;
-      position: absolute;
-      top: 318px;
-      background-color: #ffffff;
-      transition: 500ms;
-      transform: translateY(0px);
-      &:hover{
-        transform: translateY(-205px);
-      }
-      
-  }
+   .foterCard {
 
+     width: 100%;
+     height: 312px;
+     position: absolute;
+     top: 318px;
+     background-color: #ffffff;
+     transition: 500ms;
+     transform: translateY(0px);
+
+     &:hover {
+       transform: translateY(-205px);
+     }
+
+   }
+
+
+ }
+
+//  @media all and (max-width: 603px) {
   
-}
-
-
-
+//     .cards {
     
+//       flex-flow: column wrap;
+     
+//     }
   
+// }

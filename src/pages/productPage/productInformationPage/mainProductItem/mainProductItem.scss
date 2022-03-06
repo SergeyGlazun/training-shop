@@ -56,7 +56,22 @@
                 display: flex;               
                 column-gap: 18px;
                padding-top: 16px;
+
+               .coloChek{
+                outline: 2px solid #121212;
+                width: 64px;
+                height: 90%;
+               }
+               .coloChekHover{
+                width: 64px;
+                height: 90%;
+                &:hover{
+                  cursor: pointer;              
+                  outline: 2px solid #121212;
+                }
+               }
             }
+
             .bold {
                 font-weight: 600;
                 color: #121212;
@@ -72,7 +87,11 @@
                 display: flex;
                 column-gap: 16px;
                 margin-top: 20px;
-        
+                .coloChek{
+                  outline: 2px solid #121212;
+                 
+                 }
+                
                 & button {
                   border: none;
                   background: #f8f8f8;

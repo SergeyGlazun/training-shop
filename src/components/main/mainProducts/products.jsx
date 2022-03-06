@@ -1,36 +1,44 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-import { arrProductsMenu } from '../../../db/productMenu';
-import { arrCards } from '../../../db/cards';
+import { MAIN_CLOTHES_BLOCK_MENU } from '../../../db/productMenu';
 
 import CardProduct from '../../cardProduct';
 
+
+import { PRODUCTS } from '../../../db/products';
+
+
 import './product.scss';
 
-const Products = ({ productType }) =>{
-    return(
-      <div className='product' data-test-id={`clothes-${productType}`}>
-       <div   className='productContener'>
-       <div className='productTipe'>{`${productType}’s`}</div>
-          <div className='productMenu'>
-                {arrProductsMenu.map(({ id, name }) => (
-                <div className='productMenuItem' key={id}>
-                    {name}
-                </div>
-                ))}
-          </div>
-       </div>
+const Products = ({ productType }) => {
 
-<CardProduct arrCards={arrCards} productType={productType}/>
+  const [particularNames, particularsCheck] = useState('isNewArrivals');
 
-    <Link  to={`/${productType}`} >
-      <button className='productButton' type='button'>
-        SEE ALL
-      </button>
-    </Link>
 
+  return (
+    <div className='product' data-test-id={`clothes-${productType}`}>
+      <div className='productContener'>
+        <div className='productTipe'>{`${productType}’s`}</div>
+        <div className='productMenu'>
+          {MAIN_CLOTHES_BLOCK_MENU.map(({ id, name, particularName }) => (
+            <div className='productMenuItem' key={id} type='button' onClick={() => particularsCheck(particularName)} data-test-id={`clothes-${productType}-${particularName}`}>
+              {name}
+            </div>
+          ))}
+        </div>
       </div>
-    );
+
+      <CardProduct arrCards={PRODUCTS[productType].filter((element) =>element.particulars[particularNames] === true  )} productType={productType} particularsType={particularNames} />
+
+      <Link to={`/${productType}`} >
+        <button className='productButton' type='button'>
+          SEE ALL
+        </button>
+      </Link>
+
+    </div>
+  );
 }
 
 export default Products;

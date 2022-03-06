@@ -5,14 +5,15 @@ import Basker from './Cardeliment/basket';
 
 import './cardProduct.scss';
 
-const CardProduct = ({ arrCards, productType }) => {
+const CardProduct = ({ arrCards, productType}) => {
+ 
     return (
         <div className='cards'>
-            {
-                arrCards[productType].map(({ name, price, imageSrc, rating, sale, id }) => (
+            {            
+                arrCards.map(({ name, price, images, rating, discount, id }) => (
                     <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
-                        {sale && <span className='sale'>{sale}</span>}
-                        <img src={imageSrc} alt='imgUser' className='cardsItemImg' />
+                        {discount && <span className='sale'>{discount}</span>}
+                        <img src={`https://training.cleverland.by/shop${images[0]?.url}`} alt='imgUser' className='cardsItemImg' />
                         <div className='foterCard'>
                             <div className='PriseReiting'>
                                 <div className='cardsItemName'>{name}</div>

@@ -11,18 +11,17 @@ import "swiper/css/thumbs";
 // import required modules
 import {  Navigation, Thumbs,Controller,FreeMode } from "swiper";
 
-
-
-import { arrTipeItem } from '../../../../../db/ItemPages';
-
 import './swaperProduct.scss';
 
-const ProductSwiper = () =>{
+
+
+
+const ProductSwiper = ({productItem}) =>{
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [controlledSwiper, setControlledSwiper] = useState(null);
     const setNext = () => controlledSwiper.slideNext();
     const setPrev = () => controlledSwiper.slidePrev();
-
+ 
     return(
        <>
          <div className='tipeItem'>
@@ -38,28 +37,37 @@ const ProductSwiper = () =>{
            spaceBetween={10}
            slidesPerView={4}
            watchSlidesProgress
-           modules={[Navigation, Thumbs, Controller]}
-           className="sliderBlocTipe"
-           breakpoints={{
-          
-            640: {
-              width: 640,
-             
-            },
+           modules={[Navigation, Thumbs, Controller]}         
+           direction={'vertical'}
+                   
+          //  breakpoints={{   
+          //    400:{
+          //     // width: 768, 
+          //     height:100,
+           
+          //     direction:"horizontal"    
+          //    } ,
+
+          //   640: {
+          //     // width: 640, 
+          //     height:150,
+          //     // slidesPerView:4,
+          //     direction:"vertical"
+          //   },
          
-            768: {
-              width: 768,
-             
-            },
-          }}
+          //   830: {
+          //     // width: 768, 
+          //     height:150,
+          //     // slidesPerView:4,
+          //     direction:"vertical"                   
+          //   },   
+          // }}
+          className="sliderBlocTipe"     
             >
 
-           {arrTipeItem.map((item) => (
+           {productItem.images.map((item) => (
              <SwiperSlide key={item.id}  >
-             
-               <img src={item.imageSrc} alt='img'  className='sliderImgTipe' /> 
-             
-                       
+               <img src={`https://training.cleverland.by/shop${item.url}`} alt='img'  className='sliderImgTipe' /> 
              </SwiperSlide>
            ))}
          </Swiper>
@@ -77,9 +85,9 @@ const ProductSwiper = () =>{
             thumbs={{ swiper: thumbsSwiper }}
             className="sliderBlocItem"  
               >
-        {arrTipeItem.map((item) => (
+        {productItem.images.map((item) => (
           <SwiperSlide key={item.id}>
-            <img src={item.imageSrc} alt='img' className='sliderImg' />          
+            <img src={`https://training.cleverland.by/shop${item.url}`} alt='img' className='sliderImg' />          
           </SwiperSlide>
         ))}
       </Swiper>

@@ -34,6 +34,14 @@ export const arrTipeItem = [
         id: '4',
         imageSrc: tipe0,
       },
+      {
+        id: '5',
+        imageSrc: tipe0,
+      },
+      {
+        id: '6',
+        imageSrc: tipe0,
+      },
 ];
 
 export const arrColotItemProduct = [

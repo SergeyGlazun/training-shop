@@ -1,0 +1,11 @@
+.filterChekString{
+    margin-top: 2rem;
+    display: flex;
+    align-content: stretch;
+    height: 100%;
+    column-gap: 15px;
+    .countChek{
+        font-weight: bold;
+        font-size: 16px;
+    }
+}

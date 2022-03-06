@@ -31,7 +31,7 @@ const HeaderProductItem = ({productItem,productType,arrReviews}) =>{
                         <div className='reviews'>
                             <Raiting rating={productItem.rating} size={14}/>
                             <div className='reviewsCount'>
-                            {arrReviews.length} Reviews
+                            {productItem.reviews.length} Reviews
                             </div>
                         </div>
                         <div className='count'>

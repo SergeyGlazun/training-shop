@@ -8,7 +8,7 @@ import './burgerMenu.scss';
 function Example(condition,setCondition) {
     
     return(
-         <div  onClick={() =>filterSeting(setCondition(condition ? false : true))} >
+         <div  onClick={() =>filterSeting(setCondition(condition ? false : true))} data-test-id='filter-button'>
          {filterSeting(condition)}
         </div>
      ); 
