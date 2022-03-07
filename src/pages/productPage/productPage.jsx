@@ -1,6 +1,7 @@
 import { useState} from 'react';
 import { PRODUCTS } from '../../db/products';
 
+
 import '../../components/reiting/reiting.scss';
 import '../../components/main/mainProducts/product.scss';
 import ProductHeaderTipe from './ProductHeaderTipe';
@@ -56,7 +57,6 @@ const ProductsPage = ({ productType }) => {
       sizeArr.length = 0;
       brendArr.length = 0;
       priceArr.length = 0;
- 
     }
   } catch {
   
@@ -149,7 +149,7 @@ const ProductsPage = ({ productType }) => {
             priceArr={priceArr}
           />}
 
-        <CardProduct arrCards={ colorArrBuf} productType={productType} />
+        <CardProduct arrCards={colorArrBuf.length !== 0 || countSetings > 0 ? colorArrBuf : PRODUCTS[productType]} productType={productType} countSetings={countSetings}/>
 
         <div className='square'>
           <img src={square} alt="square" />

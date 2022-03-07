@@ -5,9 +5,9 @@ import Basker from './Cardeliment/basket';
 import { PRODUCTS } from '../../db/products';
 import './cardProduct.scss';
 
-const CardProduct = ({ arrCards, productType }) => {
+const CardProduct = ({ arrCards, productType ,countSetings}) => {
   
-    if(arrCards.length === 0){
+    if(arrCards.length === 0 && countSetings === 0){
         arrCards=PRODUCTS[productType]
     }
 
