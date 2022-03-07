@@ -6,7 +6,7 @@ import './filter.scss';
 
 
 
-const Filter = ({ arrColorNoRepets, colorArr, arrSizeNoRepets, arrSize, arrBrandNoRepets, brendArr, arrPriceNoRepets, priceArr }) => {
+const Filter = ({ productType,arrColorNoRepets, colorArr, arrSizeNoRepets, arrSize, arrBrandNoRepets, brendArr, arrPriceNoRepets, priceArr }) => {
   let bufPrise = arrPriceNoRepets.map((item) => Math.round(Number(item))).sort((a, b) => b - a)
 
   let roundedNumbers = [...new Set(bufPrise.map(item => Math.round((item) / 100) * 100))]
@@ -15,14 +15,14 @@ const Filter = ({ arrColorNoRepets, colorArr, arrSizeNoRepets, arrSize, arrBrand
   roundedNumbers.map(item => SelectionStringPrise.push(String((item === 0) ? 100 : item) + "-" + String((item > 0) ? item - 100 : 0)));
   
   return (
-    <div className='filterSetings'>
+    <div className='filterSetings'   data-test-id={`filter-${productType}`}>
 
       <div className='color'   data-test-id='filters-color'>
         <div className='title'>COLOR</div>
         <div className='filters'>
           {arrColorNoRepets.map((color, index) => (
 
-            <FilterItem key={index} id={index} text={color} type='color' colorChek={color} colorArr={colorArr}  data-test-id={`filter-${'color'}-${color}`}/>
+            <FilterItem key={index} id={index} text={color} type='color' colorChek={color} colorArr={colorArr} typeFilter={'color'} />
           ))}
 
         </div>
@@ -32,7 +32,7 @@ const Filter = ({ arrColorNoRepets, colorArr, arrSizeNoRepets, arrSize, arrBrand
         <div className='title'>SIZE</div>
         <div className='filters'>
           {arrSizeNoRepets.map((size, index) => (
-            <FilterItem key={index} id={index} text={size} type='size' colorChek={size} colorArr={arrSize} data-test-id={`filter-${'size'}-${size}`}/>
+            <FilterItem key={index} id={index} text={size} type='size' colorChek={size} colorArr={arrSize} typeFilter={'size'}/>
           ))}
         </div>
       </div>
@@ -41,7 +41,7 @@ const Filter = ({ arrColorNoRepets, colorArr, arrSizeNoRepets, arrSize, arrBrand
         <div className='title'>BRAND</div>
         <div className='filters'>
           {arrBrandNoRepets.map((brand, index) => (
-            <FilterItem key={index} id={index} text={brand} type='brand' colorChek={brand} colorArr={brendArr} data-test-id={`filter-${'brand'}-${brand}`}/>
+            <FilterItem key={index} id={index} text={brand} type='brand' colorChek={brand} colorArr={brendArr} typeFilter={'brand'}/>
           ))}
         </div>
       </div>

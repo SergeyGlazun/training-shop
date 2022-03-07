@@ -106,8 +106,8 @@ const ProductsPage = ({ productType }) => {
       <div className='wrapper'>
 
         <Setings condition={condition} setCondition={setCondition}   />
-        {condition && <Filter
-          data-test-id={`filter-${productType}`}
+        {condition && <Filter       
+          productType={productType}
 
           arrColorNoRepets={arrColorNoRepets}
           colorArr={colorArr}

@@ -3,17 +3,17 @@ import React, { useState} from 'react';
 
 
 
-const FilterItem = ({ text, id, type, colorChek, colorArr}) => {
+const FilterItem = ({ text, id, type, colorChek, colorArr,typeFilter}) => {
   const [checked, setChecked] = useState(colorArr.some(elem => elem === text));
 
   // console.log(text)
   return (
-    <label className='checkboxLabel' htmlFor={`${type}-${id}`} key={id}>
+    <label className='checkboxLabel' htmlFor={`${type}-${id}`} key={id}   data-test-id={`filter-${typeFilter}-${text}`}>
 
       <input type='checkbox'
         className='checkboxInput'
         id={`${type}-${id}`}
-        // data-test-id={`filter-color-${text}`}
+      
         checked={checked}
         onChange={() => {setChecked(!checked)}}
         onClick={() => {!checked ? colorArr.push(colorChek) : colorArr.splice(colorArr.indexOf(colorChek), 1).sort()}}
