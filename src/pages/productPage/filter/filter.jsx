@@ -2,6 +2,7 @@ import React  from "react";
 
 import FilterItem from './filterItem';
 
+
 import './filter.scss';
 
 
@@ -14,8 +15,7 @@ const Filter = ({ productType,arrColorNoRepets, colorArr, arrSizeNoRepets, arrSi
   let SelectionStringPrise = [];
   roundedNumbers.map(item => SelectionStringPrise.push(String((item === 0) ? 100 : item) + "-" + String((item > 0) ? item - 100 : 0)));
 
-
-
+console.log()
   return (
     <div className='filterSetings'   data-test-id={`filters-${productType}`}>
 
@@ -24,7 +24,7 @@ const Filter = ({ productType,arrColorNoRepets, colorArr, arrSizeNoRepets, arrSi
         <div className='filters' data-test-id='filters-color'>
           {arrColorNoRepets.map((color, index) => (
 
-            <FilterItem key={index} id={index} text={color} type='color' colorChek={color} colorArr={colorArr} typeFilter={'color'} />
+            <FilterItem key={index} id={index} text={color} type='color' colorChek={color} colorArr={colorArr} typeFilter={'color'} productType={productType} />
           ))}
 
         </div>
@@ -34,7 +34,7 @@ const Filter = ({ productType,arrColorNoRepets, colorArr, arrSizeNoRepets, arrSi
         <div className='title'>SIZE</div>
         <div className='filters' data-test-id='filters-size'>
           {arrSizeNoRepets.map((size, index) => (
-            <FilterItem key={index} id={index} text={size} type='size' colorChek={size} colorArr={arrSize} typeFilter={'size'}/>
+            <FilterItem key={index} id={index} text={size} type='size' colorChek={size} colorArr={arrSize} typeFilter={'size'} productType={productType} />
           ))}
         </div>
       </div>
@@ -43,7 +43,7 @@ const Filter = ({ productType,arrColorNoRepets, colorArr, arrSizeNoRepets, arrSi
         <div className='title'>BRAND</div>
         <div className='filters' data-test-id='filters-brand'>
           {arrBrandNoRepets.map((brand, index) => (
-            <FilterItem key={index} id={index} text={brand} type='brand' colorChek={brand} colorArr={brendArr} typeFilter={'brand'}/>
+            <FilterItem key={index} id={index} text={brand} type='brand' colorChek={brand} colorArr={brendArr} typeFilter={'brand'} productType={productType} />
           ))}
         </div>
       </div>
@@ -52,7 +52,7 @@ const Filter = ({ productType,arrColorNoRepets, colorArr, arrSizeNoRepets, arrSi
         <div className='title'>PRICE</div>
         <div className='filters'>
           {[...new Set(SelectionStringPrise)].map((price, index) => (
-            <FilterItem key={index} id={index} text={price} type='price' colorChek={price} colorArr={priceArr} />
+            <FilterItem key={index} id={index} text={price} type='price' colorChek={price} colorArr={priceArr} typeFilter={'price'} productType={productType} />
           ))}
         </div>
       </div>

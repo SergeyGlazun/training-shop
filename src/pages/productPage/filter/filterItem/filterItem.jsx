@@ -1,12 +1,15 @@
 import './filterItem.scss';
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 
-const FilterItem = ({ text, id, type, colorChek, colorArr,typeFilter}) => {
+const FilterItem = ({ text, id, type, colorChek, colorArr,typeFilter }) => {
   const [checked, setChecked] = useState(colorArr.some(elem => elem === text));
 
-  // console.log(text)
+  useEffect(() => { 
+    setChecked(colorArr.some(elem => elem === text))
+  });
+  
   return (
     <label className='checkboxLabel' htmlFor={`${type}-${id}`} key={id}   >
 

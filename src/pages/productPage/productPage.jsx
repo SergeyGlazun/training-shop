@@ -1,7 +1,5 @@
-import { useState } from 'react';
-
+import { useState} from 'react';
 import { PRODUCTS } from '../../db/products';
-
 
 import '../../components/reiting/reiting.scss';
 import '../../components/main/mainProducts/product.scss';
@@ -18,17 +16,17 @@ import './productPage.scss';
 
 const ProductsPage = ({ productType }) => {
   const [condition, setCondition] = useState(false);
- 
+
   let arrColor = [];
   PRODUCTS[productType].map((item) => item.images.map((item) => arrColor.push(item.color)));
   let arrColorNoRepets = [...new Set(arrColor)];
 
- 
+
   let arrSize = [];
   PRODUCTS[productType].map((item) => arrSize.push(...item.sizes));
   let arrSizeNoRepets = [...new Set(arrSize)];
 
- 
+
   let arrBrand = [];
   PRODUCTS[productType].map((item) => arrBrand.push(item.brand));
   let arrBrandNoRepets = [...new Set(arrBrand)];
@@ -37,7 +35,7 @@ const ProductsPage = ({ productType }) => {
   let arrPrice = [];
   PRODUCTS[productType].map((item) => arrPrice.push(item.price));
   let arrPriceNoRepets = [...new Set(arrPrice)];
- 
+
   let [colorArr] = useState([]);
   let [colorArrBuf, setResult] = useState([]);
   let [sizeArr] = useState([]);
@@ -46,6 +44,25 @@ const ProductsPage = ({ productType }) => {
 
 
   let [countSetings, setCountSetings] = useState(0);
+
+
+  try {  
+    if (colorArrBuf[0].category !== productType) {
+      colorArrBuf.length = 0;
+      countSetings = 0;
+
+
+      colorArr.length = 0;
+      sizeArr.length = 0;
+      brendArr.length = 0;
+      priceArr.length = 0;
+ 
+    }
+  } catch {
+  
+  }
+
+  
 
   return (
 
@@ -105,8 +122,8 @@ const ProductsPage = ({ productType }) => {
 
       <div className='wrapper'>
 
-        <Setings condition={condition} setCondition={setCondition}   />
-        {condition && <Filter       
+        <Setings condition={condition} setCondition={setCondition} />
+        {condition && <Filter
           productType={productType}
 
           arrColorNoRepets={arrColorNoRepets}
@@ -120,6 +137,8 @@ const ProductsPage = ({ productType }) => {
 
           arrPriceNoRepets={arrPriceNoRepets}
           priceArr={priceArr}
+
+          colorArrBuf={colorArrBuf}
         />}
 
         {((colorArrBuf.length !== PRODUCTS[productType].length && colorArrBuf.length !== 0) ? true : false) &&
@@ -130,7 +149,7 @@ const ProductsPage = ({ productType }) => {
             priceArr={priceArr}
           />}
 
-        <CardProduct arrCards={colorArrBuf.length !== 0 || countSetings > 0 ? colorArrBuf : PRODUCTS[productType]} productType={productType} />
+        <CardProduct arrCards={ colorArrBuf} productType={productType} />
 
         <div className='square'>
           <img src={square} alt="square" />
