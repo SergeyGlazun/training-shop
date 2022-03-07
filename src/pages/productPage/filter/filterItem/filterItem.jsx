@@ -6,10 +6,12 @@ import React, { useState, useEffect } from 'react';
 const FilterItem = ({ text, id, type, colorChek, colorArr,typeFilter }) => {
   const [checked, setChecked] = useState(colorArr.some(elem => elem === text));
 
-  useEffect(() => { 
-    setChecked(colorArr.some(elem => elem === text))
-  });
-  
+  useEffect(() => {
+    const newArray = colorArr.some(elem => elem === text)
+    setChecked(newArray)
+  },[colorArr, text]);
+
+
   return (
     <label className='checkboxLabel' htmlFor={`${type}-${id}`} key={id}   >
 
