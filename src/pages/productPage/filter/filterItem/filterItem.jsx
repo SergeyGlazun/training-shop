@@ -8,12 +8,12 @@ const FilterItem = ({ text, id, type, colorChek, colorArr,typeFilter}) => {
 
   // console.log(text)
   return (
-    <label className='checkboxLabel' htmlFor={`${type}-${id}`} key={id}   data-test-id={`filter-${typeFilter}-${text}`}>
+    <label className='checkboxLabel' htmlFor={`${type}-${id}`} key={id}   >
 
       <input type='checkbox'
         className='checkboxInput'
         id={`${type}-${id}`}
-      
+        data-test-id={`filter-${typeFilter}-${text}`}
         checked={checked}
         onChange={() => {setChecked(!checked)}}
         onClick={() => {!checked ? colorArr.push(colorChek) : colorArr.splice(colorArr.indexOf(colorChek), 1).sort()}}
