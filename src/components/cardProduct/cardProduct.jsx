@@ -2,14 +2,18 @@ import { Link } from 'react-router-dom';
 import Raiting from '../reiting/raiting';
 import ColorSize from './Cardeliment/colorSize';
 import Basker from './Cardeliment/basket';
-import { PRODUCTS } from '../../db/products';
+// import { PRODUCTS } from '../../db/products';
 import './cardProduct.scss';
 
 const CardProduct = ({ arrCards, productType ,countSetings}) => {
 
-    if(arrCards.length === 0 && countSetings === 0){
-        arrCards=PRODUCTS[productType]
-    }
+    // console.log(arrCards);
+    // console.log(countSetings +"кол");
+    // if(arrCards.length === 0 && countSetings === 0){
+    //     arrCards=PRODUCTS[productType]
+
+       
+    // }
 
     return (
         <div className='cards'>
