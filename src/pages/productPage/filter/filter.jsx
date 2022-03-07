@@ -17,9 +17,9 @@ const Filter = ({ productType,arrColorNoRepets, colorArr, arrSizeNoRepets, arrSi
   return (
     <div className='filterSetings'   data-test-id={`filter-${productType}`}>
 
-      <div className='color'   data-test-id='filters-color'>
+      <div className='color'>
         <div className='title'>COLOR</div>
-        <div className='filters'>
+        <div className='filters' data-test-id='filters-color'>
           {arrColorNoRepets.map((color, index) => (
 
             <FilterItem key={index} id={index} text={color} type='color' colorChek={color} colorArr={colorArr} typeFilter={'color'} />
@@ -28,18 +28,18 @@ const Filter = ({ productType,arrColorNoRepets, colorArr, arrSizeNoRepets, arrSi
         </div>
       </div>
 
-      <div className='size'  data-test-id='filters-size'>
+      <div className='size'  >
         <div className='title'>SIZE</div>
-        <div className='filters'>
+        <div className='filters' data-test-id='filters-size'>
           {arrSizeNoRepets.map((size, index) => (
             <FilterItem key={index} id={index} text={size} type='size' colorChek={size} colorArr={arrSize} typeFilter={'size'}/>
           ))}
         </div>
       </div>
 
-      <div className='brand' data-test-id='filters-brand'>
+      <div className='brand' >
         <div className='title'>BRAND</div>
-        <div className='filters'>
+        <div className='filters' data-test-id='filters-brand'>
           {arrBrandNoRepets.map((brand, index) => (
             <FilterItem key={index} id={index} text={brand} type='brand' colorChek={brand} colorArr={brendArr} typeFilter={'brand'}/>
           ))}
