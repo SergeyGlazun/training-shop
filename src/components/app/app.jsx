@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import { Route, Switch } from 'react-router-dom'
 
 import Header from "../header";
@@ -11,33 +11,34 @@ import ProductItem from "../../pages/productPage/productInformationPage";
 import './app.scss';
 
 const App = () => {
- 
+    const [particularNames, particularsCheck] = useState('');
+    const [condition, setCondition] = useState(false);
     return (
         <div className='app' data-test-id='app'>
            
-        <Header/>          
+        <Header particularNames={particularNames} particularsCheck={particularsCheck}/>          
             <Switch>
             <Route exact path='/training-shop'>
-                   <MainPage/>
+                   <MainPage particularNames={particularNames} particularsCheck={particularsCheck}/>
                 </Route>
                 <Route exact path='/'>
-                   <MainPage/>
+                   <MainPage particularNames={particularNames} particularsCheck={particularsCheck}/>
                 </Route>
 
                 <Route exact path='/men'>
-                   <ProductsPage productType='men'/>
+                   <ProductsPage productType='men' particularNames={particularNames} particularsCheck={particularsCheck} condition={condition} setCondition={setCondition} />
                 </Route>
 
                 <Route exact path='/women'>
-                   <ProductsPage productType='women'/>
+                   <ProductsPage productType='women' particularNames={particularNames} particularsCheck={particularsCheck} condition={condition} setCondition={setCondition}/>
                 </Route>
 
                 <Route exact path='/women/:id'>
-                         <ProductItem productType='women'/>
+                         <ProductItem productType='women' particularNames={particularNames} particularsCheck={particularsCheck}/>
                 </Route>
 
                 <Route path='/men/:id'>
-                    <ProductItem productType='men' />
+                    <ProductItem productType='men' particularNames={particularNames} particularsCheck={particularsCheck}/>
                 </Route>
 
             </Switch> 

@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { arrCards } from '../../../../db/cards';
+// import { arrCards } from '../../../../db/cards';
 import Raiting from '../../../../components/reiting/raiting';
 
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller, Autoplay } from 'swiper';
 import 'swiper/css/bundle';
-
+import { PRODUCTS } from '../../../../db/products';
 
 import Prev from '../../../../components/slider/imgButtonLeftRight/next.svg';
 import Next from '../../../../components/slider/imgButtonLeftRight/prev.svg';
@@ -63,11 +63,11 @@ const ButtonProductTipe = ({ productType }) => {
                         className="relatedSwiper"
                     >
 
-                        {arrCards[productType].map(({ name, price, imageSrc, rating, sale, id }) => (
+                        {PRODUCTS[productType].map(({ name, price, images, rating, sale, id }) => (
                             <SwiperSlide key={id}>
                                 <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
                                     {sale && <span className='sale'>{sale}</span>}
-                                    <img src={imageSrc} alt='imgUser' className='cardsItemImg' />
+                                    <img src={`https://training.cleverland.by/shop${images[0]?.url}`} alt='imgUser' className='cardsItemImg' />
                                     <div className='foterCard'>
                                         <div className='PriseReiting'>
                                             <div className='cardsItemName'>{name}</div>

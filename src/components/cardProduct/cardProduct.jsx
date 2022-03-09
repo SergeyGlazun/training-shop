@@ -5,7 +5,7 @@ import Basker from './Cardeliment/basket';
 // import { PRODUCTS } from '../../db/products';
 import './cardProduct.scss';
 
-const CardProduct = ({ arrCards, productType ,countSetings}) => {
+const CardProduct = ({ arrCards, productType ,particularsCheck}) => {
 
     // console.log(arrCards);
     // console.log(countSetings +"кол");
@@ -16,7 +16,7 @@ const CardProduct = ({ arrCards, productType ,countSetings}) => {
     // }
 
     return (
-        <div className='cards'>
+        <div className='cards' onClick={() => particularsCheck(productType)}>
             {
                 arrCards.map(({ name, price, images, rating, discount, id }) => (
                     <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>

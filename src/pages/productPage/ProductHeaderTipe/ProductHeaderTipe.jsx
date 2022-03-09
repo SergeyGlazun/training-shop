@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import share from './img/share.svg';
 import './ProductHeaderTipe.scss';
 
-const ProductHeaderTipe = ({ productType }) =>{
+const ProductHeaderTipe = ({ productType,particularsCheck }) =>{
     return(
         <div className='productHeader'>
         <div className='headerShare wrapper'>
           <div className='back'>
             <Link to='/' className='home'>
-              <span className='home'>Home</span>
+              <span className='home' onClick={() => particularsCheck("")}>Home</span>
             </Link>
             ►<span className='way'>{productType}</span>
           </div>

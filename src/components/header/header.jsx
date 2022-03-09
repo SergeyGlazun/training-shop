@@ -14,8 +14,9 @@ import './header.scss';
       
 
 
- const Header = () => {
+ const Header = ({particularNames,particularsCheck}) => {
   const [condition, setCondition] = useState(false);
+  
 
   function closeBurger(condition){
     if(condition)
@@ -35,10 +36,10 @@ import './header.scss';
         <div className='wrapper'>
 
         <Link to='/'  data-test-id='header-logo-link'>
-          <img src={logo} alt='Logo' className='navigationLogo'/>
+          <img src={logo} alt='Logo' className='navigationLogo' onClick={() => particularsCheck("")}/>
         </Link>
 
-       <Menu />
+       <Menu particularNames={particularNames} particularsCheck={particularsCheck}/>
        <HeaderPanelIcon/>
        <BurgerMenu condition={condition} setCondition={setCondition}/>
        <BurgerItem condition={condition} setCondition={setCondition}/>

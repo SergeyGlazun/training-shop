@@ -5,11 +5,11 @@ import SectionNavigationMain from './navigationMain';
 
 import './mainTop.scss';
 
-const MainTop = () =>{
+const MainTop = ({particularNames,particularsCheck}) =>{
     return (
         <div className='mainTop'>
            <Slider array={ArrSliderMainImg} />
-           <SectionNavigationMain />       
+           <SectionNavigationMain particularNames={particularNames} particularsCheck={particularsCheck}/>       
         </div>
         
     )

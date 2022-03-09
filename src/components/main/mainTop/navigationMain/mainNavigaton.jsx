@@ -5,18 +5,18 @@ import './mainNavigation.scss';
 
 import '../../../slider/slider.scss';
 
-const SectionNavigationMain = () =>{
+const SectionNavigationMain = ({particularsCheck}) =>{
     return(
         <div className='sectionNavMain'>
         <div className='sectionNavMainTop'>
            <Link to='/women' className='btnTopLeft'>
-             <div className='womenTopMain' type='button'>                     
+             <div className='womenTopMain' type='button' onClick={() => particularsCheck("women")}>                     
                 WOMEN      
              </div>
            </Link>
 
         <Link to='/men' className='btnTopRight'>
-          <div className='menTopMain' type='button'>
+          <div className='menTopMain' type='button' onClick={() => particularsCheck("men")}>
              MEN
           </div>
         </Link>

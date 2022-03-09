@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Raiting from '../../../../components/reiting/raiting';
 
 
@@ -19,28 +19,23 @@ import ProductSwiper from './swaper';
 import './mainProductItem.scss';
 
 
-function reting(arrRevies) {
-  let overallRating = 0;
-  arrRevies.map(({ rating }) => (
-    overallRating += +rating
-  ))
+// function reting(arrRevies) {
+ 
+//   let overallRating = 0;
+//   arrRevies.map(({ rating }) => (
+//     overallRating += +rating
+//   ))
 
-  return Math.round(overallRating / arrRevies.length);
-}
+//   return Math.round(overallRating / arrRevies.length);
+// }
 
 
-const MainProductItem = ({ productItem}) => {
+const MainProductItem = ({ productItem,filteredArray}) => {
   let arr = [];
   arr.push(productItem);
 
-  const filteredArray = [];
-
-  // productItem.images.filter((item) => {
-  //   if (!filteredArray.some((element) => element.color === item.color)) {
-  //     filteredArray.push(item);
-  //   }
-   
-  // });
+  // const filteredArray=[] ;
+  
 
   productItem.images.forEach(item => {
     if (!filteredArray.some((element) => element.color === item.color)) {
@@ -48,8 +43,18 @@ const MainProductItem = ({ productItem}) => {
     }
 });
 
+useEffect(() => {
+ 
+  colorCheck(filteredArray[0].color);
+  sizeCheck(productItem.sizes[0]);
+},
+  [productItem,filteredArray]
+);
+ 
   const [colors, colorCheck] = useState(filteredArray[0].color);
   const [size, sizeCheck] = useState(productItem.sizes[0]);
+
+
 
   return (
     <div className='productSection wrapper'>
@@ -166,7 +171,7 @@ const MainProductItem = ({ productItem}) => {
               <div className='title'>REVIEWS</div>
               <div className='subtitleText'>
                 <div className='ratingReviews'>
-                  <Raiting rating={reting(productItem.reviews)} size={22} />
+                  <Raiting rating={productItem.rating} size={22} />
                   <span className='amountRreviews'>{productItem.reviews.length} Reviews</span>
                 </div>
 

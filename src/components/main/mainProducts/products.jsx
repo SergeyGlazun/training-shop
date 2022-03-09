@@ -11,10 +11,9 @@ import { PRODUCTS } from '../../../db/products';
 
 import './product.scss';
 
-const Products = ({ productType }) => {
+const Products = ({ productType,particularNames,particularsCheck}) => {
 
-  const [particularNames, particularsCheck] = useState('isNewArrivals');
-
+  const [particularNamesMain, particularsCheckMain] = useState('isNewArrivals');
 
   return (
     <div className='product' data-test-id={`clothes-${productType}`}>
@@ -22,14 +21,19 @@ const Products = ({ productType }) => {
         <div className='productTipe'>{`${productType}’s`}</div>
         <div className='productMenu'>
           {MAIN_CLOTHES_BLOCK_MENU.map(({ id, name, particularName }) => (
-            <div className='productMenuItem' key={id} type='button' onClick={() => particularsCheck(particularName)} data-test-id={`clothes-${productType}-${particularName}`}>
-              {name}
+            <div className={"productMenuItem"} key={id} type='button' onClick={() => particularsCheckMain(particularName)} data-test-id={`clothes-${productType}-${particularName}`}>
+              <span className={particularNamesMain === particularName ? "ChekItem" : ""}>{name}</span>
             </div>
           ))}
         </div>
       </div>
-
-      <CardProduct arrCards={PRODUCTS[productType].filter((element) =>element.particulars[particularNames] === true  )} productType={productType} particularsType={particularNames} />
+      <CardProduct 
+      arrCards={PRODUCTS[productType].filter((element) => element.particulars[particularNamesMain] === true)} 
+      productType={productType} 
+      particularsType={particularNamesMain} 
+      particularNames={particularNames} 
+      particularsCheck={particularsCheck}
+      />
 
       <Link to={`/${productType}`} >
         <button className='productButton' type='button'>

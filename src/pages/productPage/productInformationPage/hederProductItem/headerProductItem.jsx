@@ -5,14 +5,14 @@ import Raiting from '../../../../components/reiting/raiting';
 
 
 import './headerProductItem.scss';
-const HeaderProductItem = ({productItem,productType,arrReviews}) =>{
+const HeaderProductItem = ({productItem,productType,particularsCheck}) =>{
     return(
         <div className='headerProductItem'>
               <div className='contenerHeaderProductItem wrapper'>
                     <div className='headerNavigation'>
                         <div className='back'>
                         <Link to='/' className='home'>
-                            <span className='home'>Home</span>
+                            <span className='home' onClick={() => particularsCheck('')}>Home</span>
                         </Link>
                             <span className='arr'>►</span>
                         <Link to={`/${productType}`} className='product-back'>

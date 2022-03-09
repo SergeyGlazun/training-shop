@@ -15,8 +15,8 @@ import './productPage.scss';
 
 
 
-const ProductsPage = ({ productType }) => {
-  const [condition, setCondition] = useState(false);
+const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) => {
+  // const [condition, setCondition] = useState(false);
 
   let arrColor = [];
   PRODUCTS[productType].map((item) => item.images.map((item) => arrColor.push(item.color)));
@@ -46,23 +46,20 @@ const ProductsPage = ({ productType }) => {
 
   let [countSetings, setCountSetings] = useState(0);
 
-
   try {  
+ 
     if (colorArrBuf[0].category !== productType) {
       colorArrBuf.length = 0;
-      countSetings = 0;
-
-
+      setCountSetings(0);
+   
       colorArr.length = 0;
       sizeArr.length = 0;
       brendArr.length = 0;
-      priceArr.length = 0;
+      priceArr.length = 0; 
+      setCondition(false); 
     }
-  } catch {
-  
-  }
 
-  
+  } catch {}
 
   return (
 
@@ -115,10 +112,11 @@ const ProductsPage = ({ productType }) => {
         if (priceArr.length > 0) {
           setCountSetings(countSetings++);
         }
+      
       }}
 
     >
-      <ProductHeaderTipe productType={productType} />
+      <ProductHeaderTipe productType={productType} particularsCheck={particularsCheck}/>
 
       <div className='wrapper'>
 
@@ -149,7 +147,11 @@ const ProductsPage = ({ productType }) => {
             priceArr={priceArr}
           />}
 
-        <CardProduct arrCards={colorArrBuf.length !== 0 || countSetings > 0 ? colorArrBuf : PRODUCTS[productType]} productType={productType} countSetings={countSetings}/>
+        <CardProduct arrCards={colorArrBuf.length !== 0 || countSetings > 0 ? colorArrBuf : PRODUCTS[productType]} 
+        productType={productType} 
+        countSetings={countSetings}
+        particularsCheck={particularsCheck}
+        />
 
         <div className='square'>
           <img src={square} alt="square" />
