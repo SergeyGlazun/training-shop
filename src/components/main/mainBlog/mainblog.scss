@@ -44,6 +44,7 @@
         right: 6.86%;
         top: 79.33%;
         bottom: -15.2%;
+        // max-height: 167px;
         height: max-content;
         
         .blogTitle {
@@ -102,6 +103,25 @@
   margin-right: 30px;
 }
 
+@media all and (max-width:1150px){
+  .blogContener {
+
+      .blogContenerText {
+       
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+
+        height: max-content;
+        margin-top: -22%;
+
+      }
+
+    }
+  }
+
+
+
 @media all and (max-width:950px) {
 
   .blogContener {
@@ -119,6 +139,7 @@
       }
 
       .blogContenerText {
+       
         height: auto;
         margin-left: auto;
         margin-right: auto;
