@@ -46,33 +46,37 @@
     }
 
 
+.makingPurchase{
+  
+  .shopingNav {
+    color: #121212;
+    padding: 24px;
+    span {
+      font-size: 15px;
+      font-weight: 400;
+    }
+    span:after {
+      content: '/';
+      margin: 0 10px;
+    }
+    span:last-child::after {
+      content: '';
+    }
 
+    .ItemInCart{
+      font-weight:bold
+    }
+  }
+}
 
     .shopingMain {
         flex: 1;
         overflow: auto;
-        .shopingNav {
-          color: #121212;
-          padding: 24px;
-          span {
-            font-size: 15px;
-            font-weight: 400;
-          }
-          span:after {
-            content: '/';
-            margin: 0 10px;
-          }
-          span:last-child::after {
-            content: '';
-          }
-
-          .ItemInCart{
-            font-weight:bold
-          }
-        }
+      
        
         .items {
           padding: 0 24px;
+        
           .noneCart {
             width: 150px;
             margin: 20px auto;

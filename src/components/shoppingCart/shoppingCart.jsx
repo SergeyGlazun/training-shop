@@ -34,17 +34,21 @@ const ShoppingCart = ({ setCondition, condition }) => {
                         <img src={close} alt="close"></img>
                     </div>
                 </div>
-                <div className='shopingMain'>
-                    {
-                        (items.length > 0) ?
+                {
+                    (items.length > 0) ?
+                        <div className='makingPurchase'>
                             <div className="shopingNav">
                                 <span className='ItemInCart'>Item in cart</span>
                                 <span>Delivery Info</span>
                                 <span>Payment</span>
                             </div>
-                            :
-                            <div></div>
-                    }
+                        </div>
+
+                        :
+                        <div></div>
+                }
+                <div className='shopingMain'>
+
 
                     <div className="items">
 
