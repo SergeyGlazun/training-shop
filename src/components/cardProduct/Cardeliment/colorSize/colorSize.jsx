@@ -8,7 +8,7 @@ const ColorSize = () =>{
   <div>
           <div className='colorItem'>
             {
-              arrColotItemProduct.map(({ id, imageSrc }) => (
+              arrColotItemProduct.map(({imageSrc,id}) => (
                 <div key={id} >
                   <img src={imageSrc} alt='imgUser' className='colorImg'/>
                 </div>
