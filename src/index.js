@@ -11,11 +11,11 @@ import './index.scss';
 ReactDOM.render(
   <React.StrictMode> 
      <Provider store={store}>
-        <ErrorBoundry>         
+        {/* <ErrorBoundry>          */}
                 <Router>
                    <App />    
                 </Router>         
-        </ErrorBoundry>         
+        {/* </ErrorBoundry>          */}
      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
