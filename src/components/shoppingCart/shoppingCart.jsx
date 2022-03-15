@@ -68,7 +68,7 @@ const ShoppingCart = ({ setCondition, condition }) => {
                                                 <span>{item.quantity}</span>
                                                 <input onClick={() => { dispatch(increment(item)); dispatch(sumAddProductPrise(item.prise)) }} type='button' value='+' data-test-id='plus-product' />
                                             </div>
-                                            <span className="price"> {(item.quantity * item.prise).toFixed(1)}</span>
+                                            <span className="price"> {(item.quantity * item.prise).toFixed(2)}</span>
                                         </div>
                                     </div>
                                     <div className="trash">
@@ -82,7 +82,7 @@ const ShoppingCart = ({ setCondition, condition }) => {
                     <div className='shopingFooter'>
                         <div className="shopingPrice">
                             <span className='title'>Total</span>
-                            <span className='prise'>{prise.toFixed(1)}</span>
+                            <span className='prise'>{prise.toFixed(2)}</span>
                         </div>
                         <button className='btnShoping'>Further</button>
                         <button className='btnShoping' onClick={() => { setCondition(false) }}>View cart</button>
