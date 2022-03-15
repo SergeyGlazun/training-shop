@@ -25,7 +25,6 @@ const ShoppingCart = ({ setCondition, condition, removeProduct }) => {
     const items = useSelector(state => state.toolkit.arrProduct);
     const prise = useSelector(state => state.toolkit.totapPrise);
   
-    console.log( prise);
     return (
         <>
             <div className={condition ? "shopingContener active" : "shopingContener"}>
