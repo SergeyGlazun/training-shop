@@ -32,3 +32,13 @@ textarea,
 select {
   font: inherit;
 }
+
+::-webkit-scrollbar {
+  width:12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #110e0e67;
+  border-radius: 20px;
+  border: 3px solid rgb(13, 14, 13);
+}

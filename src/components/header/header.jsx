@@ -11,43 +11,43 @@ import BurgerItem from './burgerMenu/burgerItem';
 
 import './header.scss';
 
-      
 
 
- const Header = ({particularNames,particularsCheck}) => {
+
+const Header = ({ particularNames, particularsCheck}) => {
   const [condition, setCondition] = useState(false);
-  
 
-  function closeBurger(condition){
-    if(condition)
-    setCondition(false);
+
+  function closeBurger(condition) {
+    if (condition)
+      setCondition(false);
   }
-
-    return(   
-     <div className="header" data-test-id='header' onClick={() => closeBurger(condition)}>
+  
+  return (
+    <div className="header" data-test-id='header' onClick={() =>closeBurger(condition)}>
       <div className="headerContacts" >
         <div className="wrapper" >
-        <Contacts />
-         <NetworkContact />
+          <Contacts />
+          <NetworkContact />
         </div>
       </div>
 
       <div className='navigation'  >
         <div className='wrapper'>
 
-        <Link to='/'  data-test-id='header-logo-link'>
-          <img src={logo} alt='Logo' className='navigationLogo' onClick={() => particularsCheck("")}/>
-        </Link>
+          <Link to='/' data-test-id='header-logo-link'>
+            <img src={logo} alt='Logo' className='navigationLogo' onClick={() => particularsCheck("")} />
+          </Link>
 
-       <Menu particularNames={particularNames} particularsCheck={particularsCheck}/>
-       <HeaderPanelIcon/>
-       <BurgerMenu condition={condition} setCondition={setCondition}/>
-       <BurgerItem condition={condition} setCondition={setCondition}/>
+          <Menu particularNames={particularNames} particularsCheck={particularsCheck} />
+          <HeaderPanelIcon/>
+          <BurgerMenu condition={condition} setCondition={setCondition} />
+          <BurgerItem condition={condition} setCondition={setCondition} />
         </div>
       </div>
 
-     </div>
-     );
- }
+    </div>
+  );
+}
 
 export default Header;

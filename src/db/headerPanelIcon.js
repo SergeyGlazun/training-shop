@@ -19,9 +19,9 @@ export const ArrHeaderPanelIcon = [
     imageSrc: User,
     href: '#!',
   },
-  {
-    id: '4',
-    imageSrc: Bag,
-    href: '#!',
-  },
+  // {
+  //   id: '4',
+  //   imageSrc: Bag,
+  //   href: '#!',
+  // },
 ];

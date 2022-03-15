@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Raiting from '../../../../components/reiting/raiting';
 
 
@@ -16,44 +16,50 @@ import { arrMasterCard } from '../../../../db/ItemPages';
 import ProductSwiper from './swaper';
 
 
+import { useDispatch, useSelector } from 'react-redux';
+
+
 import './mainProductItem.scss';
 
+import { addProduct, removeProduct, sumAddProductPrise, deleteProductPrise } from '../../../../reducers';
 
-// function reting(arrRevies) {
- 
-//   let overallRating = 0;
-//   arrRevies.map(({ rating }) => (
-//     overallRating += +rating
-//   ))
+const MainProductItem = ({ productItem, filteredArray }) => {
 
-//   return Math.round(overallRating / arrRevies.length);
-// }
-
-
-const MainProductItem = ({ productItem,filteredArray}) => {
+  const dispatch = useDispatch();
+  const prise = productItem.price;
+  const name = productItem.name;
   let arr = [];
   arr.push(productItem);
 
-  // const filteredArray=[] ;
-  
+  const items = useSelector(state => state.toolkit.arrProduct)
 
   productItem.images.forEach(item => {
     if (!filteredArray.some((element) => element.color === item.color)) {
       filteredArray.push(item);
     }
-});
+  });
 
-useEffect(() => {
- 
-  colorCheck(filteredArray[0].color);
-  sizeCheck(productItem.sizes[0]);
-},
-  [productItem,filteredArray]
-);
- 
+  useEffect(() => {
+    colorCheck(filteredArray[0].color);
+    sizeCheck(productItem.sizes[0]);
+    imgCheck(productItem.images[0].url);
+  },
+    [productItem, filteredArray]
+  );
+
   const [colors, colorCheck] = useState(filteredArray[0].color);
   const [size, sizeCheck] = useState(productItem.sizes[0]);
+  const [img, imgCheck] = useState(productItem.images[0].url);
 
+
+  const Id = `${productItem.id}-${colors}-${size}`;
+
+
+  function compareProduct() {
+    return items.find(
+      (item) => item.Id === `${productItem.id}-${colors}-${size}`
+    );
+  }
 
 
   return (
@@ -61,7 +67,7 @@ useEffect(() => {
 
       <div className='slidecContener'>
 
-        <ProductSwiper productItem={productItem}/>
+        <ProductSwiper productItem={productItem} />
       </div>
 
       <div className='Information'>
@@ -72,7 +78,7 @@ useEffect(() => {
           <div className='colorItem'>
             {
               filteredArray.map(({ id, url, color }) => (
-                <div key={id} onClick={() => { colorCheck(color) }}>
+                <div key={id} onClick={() => { colorCheck(color); imgCheck(url) }}>
                   <img src={`https://training.cleverland.by/shop${url}`} alt='imgUser' className={colors === color ? "coloChek" : "coloChekHover"} />
                 </div>
               ))
@@ -99,9 +105,30 @@ useEffect(() => {
         </div>
         <div className='pay'>
           <div className='cost'>$ {productItem?.price}</div>
-          <button type='button' className='payBtn'>
-            ADD TO CARD
-          </button>
+          {!compareProduct() ?
+            <button type='button'
+              className='payBtn'
+              data-test-id="add-cart-button"
+              onClick={() => {
+                dispatch(sumAddProductPrise(Math.round(prise)));
+                dispatch(addProduct({ name, colors, size, img, prise, Id, quantity: 1 }))
+              }}
+            >
+              ADD TO CARD
+            </button>
+            :
+            <button type='button'
+              className='payBtn'
+              data-test-id="add-cart-button"
+              onClick={() => {
+                dispatch(deleteProductPrise(Math.round(prise)));
+                dispatch(removeProduct(compareProduct()))
+              }}
+
+            >
+              REMOVE FROM CART
+            </button>
+          }
 
           <div className='heard'>
             <img className='heartImg' src={heart} alt='heart' />
@@ -111,6 +138,8 @@ useEffect(() => {
           </div>
 
         </div>
+
+
         <div className='scope'>
           <div className='car'>
             <img src={car} alt='car' />
@@ -143,10 +172,10 @@ useEffect(() => {
             <div className='specifications'>
               <div className='textColor'>
                 Color:<span className='black'>
-                  {                  
-                    filteredArray.map(({color, id}) =>
-                    <span key={id}>{color}{id !== filteredArray[filteredArray.length -1].id ? `, ` : ``}</span>                
-                  )
+                  {
+                    filteredArray.map(({ color, id }) =>
+                      <span key={id}>{color}{id !== filteredArray[filteredArray.length - 1].id ? `, ` : ``}</span>
+                    )
                   }
                 </span>
               </div>

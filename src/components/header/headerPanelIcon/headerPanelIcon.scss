@@ -1,24 +1,46 @@
 .headerPanelIcon {
+  display: flex;
+  column-gap: 24px;
+  cursor: pointer;
+  .headerPanelIconItem {
     display: flex;
-    column-gap: 24px;
-  
-    .headerPanelIconItem{
+    align-items: center;
+    position: relative;
+
+    .numberGoods {
+      position: absolute;
       display: flex;
       align-items: center;
-      &:hover {
-        transform: scale(1.2);      
+      justify-content: center;
+      top: -5px;
+      right: -3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #000;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+}
+
+
+
+@media all and (max-width: 470px) {
+  .headerPanelIcon {
+    column-gap: 4px;
+
+    .headerPanelIconItem {
+      .headerPanelIconItemImg {
+        width: 80%;
+
       }
     }
   }
-  
-  @media all and (max-width: 470px) {
-    .headerPanelIcon{
-      column-gap: 4px;
-      .headerPanelIconItem {
-        .headerPanelIconItemImg {
-          width: 80%;
-      
-        }
-      }
-    }  
 }

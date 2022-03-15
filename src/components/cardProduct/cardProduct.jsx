@@ -6,14 +6,7 @@ import Basker from './Cardeliment/basket';
 import './cardProduct.scss';
 
 const CardProduct = ({ arrCards, productType ,particularsCheck}) => {
-
-    // console.log(arrCards);
-    // console.log(countSetings +"кол");
-    // if(arrCards.length === 0 && countSetings === 0){
-    //     arrCards=PRODUCTS[productType]
-
-       
-    // }
+  
 
     return (
         <div className='cards' onClick={() => particularsCheck(productType)}>
