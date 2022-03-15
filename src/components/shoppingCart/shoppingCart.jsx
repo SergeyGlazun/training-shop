@@ -62,17 +62,17 @@ const ShoppingCart = ({ setCondition, condition }) => {
                                         <div className="cartBot">
                                             <div className="counter">
                                                 {item.quantity > 1 ?
-                                                    <input onClick={() => { dispatch(decriment(item)); dispatch(deleteProductPrise(Math.round(item.prise))) }} type='button' value='-' data-test-id='minus-product' /> :
+                                                    <input onClick={() => { dispatch(decriment(item)); dispatch(deleteProductPrise(item.prise)) }} type='button' value='-' data-test-id='minus-product' /> :
                                                     <input type='button' value='-' data-test-id='minus-product' />
                                                 }
                                                 <span>{item.quantity}</span>
-                                                <input onClick={() => { dispatch(increment(item)); dispatch(sumAddProductPrise(Math.round(item.prise))) }} type='button' value='+' data-test-id='plus-product' />
+                                                <input onClick={() => { dispatch(increment(item)); dispatch(sumAddProductPrise(item.prise)) }} type='button' value='+' data-test-id='plus-product' />
                                             </div>
-                                            <span className="price">{item.quantity * Math.round(item.prise)}</span>
+                                            <span className="price"> {(item.quantity * item.prise).toFixed(1)}</span>
                                         </div>
                                     </div>
                                     <div className="trash">
-                                        <img onClick={() => { dispatch(clicBasket(item.Id)); dispatch(deleteProductPrise(Math.round(item.prise * item.quantity))) }} src={deleteProductImg} alt="delete" data-test-id='remove-product' />
+                                        <img onClick={() => { dispatch(clicBasket(item.Id)); dispatch(deleteProductPrise((item.prise * item.quantity))) }} src={deleteProductImg} alt="delete" data-test-id='remove-product' />
                                     </div>
                                 </div>
                             )) : <span className="noneCart">Sorry, your cart is empty</span>}
@@ -82,7 +82,7 @@ const ShoppingCart = ({ setCondition, condition }) => {
                     <div className='shopingFooter'>
                         <div className="shopingPrice">
                             <span className='title'>Total</span>
-                            <span className='prise'>{prise}</span>
+                            <span className='prise'>{prise.toFixed(1)}</span>
                         </div>
                         <button className='btnShoping'>Further</button>
                         <button className='btnShoping' onClick={() => { setCondition(false) }}>View cart</button>

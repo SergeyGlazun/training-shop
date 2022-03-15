@@ -110,7 +110,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               className='payBtn'
               data-test-id="add-cart-button"
               onClick={() => {
-                dispatch(sumAddProductPrise(Math.round(prise)));
+                dispatch(sumAddProductPrise(prise));
                 dispatch(addProduct({ name, colors, size, img, prise, Id, quantity: 1 }))
               }}
             >
@@ -121,7 +121,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               className='payBtn'
               data-test-id="add-cart-button"
               onClick={() => {
-                dispatch(deleteProductPrise(Math.round(prise)));
+                dispatch(deleteProductPrise(prise));
                 dispatch(removeProduct(compareProduct()))
               }}
 
