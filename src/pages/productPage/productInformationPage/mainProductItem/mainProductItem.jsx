@@ -126,7 +126,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               }}
 
             >
-              REMOVE FROM CART
+              REMOVE TO CART
             </button>
           }
 
