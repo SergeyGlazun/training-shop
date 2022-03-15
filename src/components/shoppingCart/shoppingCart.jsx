@@ -1,7 +1,7 @@
 import close from './img/close.svg';
 import deleteProductImg from './img/delete.svg';
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decriment,sumAddProductPrise,deleteProductPrise,clicBasket} from '../../reducers';
+import { increment, decriment, sumAddProductPrise, deleteProductPrise, clicBasket } from '../../reducers';
 
 
 import './shopping.scss';
@@ -17,17 +17,17 @@ function filterSeting(click) {
     }
 }
 
-const ShoppingCart = ({ setCondition, condition, removeProduct }) => {
+const ShoppingCart = ({ setCondition, condition }) => {
 
     filterSeting(condition);
 
     const dispatch = useDispatch();
     const items = useSelector(state => state.toolkit.arrProduct);
     const prise = useSelector(state => state.toolkit.totapPrise);
-  
+
     return (
         <>
-            <div className={condition ? "shopingContener active" : "shopingContener"}>
+            <div className={condition ? "shopingContener active" : "shopingContener"} data-test-id='cart'>
                 <div className="shopingHeader">
                     <h3 className="shopingTitle">Shopping Card</h3>
                     <div onClick={() => { setCondition(false) }} className="close" >
@@ -35,11 +35,17 @@ const ShoppingCart = ({ setCondition, condition, removeProduct }) => {
                     </div>
                 </div>
                 <div className='shopingMain'>
-                    <div className="shopingNav">
-                        <span>Item in cart</span>
-                        <span>Delivery Info</span>
-                        <span>Payment</span>
-                    </div>
+                    {
+                        (items.length > 0) ?
+                            <div className="shopingNav">
+                                <span className='ItemInCart'>Item in cart</span>
+                                <span>Delivery Info</span>
+                                <span>Payment</span>
+                            </div>
+                            :
+                            <div></div>
+                    }
+
                     <div className="items">
 
                         {(items.length > 0) ?
@@ -56,7 +62,7 @@ const ShoppingCart = ({ setCondition, condition, removeProduct }) => {
                                         <div className="cartBot">
                                             <div className="counter">
                                                 {item.quantity > 1 ?
-                                                    <input onClick={() => { dispatch(decriment(item));  dispatch(deleteProductPrise(Math.round(item.prise))) }} type='button' value='-' data-test-id='minus-product' /> :
+                                                    <input onClick={() => { dispatch(decriment(item)); dispatch(deleteProductPrise(Math.round(item.prise))) }} type='button' value='-' data-test-id='minus-product' /> :
                                                     <input type='button' value='-' data-test-id='minus-product' />
                                                 }
                                                 <span>{item.quantity}</span>
@@ -66,22 +72,31 @@ const ShoppingCart = ({ setCondition, condition, removeProduct }) => {
                                         </div>
                                     </div>
                                     <div className="trash">
-                                        <img onClick={() => {dispatch(clicBasket(item.Id));dispatch(deleteProductPrise(Math.round(item.prise * item.quantity))) }} src={deleteProductImg} alt="delete" data-test-id='remove-product' />
+                                        <img onClick={() => { dispatch(clicBasket(item.Id)); dispatch(deleteProductPrise(Math.round(item.prise * item.quantity))) }} src={deleteProductImg} alt="delete" data-test-id='remove-product' />
                                     </div>
                                 </div>
-                            )) : <span className="empty_cart">Sorry, your cart is empty</span>}
+                            )) : <span className="noneCart">Sorry, your cart is empty</span>}
                     </div>
                 </div>
-                <div className='shopingFooter'>
-                    <div className="shopingPrice">
-                        <span className='title'>Total</span>
-                        <span className='prise'>{prise}</span>
+                {(items.length > 0) ?
+                    <div className='shopingFooter'>
+                        <div className="shopingPrice">
+                            <span className='title'>Total</span>
+                            <span className='prise'>{prise}</span>
+                        </div>
+                        <button className='btnShoping'>Further</button>
+                        <button className='btnShoping' onClick={() => { setCondition(false) }}>View cart</button>
                     </div>
-                    <button className='btnShoping'>Further</button>
-                    <button className='btnShoping' onClick={() => { setCondition(false) }}>View cart</button>
-                </div>
+                    :
+                    <div className='shopingFooter'>
+                        <button className='btnShopingBack' onClick={() => { setCondition(false) }}>BACK TO SHOPPING</button>
+                    </div>
+                }
+
             </div>
+
             <div onClick={() => { setCondition(false) }} className={condition ? "overlay" : ""}></div>
+
         </>
     )
 }
