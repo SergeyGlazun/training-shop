@@ -12,9 +12,6 @@ import Prev from '../../../../components/slider/imgButtonLeftRight/next.svg';
 import Next from '../../../../components/slider/imgButtonLeftRight/prev.svg';
 
 import ColorSize from '../../../../components/cardProduct/Cardeliment/colorSize';
-import Basker from '../../../../components/cardProduct/Cardeliment/basket';
-
-
 
 import './buttonProductTipe.scss';
 
