@@ -6,7 +6,7 @@ import MainPage from "../../pages/mainPage/mainPage.jsx";
 import ProductsPage from "../../pages/productPage";
 import Footer from "../footer";
 import ProductItem from "../../pages/productPage/productInformationPage";
-
+import ScrollUp from "../function/scrollUp";
 import './app.scss';
 
 const App = () => {
@@ -14,9 +14,9 @@ const App = () => {
     const [condition, setCondition] = useState(false);
 
     return (
-        <div className='app' data-test-id='app'>
-
-            <Header particularNames={particularNames} particularsCheck={particularsCheck} />
+        <div className='app' data-test-id='app'>    
+          <ScrollUp top={{scroll:0}}/>     
+            <Header particularNames={particularNames} particularsCheck={particularsCheck} />        
             <Switch>
                 <Route exact path='/training-shop'>
                     <MainPage particularNames={particularNames} particularsCheck={particularsCheck} />

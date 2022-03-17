@@ -1,7 +1,5 @@
 import { useState} from 'react';
 import { PRODUCTS } from '../../db/products';
-
-
 import '../../components/reiting/reiting.scss';
 import '../../components/main/mainProducts/product.scss';
 import ProductHeaderTipe from './ProductHeaderTipe';
@@ -9,14 +7,13 @@ import Setings from './setings';
 import Filter from './filter';
 import CardProduct from '../../components/cardProduct';
 import FilterString from './filter/filterString/filterString';
-
+import ScrollUp from '../../components/function/scrollUp';
 import square from './img/Square.png'
 import './productPage.scss';
 
 
 
 const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) => {
-  // const [condition, setCondition] = useState(false);
 
   let arrColor = [];
   PRODUCTS[productType].map((item) => item.images.map((item) => arrColor.push(item.color)));
@@ -65,7 +62,7 @@ const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) =
 
     <div className='productsPage'
       data-test-id={`products-page-${productType}`}
-
+    
       onClick={() => {
         countSetings = 0;
         setResult(PRODUCTS[productType].filter(item =>
@@ -114,10 +111,10 @@ const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) =
         }
       
       }}
-
     >
+       <ScrollUp top={{scroll:220}}/>
       <ProductHeaderTipe productType={productType} particularsCheck={particularsCheck}/>
-
+      
       <div className='wrapper'>
 
         <Setings condition={condition} setCondition={setCondition} />
@@ -160,6 +157,7 @@ const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) =
 
       </div>
     </div>
+    
   );
 }
 

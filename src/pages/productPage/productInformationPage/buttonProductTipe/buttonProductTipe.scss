@@ -52,7 +52,18 @@
             height: 378px;
             width: 100%;
             overflow: hidden;
-
+            .PriseReiting{
+                .cardsItemPrice{
+                    .priceDiscount{   
+                        margin-left: 10px;    
+                        font-size: 14px;
+                        font-weight: 900;
+                        opacity: 0.4;
+                        text-decoration: line-through;
+                      }
+                }
+               
+            }
             .cardsItemImg {
                 width: 100%;
 
@@ -96,7 +107,7 @@
                 background-color: #ffffff;
                 transition: 500ms;
                 transform: translateY(0px);
-
+               
                 &:hover {
                     transform: translateY(-205px);
                 }

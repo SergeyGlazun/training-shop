@@ -7,7 +7,7 @@ import Raiting from '../../../../components/reiting/raiting';
 import './headerProductItem.scss';
 const HeaderProductItem = ({productItem,productType,particularsCheck}) =>{
     return(
-        <div className='headerProductItem'>
+        <div className='headerProductItem' >
               <div className='contenerHeaderProductItem wrapper'>
                     <div className='headerNavigation'>
                         <div className='back'>

@@ -78,7 +78,15 @@
      background-color: #ffffff;
      transition: 500ms;
      transform: translateY(0px);
-
+        .PriseReiting{       
+          .priceDiscount{   
+            margin-left: 3px;    
+            font-size: 14px;
+            font-weight: 900;
+            opacity: 0.4;
+            text-decoration: line-through;
+          }
+        }
      &:hover {
        transform: translateY(-205px);
      }

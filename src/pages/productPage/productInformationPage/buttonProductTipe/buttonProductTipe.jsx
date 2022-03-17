@@ -12,6 +12,7 @@ import Prev from '../../../../components/slider/imgButtonLeftRight/next.svg';
 import Next from '../../../../components/slider/imgButtonLeftRight/prev.svg';
 
 import ColorSize from '../../../../components/cardProduct/Cardeliment/colorSize';
+import ScrollUp from '../../../../components/function/scrollUp';
 
 import './buttonProductTipe.scss';
 
@@ -32,7 +33,7 @@ const ButtonProductTipe = ({ productType }) => {
                 </div>
 
                 <div className='productsCards'>
-
+                <ScrollUp top={{scroll:0}}/>
                     <Swiper
                         data-test-id='related-slider'
                         onSwiper={setControlledSwiper}
@@ -59,8 +60,8 @@ const ButtonProductTipe = ({ productType }) => {
                         modules={[Controller, Autoplay]}
                         className="relatedSwiper"
                     >
-
-                        {PRODUCTS[productType].map(({ name, price, images, rating, sale, id ,sizes }) => (
+                      
+                        {PRODUCTS[productType].map(({ name, price, images, rating, sale, id, sizes, discount }) => (
                             <SwiperSlide key={id}>
                                 <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
                                     {sale && <span className='sale'>{sale}</span>}
@@ -68,17 +69,17 @@ const ButtonProductTipe = ({ productType }) => {
                                     <div className='foterCard'>
                                         <div className='PriseReiting'>
                                             <div className='cardsItemName'>{name}</div>
-                                            <div className='cardsItemPrice'><span>${price}</span>  <Raiting rating={rating} size={14} /></div>
+                                            <div className='cardsItemPrice'><span>${price}<span className="priceDiscount">{discount !== null ? `$ ${(price + Math.abs((((+discount.replace(/%/g, ''))) / 100) * price)).toFixed(1)}` : ""}</span></span>  <Raiting rating={rating} size={14} /></div>
                                         </div>
 
-                                        <ColorSize dataProductCard={{name, price, images, rating, id,sizes}}/>
+                                        <ColorSize dataProductCard={{ name, price, images, rating, id, sizes }} />
                                         {/* <Basker /> */}
 
                                     </div>
                                 </Link>
                             </SwiperSlide>
                         ))}
-         
+
                     </Swiper>
                 </div>
             </div>
