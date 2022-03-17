@@ -1,38 +1,110 @@
-.colorItem{
-display: flex;    
-flex-direction: row;           
-column-gap: 18px;
-padding-top: 16px;
+.colorItem {
+  display: flex;
+  flex-direction: row;
+  column-gap: 18px;
+  padding-top: 16px;
 
+  .coloChek {
+    outline: 2px solid #121212;
+
+
+  }
+
+  .coloChekHover {
+    &:hover {
+      cursor: pointer;
+      outline: 2px solid #121212;
+    }
+  }
+
+  .colorImg {
+    width: 60px;
+    height: 60px;
+    margin-left: 2px;
+  }
 
 }
+
 .bold {
-font-weight: 600;
-color: #121212;
+  font-weight: 600;
+  color: #121212;
 }
 
 .size {
-font-weight: 600;
-line-height: 18px;
-margin-top: 32px;
+  font-weight: 600;
+  line-height: 18px;
+  margin-top: 32px;
 }
 
 .sizeBtn {
-    display: flex;
-  
-    column-gap: 10px;
-    margin-top: 10px;
-    margin-left: 3px;
+  display: flex;
+  align-content: flex-start;
+  column-gap: 10px;
+  margin-top: -20px;
+  margin-left: 3px;
+  flex-flow: row nowrap;
 
-   & button {
-      border: none;
-      background: #f8f8f8;
-      padding: 10px 12px;
+  .coloChek {
+    outline: 2px solid #121212;
+  }
+
+  .coloChekHover {
+    &:hover {
       cursor: pointer;
-     
-      &:hover {
-        background: #ffffff;
-        outline: 2px solid #121212;
-      }
+      outline: 2px solid #121212;
     }
   }
+
+  .size {
+    font-size: 0.7rem;
+  }
+
+  width: 15px;
+
+  & button {
+    border: none;
+    background: #f8f8f8;
+    padding: 10px 12px;
+    cursor: pointer;
+
+    &:hover {
+      background: #ffffff;
+      outline: 2px solid #121212;
+    }
+  }
+}
+
+.pay{
+  display: flex;
+  column-gap: 24px;
+ padding-top: 10px;
+  .payBtn {
+    
+      padding: 16px 24px;
+      cursor: pointer;
+      background: #121212;
+      color: #ffffff;
+      border: none;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 15px;
+      letter-spacing: 0.06em;
+  
+      &:hover {
+        background: #E6E6E6;
+        color:#121212;
+        transition: all 0.3s;
+      }
+    }
+  
+    .heard{
+      padding-top: 3%;
+        img.heartImg:hover{   
+            background: url('../../../../pages/productPage/productInformationPage/mainProductItem/img/hover/hardHover.svg') no-repeat;                
+        } 
+        img.scaleImg:hover{   
+            background: url('../../../../pages/productPage/productInformationPage/mainProductItem/img/hover/scaleHover.svg') no-repeat;                
+        }   
+    }
+}
+

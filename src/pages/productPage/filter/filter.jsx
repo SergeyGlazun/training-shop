@@ -15,7 +15,7 @@ const Filter = ({ productType,arrColorNoRepets, colorArr, arrSizeNoRepets, arrSi
   let SelectionStringPrise = [];
   roundedNumbers.map(item => SelectionStringPrise.push(String((item === 0) ? 100 : item) + "-" + String((item > 0) ? item - 100 : 0)));
 
-console.log()
+
   return (
     <div className='filterSetings'   data-test-id={`filters-${productType}`}>
 

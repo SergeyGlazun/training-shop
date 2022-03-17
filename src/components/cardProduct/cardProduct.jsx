@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import Raiting from '../reiting/raiting';
 import ColorSize from './Cardeliment/colorSize';
-import Basker from './Cardeliment/basket';
-// import { PRODUCTS } from '../../db/products';
+
 import './cardProduct.scss';
 
 const CardProduct = ({ arrCards, productType ,particularsCheck}) => {
@@ -11,7 +10,7 @@ const CardProduct = ({ arrCards, productType ,particularsCheck}) => {
     return (
         <div className='cards' onClick={() => particularsCheck(productType)}>
             {
-                arrCards.map(({ name, price, images, rating, discount, id }) => (
+                arrCards.map(({ name, price, images, rating, discount, id,sizes}) => (
                     <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
                         {discount && <span className='sale'>{discount}</span>}
                         <img src={`https://training.cleverland.by/shop${images[0]?.url}`} alt='imgUser' className='cardsItemImg' />
@@ -21,8 +20,8 @@ const CardProduct = ({ arrCards, productType ,particularsCheck}) => {
                                 <div className='cardsItemPrice'> <span>${price}</span>  <Raiting rating={rating} size={14} /></div>
                             </div>
 
-                            <ColorSize />
-                            <Basker />
+                            <ColorSize dataProductCard={{name, price, images, rating, discount, id,sizes}}/>
+                            {/* <Basker /> */}
 
                         </div>
 

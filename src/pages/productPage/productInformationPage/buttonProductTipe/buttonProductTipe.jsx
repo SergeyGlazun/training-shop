@@ -63,7 +63,7 @@ const ButtonProductTipe = ({ productType }) => {
                         className="relatedSwiper"
                     >
 
-                        {PRODUCTS[productType].map(({ name, price, images, rating, sale, id }) => (
+                        {PRODUCTS[productType].map(({ name, price, images, rating, sale, id ,sizes }) => (
                             <SwiperSlide key={id}>
                                 <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
                                     {sale && <span className='sale'>{sale}</span>}
@@ -74,8 +74,8 @@ const ButtonProductTipe = ({ productType }) => {
                                             <div className='cardsItemPrice'><span>${price}</span>  <Raiting rating={rating} size={14} /></div>
                                         </div>
 
-                                        <ColorSize />
-                                        <Basker />
+                                        <ColorSize dataProductCard={{name, price, images, rating, id,sizes}}/>
+                                        {/* <Basker /> */}
 
                                     </div>
                                 </Link>

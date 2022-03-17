@@ -61,7 +61,6 @@ const MainProductItem = ({ productItem, filteredArray }) => {
     );
   }
 
-
   return (
     <div className='productSection wrapper'>
 
