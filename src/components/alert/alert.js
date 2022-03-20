@@ -1,7 +1,8 @@
 import React from "react";
+import './alertError.scss';
 
 export const Alert = ({text}) =>(
-    <div className="alert alert-danger" role="alert"  data-test-id='error'>
+    <div className="alertError wrapper" role="alert"  data-test-id='error'>
      {text} 
     </div>
 )
