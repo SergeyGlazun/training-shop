@@ -8,9 +8,6 @@ const defaultState = {
   
     products: {
         productsArr:[],
-        men: [],
-        women: [],
-      
     },
 
 }

@@ -15,43 +15,13 @@ import { Loader } from '../../../components/loader/loader';
 const ProductItem = ({ productType,particularsCheck}) =>{
    const PRODUCTS = useSelector(state => state.getproduct.productsArr);
 
-   // const loading = useSelector(state => state.app.loading);
-   // if (PRODUCTS===undefined) {
- 
-   //    if (loading) {
-   //       return <Loader />
-   //   }
-   // }
-
-  
-   // const dispatch = useDispatch();
-   // useEffect(() => {
-   //    console.log("aaa");
-   //    console.log(PRODUCTS);
-
-   //    if (PRODUCTS===undefined) {
-   //       console.log("aaa");
-   //       if (loading) {
-   //          return <Loader />
-   //      }
-      
-   //    }
-   //  }, [dispatch, productType, PRODUCTS]);
- 
-
-
-
     const { id } = useParams();
 
 /////////////////////////////////////////////////
-    const loading = useSelector(state => state.app.loading);
-    if (PRODUCTS===undefined) {
-  
+    const loading = useSelector(state => state.app.loading);  
        if (loading) {
           return <Loader />
-      }
-    }
-
+      }  
     //////////////////////
     const bufId = id;
     const filteredArray=[] ;

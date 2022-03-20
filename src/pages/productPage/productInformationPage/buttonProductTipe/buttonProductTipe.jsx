@@ -22,12 +22,9 @@ const ButtonProductTipe = ({ productType }) => {
     const PRODUCTS = useSelector(state => state.getproduct.productsArr);
 ////////////////////////////
     const loading = useSelector(state => state.app.loading);
-    if (PRODUCTS===undefined) {
-  
        if (loading) {
           return <Loader />
-      }
-    }
+      }  
 ////////////////////////////////////////////
 
     const setNext = () => controlledSwiper.slideNext();
