@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
 // import { arrCards } from "../../../db/cards";
-import {PRODUCTS} from '../../../db/products';
-
+// import {PRODUCTS} from '../../../db/products';
+import { useSelector } from "react-redux";
 import HeaderProductItem from './hederProductItem';
 import {arrReviews} from "../../../db/reviews";
 import MainProductItem from './mainProductItem';
@@ -10,9 +10,49 @@ import ButtonProductTipe from './buttonProductTipe';
 
 import './productItemPaje.scss';
 
+
+import { Loader } from '../../../components/loader/loader';
 const ProductItem = ({ productType,particularsCheck}) =>{
+   const PRODUCTS = useSelector(state => state.getproduct.productsArr);
+
+   // const loading = useSelector(state => state.app.loading);
+   // if (PRODUCTS===undefined) {
+ 
+   //    if (loading) {
+   //       return <Loader />
+   //   }
+   // }
+
+  
+   // const dispatch = useDispatch();
+   // useEffect(() => {
+   //    console.log("aaa");
+   //    console.log(PRODUCTS);
+
+   //    if (PRODUCTS===undefined) {
+   //       console.log("aaa");
+   //       if (loading) {
+   //          return <Loader />
+   //      }
+      
+   //    }
+   //  }, [dispatch, productType, PRODUCTS]);
+ 
+
+
 
     const { id } = useParams();
+
+/////////////////////////////////////////////////
+    const loading = useSelector(state => state.app.loading);
+    if (PRODUCTS===undefined) {
+  
+       if (loading) {
+          return <Loader />
+      }
+    }
+
+    //////////////////////
     const bufId = id;
     const filteredArray=[] ;
     const productItem = PRODUCTS[productType].filter((task) => task.id === bufId );

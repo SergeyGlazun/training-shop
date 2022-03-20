@@ -1,8 +1,9 @@
 import close from './img/close.svg';
-import deleteProductImg from './img/delete.svg';
-import { useSelector, useDispatch } from "react-redux";
-import { increment, decriment, sumAddProductPrise, deleteProductPrise, clicBasket } from '../../reducers';
-
+import { useSelector } from "react-redux";
+import ItemInCart from './ItemInCard';
+import DeliveryInfo from './deliveryInfo/deliveryInfo';
+import { useState } from 'react';
+import Payment from './payment';
 
 import './shopping.scss';
 
@@ -20,11 +21,9 @@ function filterSeting(click) {
 const ShoppingCart = ({ setCondition, condition }) => {
 
     filterSeting(condition);
-
-    const dispatch = useDispatch();
     const items = useSelector(state => state.toolkit.arrProduct);
     const prise = useSelector(state => state.toolkit.totapPrise);
-
+    let [makingPurchase, setMakingPurchase] = useState('Item in cart');
     return (
         <>
             <div className={condition ? "shopingContener active" : "shopingContener"} data-test-id='cart'>
@@ -38,50 +37,17 @@ const ShoppingCart = ({ setCondition, condition }) => {
                     (items.length > 0) ?
                         <div className='makingPurchase'>
                             <div className="shopingNav">
-                                <span className='ItemInCart'>Item in cart</span>
-                                <span>Delivery Info</span>
-                                <span>Payment</span>
+                                <span className={makingPurchase === 'Item in cart' ? 'ItemInCart' : ""} onClick={() => { setMakingPurchase('Item in cart') }}>Item in cart</span>
+                                <span className={makingPurchase === 'Delivery Info' ? 'ItemInCart' : ""} onClick={() => { setMakingPurchase('Delivery Info') }}>Delivery Info</span>
+                                <span className={makingPurchase === 'Payment' ? 'ItemInCart' : ""} onClick={() => { setMakingPurchase('Payment') }}>Payment</span>
                             </div>
                         </div>
-
                         :
                         <div></div>
                 }
-                <div className='shopingMain'>
+                {makingPurchase === 'Item in cart' ? <ItemInCart /> : makingPurchase === 'Delivery Info' ? <DeliveryInfo /> : <Payment />}
 
 
-                    <div className="items">
-
-                        {(items.length > 0) ?
-                            items.map((item, id) => (
-                                <div key={id} className="item" data-test-id='cart-card'>
-                                    <img width={85} src={`https://training.cleverland.by/shop${item.img}`} alt=''></img>
-                                    <div className="cart">
-
-                                        <div className="cartTop">
-                                            <h4 className="title">{item.name}</h4>
-                                            <span className="color">{item.colors}</span>,
-                                            <span className="size">{item.size}</span>
-                                        </div>
-                                        <div className="cartBot">
-                                            <div className="counter">
-                                                {item.quantity > 1 ?
-                                                    <input onClick={() => { dispatch(decriment(item)); dispatch(deleteProductPrise(item.prise)) }} type='button' value='-' data-test-id='minus-product' /> :
-                                                    <input type='button' value='-' data-test-id='minus-product' />
-                                                }
-                                                <span>{item.quantity}</span>
-                                                <input onClick={() => { dispatch(increment(item)); dispatch(sumAddProductPrise(item.prise)) }} type='button' value='+' data-test-id='plus-product' />
-                                            </div>
-                                            <span className="price"> {(item.quantity * item.prise).toFixed(2)}</span>
-                                        </div>
-                                    </div>
-                                    <div className="trash">
-                                        <img onClick={() => { dispatch(clicBasket(item.Id)); dispatch(deleteProductPrise((item.prise * item.quantity))) }} src={deleteProductImg} alt="delete" data-test-id='remove-product' />
-                                    </div>
-                                </div>
-                            )) : <span className="noneCart">Sorry, your cart is empty</span>}
-                    </div>
-                </div>
                 {(items.length > 0) ?
                     <div className='shopingFooter'>
                         <div className="shopingPrice">

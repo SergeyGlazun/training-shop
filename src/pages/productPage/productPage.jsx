@@ -1,5 +1,6 @@
 import { useState} from 'react';
-import { PRODUCTS } from '../../db/products';
+// import { PRODUCTS } from '../../db/products';
+import { useSelector } from "react-redux";
 import '../../components/reiting/reiting.scss';
 import '../../components/main/mainProducts/product.scss';
 import ProductHeaderTipe from './ProductHeaderTipe';
@@ -10,11 +11,27 @@ import FilterString from './filter/filterString/filterString';
 import ScrollUp from '../../components/function/scrollUp';
 import square from './img/Square.png'
 import './productPage.scss';
-
+import { Loader } from '../../components/loader/loader';
 
 
 const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) => {
+  const PRODUCTS = useSelector(state => state.getproduct.productsArr);
+  ///////////////////////////////////
+  let [colorArr] = useState([]);
+  let [colorArrBuf, setResult] = useState([]);
+  let [sizeArr] = useState([]);
+  let [brendArr] = useState([]);
+  let [priceArr] = useState([]);
+  let [countSetings, setCountSetings] = useState(0);
+  ////////////////////////////
+  const loading = useSelector(state => state.app.loading);
+  if (PRODUCTS===undefined) {
 
+     if (loading) {
+        return <Loader />
+    }
+  }
+////////////////////////////////////////////
   let arrColor = [];
   PRODUCTS[productType].map((item) => item.images.map((item) => arrColor.push(item.color)));
   let arrColorNoRepets = [...new Set(arrColor)];
@@ -34,14 +51,10 @@ const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) =
   PRODUCTS[productType].map((item) => arrPrice.push(item.price));
   let arrPriceNoRepets = [...new Set(arrPrice)];
 
-  let [colorArr] = useState([]);
-  let [colorArrBuf, setResult] = useState([]);
-  let [sizeArr] = useState([]);
-  let [brendArr] = useState([]);
-  let [priceArr] = useState([]);
 
 
-  let [countSetings, setCountSetings] = useState(0);
+
+
 
   try {  
  
@@ -58,6 +71,10 @@ const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) =
 
   } catch {}
 
+  // const loading = useSelector(state => state.app.loading);
+  // if (loading) {
+  //     return <Loader />
+  // }
   return (
 
     <div className='productsPage'

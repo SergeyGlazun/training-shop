@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 // import { arrCards } from '../../../../db/cards';
 import Raiting from '../../../../components/reiting/raiting';
-
+import { useSelector } from "react-redux";
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller, Autoplay } from 'swiper';
-import 'swiper/css/bundle';
-import { PRODUCTS } from '../../../../db/products';
+// import 'swiper/css/bundle';
+// import { PRODUCTS } from '../../../../db/products';
 
 import Prev from '../../../../components/slider/imgButtonLeftRight/next.svg';
 import Next from '../../../../components/slider/imgButtonLeftRight/prev.svg';
@@ -16,8 +16,19 @@ import ScrollUp from '../../../../components/function/scrollUp';
 
 import './buttonProductTipe.scss';
 
+import { Loader } from '../../../../components/loader/loader';
 const ButtonProductTipe = ({ productType }) => {
     const [controlledSwiper, setControlledSwiper] = useState(null);
+    const PRODUCTS = useSelector(state => state.getproduct.productsArr);
+////////////////////////////
+    const loading = useSelector(state => state.app.loading);
+    if (PRODUCTS===undefined) {
+  
+       if (loading) {
+          return <Loader />
+      }
+    }
+////////////////////////////////////////////
 
     const setNext = () => controlledSwiper.slideNext();
     const setPrev = () => controlledSwiper.slidePrev();

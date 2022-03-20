@@ -34,14 +34,6 @@ const ColorSize = ({ dataProductCard }) => {
     );
   }
 
-  // useEffect(() => {
-  //   colorCheck(dataProductCard.images[0].color);
-  //   sizeCheck(dataProductCard.sizes[0]);
-  //   imgCheck( dataProductCard.images[0].url);
-  // },
-  //   [dataProductCard]
-  // );
-
 
   return (
     <>
