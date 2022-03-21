@@ -1,30 +1,22 @@
-import { Link } from 'react-router-dom';
-import Raiting from '../reiting/raiting';
-import ColorSize from './Cardeliment/colorSize';
-
+import CardsItem from '../cardItem/cardItem';
 import './cardProduct.scss';
 
 const CardProduct = ({ arrCards, productType, particularsCheck }) => {
-
-
     return (
         <div className='cards' onClick={() => particularsCheck(productType)}>
             {
-                arrCards.map(({ name, price, images, rating, discount, id, sizes }) => (
-                    <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`} >
-                        {discount && <span className='sale'>{discount}</span>}
-                        <img src={`https://training.cleverland.by/shop${images[0]?.url}`} alt='imgUser' className='cardsItemImg' />
-                        <div className='foterCard'>
-                            <div className='PriseReiting'>
-                                <div className='cardsItemName'>{name}</div>
-                                <div className='cardsItemPrice'> <span>${price} <span className="priceDiscount">{discount !== null ? `$ ${ ( price + Math.abs((((+discount.replace(/%/g, ''))) / 100) * price)).toFixed(1)}` : ""}</span></span>   <Raiting rating={rating} size={14} /></div>
-                            </div>                       
-                            <ColorSize dataProductCard={{ name, price, images, rating, discount, id, sizes }} />
-                            {/* <Basker /> */}
-
-                        </div>
-
-                    </Link>
+                arrCards.map(({ name, price, images, rating, discount, id, sizes }) => (                
+                   <CardsItem 
+                   key={id} 
+                   name={name}
+                   price={price}
+                   images={images}
+                   rating={rating}
+                   discount={discount}
+                   id={id}
+                   sizes={sizes}
+                   productType={productType}
+                   />
                 ))
             }
         </div>

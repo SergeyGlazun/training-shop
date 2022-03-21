@@ -1,31 +1,23 @@
-import { Link } from 'react-router-dom';
-// import { arrCards } from '../../../../db/cards';
-import Raiting from '../../../../components/reiting/raiting';
 import { useSelector } from "react-redux";
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller, Autoplay } from 'swiper';
-// import 'swiper/css/bundle';
-// import { PRODUCTS } from '../../../../db/products';
-
+import CardsItem from '../../../../components/cardItem/cardItem';
 import Prev from '../../../../components/slider/imgButtonLeftRight/next.svg';
 import Next from '../../../../components/slider/imgButtonLeftRight/prev.svg';
-
-import ColorSize from '../../../../components/cardProduct/Cardeliment/colorSize';
 import ScrollUp from '../../../../components/function/scrollUp';
-
+import { Loader } from '../../../../components/loader/loader';
 import './buttonProductTipe.scss';
 
-import { Loader } from '../../../../components/loader/loader';
 const ButtonProductTipe = ({ productType }) => {
     const [controlledSwiper, setControlledSwiper] = useState(null);
     const PRODUCTS = useSelector(state => state.getproduct.productsArr);
-////////////////////////////
+    ////////////////////////////
     const loading = useSelector(state => state.app.loading);
-       if (loading) {
-          return <Loader />
-      }  
-////////////////////////////////////////////
+    if (loading) {
+        return <Loader />
+    }
+    ////////////////////////////////////////////
 
     const setNext = () => controlledSwiper.slideNext();
     const setPrev = () => controlledSwiper.slidePrev();
@@ -41,7 +33,7 @@ const ButtonProductTipe = ({ productType }) => {
                 </div>
 
                 <div className='productsCards'>
-                <ScrollUp top={{scroll:0}}/>
+                    <ScrollUp top={{ scroll: 0 }} />
                     <Swiper
                         data-test-id='related-slider'
                         onSwiper={setControlledSwiper}
@@ -68,23 +60,19 @@ const ButtonProductTipe = ({ productType }) => {
                         modules={[Controller, Autoplay]}
                         className="relatedSwiper"
                     >
-                      
-                        {PRODUCTS[productType].map(({ name, price, images, rating, sale, id, sizes, discount }) => (
-                            <SwiperSlide key={id}>
-                                <Link key={id} to={`/${productType}/${id}`} className='cardsItem' data-test-id={`clothes-card-${productType}`}>
-                                    {sale && <span className='sale'>{sale}</span>}
-                                    <img src={`https://training.cleverland.by/shop${images[0]?.url}`} alt='imgUser' className='cardsItemImg' />
-                                    <div className='foterCard'>
-                                        <div className='PriseReiting'>
-                                            <div className='cardsItemName'>{name}</div>
-                                            <div className='cardsItemPrice'><span>${price}<span className="priceDiscount">{discount !== null ? `$ ${(price + Math.abs((((+discount.replace(/%/g, ''))) / 100) * price)).toFixed(1)}` : ""}</span></span>  <Raiting rating={rating} size={14} /></div>
-                                        </div>
 
-                                        <ColorSize dataProductCard={{ name, price, images, rating, id, sizes }} />
-                                        {/* <Basker /> */}
-
-                                    </div>
-                                </Link>
+                        {PRODUCTS[productType].map(({ name, price, images, rating, id, sizes, discount }) => (
+                            <SwiperSlide key={id} >
+                                <CardsItem                                 
+                                    name={name}
+                                    price={price}
+                                    images={images}
+                                    rating={rating}                               
+                                    discount={discount}
+                                    id={id}
+                                    sizes={sizes}
+                                    productType={productType}
+                                />
                             </SwiperSlide>
                         ))}
 

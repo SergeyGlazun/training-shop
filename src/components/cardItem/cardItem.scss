@@ -1,0 +1,77 @@
+.cardsItem {
+    position: relative;
+    display: flex;
+
+    height: 378px;
+    max-width: 290px;
+    width: 100%;
+    overflow: hidden;
+
+    .cardsItemImg {
+        width: 100%;
+
+    }
+
+    .sale {
+        position: absolute;
+        top: 0px;
+        left: 0.1px;
+        background-color: #e91e63;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 13px;
+        padding: 8px;
+
+    }
+
+    .cardsItemName {
+        font-size: 14px;
+        line-height: 16px;
+        color: #707070;
+        padding: 14px 0;
+    }
+
+    .cardsItemPrice {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+
+    .foterCard {
+
+        width: 100%;
+        height: 312px;
+        position: absolute;
+        top: 302px;
+        background-color: #ffffff;
+        transition: 500ms;
+        transform: translateY(0px);
+
+        .PriseReiting {
+            .priceDiscount {
+                margin-left: 3px;
+                font-size: 14px;
+                font-weight: 900;
+                opacity: 0.4;
+                text-decoration: line-through;
+            }
+        }
+
+        &:hover {
+            transform: translateY(-205px);
+            z-index: 100;
+        }
+
+    }
+}
+
+@media all and (max-width: 550px) {
+    .cardsItem{
+        max-width: 500px;
+    }
+}
