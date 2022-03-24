@@ -5,15 +5,15 @@ import Products from '../../components/main/mainProducts';
 import MainNews from '../../components/main/mainNews';
 import MainSpecialOffer from '../../components/main/mainSpecialOffer/mainSpecialOffer';
 import MainBlog from '../../components/main/mainBlog';
-const MainPage = ({particularNames,particularsCheck}) => {
+const MainPage = () => {
 
     return(
         <>
         <div className='wrapper'>
-        <MainTop particularNames={particularNames} particularsCheck={particularsCheck}/>
+        <MainTop/>
         <WeCan/>   
-        <Products productType='women' particularNames={particularNames} particularsCheck={particularsCheck}/>
-        <Products productType='men' particularNames={particularNames} particularsCheck={particularsCheck}/>
+        <Products productType='women'/>
+        <Products productType='men'/>
         <MainNews/>
         </div>
         <MainSpecialOffer/>

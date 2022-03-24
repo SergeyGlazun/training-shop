@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
 import share from '../../ProductHeaderTipe/img/share.svg';
 import Raiting from '../../../../components/reiting/raiting';
-
-
+import { selectedProduct } from '../../../../reducers/selectedProductType';
 
 import './headerProductItem.scss';
-const HeaderProductItem = ({productItem,productType,particularsCheck}) =>{
+
+const HeaderProductItem = ({productItem,productType}) =>{
+    const dispatch = useDispatch();
     return(
         <div className='headerProductItem' >
               <div className='contenerHeaderProductItem wrapper'>
                     <div className='headerNavigation'>
                         <div className='back'>
                         <Link to='/' className='home'>
-                            <span className='home' onClick={() => particularsCheck('')}>Home</span>
+                            <span className='home' onClick={() => dispatch(selectedProduct(""))}>Home</span>
                         </Link>
                             <span className='arr'>►</span>
                         <Link to={`/${productType}`} className='product-back'>

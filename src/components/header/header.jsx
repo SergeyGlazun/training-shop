@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-
+import { useDispatch} from 'react-redux';
+import { selectedProduct } from '../../reducers/selectedProductType';
 import Contacts from "./contacts";
 import NetworkContact from '../networkContact';
 import logo from '../../Img/header/logoImg/logo.svg';
@@ -11,12 +12,9 @@ import BurgerItem from './burgerMenu/burgerItem';
 
 import './header.scss';
 
-
-
-
-const Header = ({ particularNames, particularsCheck}) => {
+const Header = () => {
   const [condition, setCondition] = useState(false);
-
+  const dispatch = useDispatch();
 
   function closeBurger(condition) {
     if (condition)
@@ -36,10 +34,10 @@ const Header = ({ particularNames, particularsCheck}) => {
         <div className='wrapper'>
 
           <Link to='/' data-test-id='header-logo-link'>
-            <img src={logo} alt='Logo' className='navigationLogo' onClick={() => particularsCheck("")} />
+            <img src={logo} alt='Logo' className='navigationLogo' onClick={() => dispatch(selectedProduct(""))} />
           </Link>
 
-          <Menu particularNames={particularNames} particularsCheck={particularsCheck} />
+          <Menu />
           <HeaderPanelIcon/>
           <BurgerMenu condition={condition} setCondition={setCondition} />
           <BurgerItem condition={condition} setCondition={setCondition} />

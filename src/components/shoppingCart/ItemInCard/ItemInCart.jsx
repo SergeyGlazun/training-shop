@@ -1,6 +1,6 @@
 import deleteProductImg from './../img/delete.svg';
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decriment, sumAddProductPrise, deleteProductPrise, clicBasket } from '../../../reducers';
+import { increment, decriment, sumAddProductPrise, deleteProductPrise, clicBasket } from '../../../reducers//actionBasket';
 
 import './itemInCart.scss';
 

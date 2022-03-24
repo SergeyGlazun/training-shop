@@ -1,5 +1,4 @@
 import { useState} from 'react';
-// import { PRODUCTS } from '../../db/products';
 import { useSelector } from "react-redux";
 import '../../components/reiting/reiting.scss';
 import '../../components/main/mainProducts/product.scss';
@@ -10,11 +9,10 @@ import CardProduct from '../../components/cardProduct';
 import FilterString from './filter/filterString/filterString';
 import ScrollUp from '../../components/function/scrollUp';
 import square from './img/Square.png'
-import './productPage.scss';
 import { Loader } from '../../components/loader/loader';
 
-
-const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) => {
+import './productPage.scss';
+const ProductsPage = ({ productType ,condition,setCondition}) => {
   const PRODUCTS = useSelector(state => state.getproduct.productsArr);
   ///////////////////////////////////
   let [colorArr] = useState([]);
@@ -71,10 +69,6 @@ const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) =
 
   } catch {}
 
-  // const loading = useSelector(state => state.app.loading);
-  // if (loading) {
-  //     return <Loader />
-  // }
   return (
 
     <div className='productsPage'
@@ -130,7 +124,7 @@ const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) =
       }}
     >
        <ScrollUp top={{scroll:220}}/>
-      <ProductHeaderTipe productType={productType} particularsCheck={particularsCheck}/>
+      <ProductHeaderTipe productType={productType}/>
       
       <div className='wrapper'>
 
@@ -163,8 +157,7 @@ const ProductsPage = ({ productType ,particularsCheck,condition,setCondition}) =
 
         <CardProduct arrCards={colorArrBuf.length !== 0 || countSetings > 0 ? colorArrBuf : PRODUCTS[productType]} 
         productType={productType} 
-        countSetings={countSetings}
-        particularsCheck={particularsCheck}
+        countSetings={countSetings}      
         />
 
         <div className='square'>

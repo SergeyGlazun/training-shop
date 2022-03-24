@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import heart from '../../../../pages/productPage/productInformationPage/mainProductItem/img/heart.svg';
 import scale from '../../../../pages/productPage/productInformationPage/mainProductItem/img/scale.svg';
 
-import { addProduct, removeProduct, sumAddProductPrise, deleteProductPrise } from '../../../../reducers';
+import { addProduct, removeProduct, sumAddProductPrise, deleteProductPrise } from '../../../../reducers/actionBasket';
 
 const ColorSize = ({ dataProductCard }) => {
   const dispatch = useDispatch();

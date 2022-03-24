@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { Loader } from '../../loader/loader';
 import { MAIN_CLOTHES_BLOCK_MENU } from '../../../db/productMenu';
 import CardProduct from '../../cardProduct';
-// import { PRODUCTS } from '../../../db/products';
+import { selectedProduct } from '../../../reducers/selectedProductType';
+
 import './product.scss';
 
-const Products = ({ productType,particularNames,particularsCheck}) => {
-
+const Products = ({ productType}) => {
+  const dispatch = useDispatch();
   const [particularNamesMain, particularsCheckMain] = useState('isNewArrivals');
   const loading = useSelector(state => state.app.loading);
   const PRODUCTS = useSelector(state => state.getproduct.productsArr);
@@ -31,13 +32,11 @@ const Products = ({ productType,particularNames,particularsCheck}) => {
       <CardProduct 
       arrCards={PRODUCTS[productType].filter((element) => element.particulars[particularNamesMain] === true)} 
       productType={productType} 
-      particularsType={particularNamesMain} 
-      particularNames={particularNames} 
-      particularsCheck={particularsCheck}
+      particularsType={particularNamesMain}     
       />
 
       <Link to={`/${productType}`} >
-        <button className='productButton' type='button'>
+        <button className='productButton' type='button' onClick={() => dispatch(selectedProduct(productType))}>       
           SEE ALL
         </button>
       </Link>

@@ -20,8 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 import './mainProductItem.scss';
-
-import { addProduct, removeProduct, sumAddProductPrise, deleteProductPrise } from '../../../../reducers';
+import { addProduct, removeProduct, sumAddProductPrise, deleteProductPrise } from '../../../../reducers/actionBasket';
 
 const MainProductItem = ({ productItem, filteredArray }) => {
 

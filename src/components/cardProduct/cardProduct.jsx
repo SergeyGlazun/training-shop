@@ -1,9 +1,12 @@
+import { useDispatch } from 'react-redux';
 import CardsItem from '../cardItem/cardItem';
+import { selectedProduct } from '../../reducers/selectedProductType';
 import './cardProduct.scss';
 
-const CardProduct = ({ arrCards, productType, particularsCheck }) => {
-    return (
-        <div className='cards' onClick={() => particularsCheck(productType)}>
+const CardProduct = ({ arrCards, productType }) => {
+    const dispatch = useDispatch();
+    return (      
+        <div className='cards' onClick={() => dispatch(selectedProduct(productType))}>
             {
                 arrCards.map(({ name, price, images, rating, discount, id, sizes }) => (                
                    <CardsItem 

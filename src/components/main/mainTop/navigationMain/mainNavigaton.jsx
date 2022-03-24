@@ -1,22 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import selectedProduct from '../../../../reducers/selectedProductType';
 import './mainNavigation.scss';
 
 import '../../../slider/slider.scss';
 
-const SectionNavigationMain = ({particularsCheck}) =>{
+const SectionNavigationMain = () =>{
+   const dispatch = useDispatch();
     return(
         <div className='sectionNavMain'>
         <div className='sectionNavMainTop'>
            <Link to='/women' className='btnTopLeft'>
-             <div className='womenTopMain' type='button' onClick={() => particularsCheck("women")}>                     
+             <div className='womenTopMain' type='button' onClick={() => dispatch(selectedProduct("women"))}>                     
                 WOMEN      
              </div>
            </Link>
 
         <Link to='/men' className='btnTopRight'>
-          <div className='menTopMain' type='button' onClick={() => particularsCheck("men")}>
+          <div className='menTopMain' type='button' onClick={() => dispatch(selectedProduct("men"))}>
              MEN
           </div>
         </Link>

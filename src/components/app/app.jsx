@@ -7,45 +7,41 @@ import ProductsPage from "../../pages/productPage";
 import Footer from "../footer";
 import ProductItem from "../../pages/productPage/productInformationPage";
 import ScrollUp from "../function/scrollUp";
-
 import { Alert } from "../alert/alert";
+
 import './app.scss';
 
-
-
-const App = () => {
-    const [particularNames, particularsCheck] = useState('');
+const App = () => {  
     const [condition, setCondition] = useState(false);
-
     const alert = useSelector(state => state.app.alert);
 
     return (
         <div className='app' data-test-id='app'>
             <ScrollUp top={{ scroll: 0 }} />        
-            <Header particularNames={particularNames} particularsCheck={particularsCheck} />
+            <Header/>
              {alert && <Alert text={"ошибка загрузки"}/>}
             <Switch>
                 <Route exact path='/training-shop'>
-                    <MainPage particularNames={particularNames} particularsCheck={particularsCheck} />
+                    <MainPage/>
                 </Route>
                 <Route exact path='/'>
-                    <MainPage particularNames={particularNames} particularsCheck={particularsCheck} />
+                    <MainPage/>
                 </Route>
 
                 <Route exact path='/men'>
-                    <ProductsPage productType='men' particularNames={particularNames} particularsCheck={particularsCheck} condition={condition} setCondition={setCondition} />
+                    <ProductsPage productType='men'  condition={condition} setCondition={setCondition} />
                 </Route>
 
                 <Route exact path='/women'>
-                    <ProductsPage productType='women' particularNames={particularNames} particularsCheck={particularsCheck} condition={condition} setCondition={setCondition} />
+                    <ProductsPage productType='women'  condition={condition} setCondition={setCondition} />
                 </Route>
 
                 <Route exact path='/women/:id'>
-                    <ProductItem productType='women' particularNames={particularNames} particularsCheck={particularsCheck} />
+                    <ProductItem productType='women'/>
                 </Route>
 
                 <Route path='/men/:id'>
-                    <ProductItem productType='men' particularNames={particularNames} particularsCheck={particularsCheck} />
+                    <ProductItem productType='men'/>
                 </Route>
 
             </Switch>
