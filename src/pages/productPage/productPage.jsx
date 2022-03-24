@@ -7,21 +7,20 @@ import Setings from './setings';
 import Filter from './filter';
 import CardProduct from '../../components/cardProduct';
 import FilterString from './filter/filterString/filterString';
-import ScrollUp from '../../components/function/scrollUp';
 import square from './img/Square.png'
+import './productPage.scss';
 import { Loader } from '../../components/loader/loader';
 
-import './productPage.scss';
 const ProductsPage = ({ productType ,condition,setCondition}) => {
   const PRODUCTS = useSelector(state => state.getproduct.productsArr);
-  ///////////////////////////////////
+
   let [colorArr] = useState([]);
   let [colorArrBuf, setResult] = useState([]);
   let [sizeArr] = useState([]);
   let [brendArr] = useState([]);
   let [priceArr] = useState([]);
   let [countSetings, setCountSetings] = useState(0);
-  ////////////////////////////
+
   const loading = useSelector(state => state.app.loading);
   if (PRODUCTS===undefined) {
 
@@ -29,7 +28,7 @@ const ProductsPage = ({ productType ,condition,setCondition}) => {
         return <Loader />
     }
   }
-////////////////////////////////////////////
+
   let arrColor = [];
   PRODUCTS[productType].map((item) => item.images.map((item) => arrColor.push(item.color)));
   let arrColorNoRepets = [...new Set(arrColor)];
@@ -48,11 +47,6 @@ const ProductsPage = ({ productType ,condition,setCondition}) => {
   let arrPrice = [];
   PRODUCTS[productType].map((item) => arrPrice.push(item.price));
   let arrPriceNoRepets = [...new Set(arrPrice)];
-
-
-
-
-
 
   try {  
  
@@ -119,11 +113,10 @@ const ProductsPage = ({ productType ,condition,setCondition}) => {
         }
         if (priceArr.length > 0) {
           setCountSetings(countSetings++);
-        }
-      
-      }}
+        }    
+      }}     
     >
-       <ScrollUp top={{scroll:220}}/>
+    
       <ProductHeaderTipe productType={productType}/>
       
       <div className='wrapper'>
@@ -157,7 +150,7 @@ const ProductsPage = ({ productType ,condition,setCondition}) => {
 
         <CardProduct arrCards={colorArrBuf.length !== 0 || countSetings > 0 ? colorArrBuf : PRODUCTS[productType]} 
         productType={productType} 
-        countSetings={countSetings}      
+        countSetings={countSetings}
         />
 
         <div className='square'>

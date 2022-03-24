@@ -29,10 +29,12 @@ const App = () => {
                 </Route>
 
                 <Route exact path='/men'>
+                <ScrollUp top={{scroll:220}}/>
                     <ProductsPage productType='men'  condition={condition} setCondition={setCondition} />
                 </Route>
 
                 <Route exact path='/women'>
+                <ScrollUp top={{scroll:220}}/>
                     <ProductsPage productType='women'  condition={condition} setCondition={setCondition} />
                 </Route>
 

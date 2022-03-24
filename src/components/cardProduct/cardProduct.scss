@@ -1,7 +1,7 @@
  .cards {
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-  flex-flow: column wrap;
+   flex-flow: column wrap;
    gap: 30px;
    margin: 48px 0;
  }

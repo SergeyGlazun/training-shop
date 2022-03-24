@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import selectedProduct from '../../../../reducers/selectedProductType';
+import {selectedProduct} from '../../../../reducers/selectedProductType';
 import './mainNavigation.scss';
 
 import '../../../slider/slider.scss';

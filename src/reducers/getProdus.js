@@ -16,7 +16,7 @@ export const getArr = createAction('GETPRODUCT');
 
 export default createReducer(defaultState, {
     [getArr]: (state, action) => {
-        state.productsArr = action.payload;          
+        state.productsArr = action.payload;        
     },
 })
 

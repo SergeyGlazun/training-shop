@@ -36,7 +36,7 @@ const Products = ({ productType}) => {
       />
 
       <Link to={`/${productType}`} >
-        <button className='productButton' type='button' onClick={() => dispatch(selectedProduct(productType))}>       
+        <button className='productButton' type='button' onClick={() => dispatch(selectedProduct(productType))}>      
           SEE ALL
         </button>
       </Link>

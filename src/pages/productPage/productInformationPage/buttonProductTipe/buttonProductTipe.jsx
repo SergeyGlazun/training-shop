@@ -12,13 +12,12 @@ import './buttonProductTipe.scss';
 const ButtonProductTipe = ({ productType }) => {
     const [controlledSwiper, setControlledSwiper] = useState(null);
     const PRODUCTS = useSelector(state => state.getproduct.productsArr);
-    ////////////////////////////
+  
     const loading = useSelector(state => state.app.loading);
     if (loading) {
         return <Loader />
     }
-    ////////////////////////////////////////////
-
+ 
     const setNext = () => controlledSwiper.slideNext();
     const setPrev = () => controlledSwiper.slidePrev();
     return (

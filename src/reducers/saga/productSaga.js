@@ -9,7 +9,7 @@ import { showLoader,hideLoader,showAlert,hideAlert } from '../appReducer';
         const { data } = yield call(axios.get, 'https://training.cleverland.by/shop/products');              
         yield put(getArr(data));    
         yield put(hideLoader());
-        yield put(hideAlert());
+        yield put(hideAlert());     
       } catch (err) {
       //   yield put(productsRequestError(err.message));    
       console.log(err.message);

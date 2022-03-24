@@ -11,7 +11,7 @@ const ColorSize = ({ dataProductCard }) => {
   const dispatch = useDispatch();
   const prise = dataProductCard.price;
   const name = dataProductCard.name;
-  const items = useSelector(state => state.toolkit.arrProduct)
+  const items = useSelector(state => state.toolkit.arrProduct);
   let filteredArray = [];
 
   const [colors, colorCheck] = useState(dataProductCard.images[0].color);
