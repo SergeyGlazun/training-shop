@@ -27,6 +27,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
   const dispatch = useDispatch();
   const prise = productItem.price;
   const name = productItem.name;
+  const category = productItem.category;
   let arr = [];
   arr.push(productItem);
 
@@ -109,7 +110,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               data-test-id="add-cart-button"
               onClick={() => {
                 dispatch(sumAddProductPrise(prise));
-                dispatch(addProduct({ name, colors, size, img, prise, Id, quantity: 1 }))
+                dispatch(addProduct({ name, colors, size, img, prise, Id, quantity: 1,category }))
               }}
             >
               ADD TO CARD
