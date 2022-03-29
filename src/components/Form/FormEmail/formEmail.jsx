@@ -23,7 +23,7 @@ const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classB
             validationSchema={Yup.object().shape({
                 email: Yup.string().email('Введите верный email')
             })}
-            
+
         >
             {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) =>
             (
@@ -38,7 +38,7 @@ const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classB
                         onChange={handleChange}
                         onClick={() => { dispatch(responseAction(null)) }}
                         onBlur={handleBlur}
-                        value={values.email}                   
+                        value={values.email}
                     />
                     {touched.email && errors.email && <span className={classError}>{errors.email}</span>}
 
@@ -46,14 +46,13 @@ const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classB
                         data-test-id={idButton}
                         className={isValid && values.email.length > 0 ? `${classButtonDisebleFalse}` : `${classButtonDisebleTrue}`}
                         disabled={!isValid || !dirty || loadingAction}
-                        onClick={handleSubmit}
+                        onClick={() => { handleSubmit(); values.email = "" }}
                         type="submit"
-                    > {loadingAction && <LoaderButtom/>} SUBSCRIBE</button>
+                    > {loadingAction && <LoaderButtom />} SUBSCRIBE</button>
                     <div className={responce === null ? "" : responce === "OK" ? "responseOK" : `${classError}`}>
                         {responce === null ? "" : responce === "OK" ? "Почта успешно отправлена" : `${responce}`}
-                    </div>                
+                    </div>
                 </div>
-                
             )}
         </Formik>
     );
