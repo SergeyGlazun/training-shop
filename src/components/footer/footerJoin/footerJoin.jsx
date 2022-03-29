@@ -11,7 +11,7 @@ const FooteJoin = () => {
                 <ForEmail classFooterEmail={"footerEmail"}
                  classInput={"footerInput"}
                  classButtonDisebleTrue={"footerBtnFalse"}
-                 lassButtonDisebleFalse={"footerBtnTrue"}
+                 classButtonDisebleFalse={"footerBtnTrue"}
                  classError={"error"}
                  idInput={'footer-mail-field'}
                  idButton={'footer-subscribe-mail-button'}

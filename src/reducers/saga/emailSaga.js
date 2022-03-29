@@ -16,7 +16,6 @@ function* emailSagaPost(action) {
     yield put(loadingAction(true));
     try {
         const responce = yield call(axios.post, "https://training.cleverland.by/shop/email", action);     
-        console.log(responce)  
         yield put(responseAction(responce.statusText))
     } catch (err) {
         yield put(responseAction(err.message))

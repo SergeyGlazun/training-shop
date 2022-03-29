@@ -47,11 +47,14 @@
         letter-spacing: 0.06em;
         font-weight: 600;
         line-height: 18px;
+       
+        cursor: pointer;
       }
 
       .footerBtnTrue {
         background: #121212;
-
+        position: relative;
+        padding-left: 40px;              
         &:hover {
           background: #E6E6E6;
           color: #121212;
