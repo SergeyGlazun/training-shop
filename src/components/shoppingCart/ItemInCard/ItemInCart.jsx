@@ -1,9 +1,9 @@
-import deleteProductImg from './../img/delete.svg';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
+import deleteProductImg from './../img/delete.svg';
 import { increment, decriment, sumAddProductPrise, deleteProductPrise, clicBasket } from '../../../reducers/actionBasket';
 
 import './itemInCart.scss';
-import { Link } from 'react-router-dom';
 
 const ItemInCart = () => {
 

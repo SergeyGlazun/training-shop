@@ -8,8 +8,9 @@ import actionsBasket from './reducers/actionBasket';
 import getProdus from "./reducers/getProdus";
 import appReducer from "./reducers/appReducer";
 import selectTipeProductAction from './reducers/selectedProductType';
-
-import mySaga from "./reducers/saga/productSaga";
+import actionEmailPost from "./reducers/actionEmailPost";
+import actionReviesPost from "./reducers/actionReview";
+import {rootSaga} from "./reducers/saga/index";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,7 +18,9 @@ const rootReducer = combineReducers({
     toolkit: actionsBasket,
     getproduct: getProdus,
     app: appReducer,
-    selectProductTipe: selectTipeProductAction
+    selectProductTipe: selectTipeProductAction,
+    validationChek:actionEmailPost,
+    postReviewReducer:actionReviesPost
 })
 
 const store = configureStore({
@@ -26,6 +29,6 @@ const store = configureStore({
     middleware: [sagaMiddleware]
 });
 
-sagaMiddleware.run(mySaga)
+sagaMiddleware.run(rootSaga)
 
 export default store;

@@ -1,26 +1,19 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Raiting from '../../../../components/reiting/raiting';
-
-
 import hanger from './img/hanger.svg'
-
 import heart from './img/heart.svg';
 import scale from './img/scale.svg';
 import car from './img//sectionScope/car.svg';
 import repit from './img//sectionScope/return.svg';
 import mail from './img//sectionScope/mail.svg';
 import annotation from './img/anotation.svg';
-
 import { arrMasterCard } from '../../../../db/ItemPages';
 import ProductSwiper from './swaper';
-
-
-import { useDispatch, useSelector } from 'react-redux';
-
-
-import './mainProductItem.scss';
 import { addProduct, removeProduct, sumAddProductPrise, deleteProductPrise } from '../../../../reducers/actionBasket';
+import FormReview from '../../../../components/Form';
+import './mainProductItem.scss';
 
 const MainProductItem = ({ productItem, filteredArray }) => {
 
@@ -50,7 +43,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
   const [colors, colorCheck] = useState(filteredArray[0].color);
   const [size, sizeCheck] = useState(productItem.sizes[0]);
   const [img, imgCheck] = useState(productItem.images[0].url);
-
+  const [formRevieew, SetFormRevieew] = useState(false)
 
   const Id = `${productItem.id}-${colors}-${size}`;
 
@@ -63,7 +56,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
 
   return (
     <div className='productSection wrapper'>
-
+      {formRevieew && <FormReview formRevieew={formRevieew} SetFormRevieew={SetFormRevieew} id={productItem.id}/>}  
       <div className='slidecContener'>
 
         <ProductSwiper productItem={productItem} />
@@ -110,7 +103,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               data-test-id="add-cart-button"
               onClick={() => {
                 dispatch(sumAddProductPrise(prise));
-                dispatch(addProduct({ name, colors, size, img, prise, Id, quantity: 1,category }))
+                dispatch(addProduct({ name, colors, size, img, prise, Id, quantity: 1, category }))
               }}
             >
               ADD TO CARD
@@ -203,12 +196,15 @@ const MainProductItem = ({ productItem, filteredArray }) => {
                   <span className='amountRreviews'>{productItem.reviews.length} Reviews</span>
                 </div>
 
-                <div className='annotation'>
+                <div data-test-id='review-button' className='annotation' type="button" onClick={ () => {   
+                      SetFormRevieew(true);                  
+                }}>                              
                   <img src={annotation} alt='annotation' className='annotationImg' />
                   <span className='writeReviews'>Write a review</span>
                 </div>
               </div>
             </div>
+          
             {productItem.reviews.map(({ id, name, text, rating }) => (
               <div key={id} className='reviewText'>
                 <div className='title'>

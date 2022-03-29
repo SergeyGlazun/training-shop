@@ -4,23 +4,12 @@ import ItemInCart from './ItemInCard';
 import DeliveryInfo from './deliveryInfo/deliveryInfo';
 import { useState } from 'react';
 import Payment from './payment';
-
+import { locScroll } from '../function/locScroll';
 import './shopping.scss';
-
-function filterSeting(click) {
-    let Body = document.body;
-
-    if (click) {
-        Body.classList.add('lock');
-
-    } else {
-        Body.classList.remove("lock");
-    }
-}
 
 const ShoppingCart = ({ setCondition, condition }) => {
 
-    filterSeting(condition);
+    locScroll(condition);
     const items = useSelector(state => state.toolkit.arrProduct);
     const prise = useSelector(state => state.toolkit.totapPrise);
     let [makingPurchase, setMakingPurchase] = useState('Item in cart');
@@ -65,7 +54,7 @@ const ShoppingCart = ({ setCondition, condition }) => {
 
             </div>
 
-            <div onClick={() => { setCondition(false) }} className={condition ? "overlay" : ""}></div>
+            <div onClick={() => { setCondition(false); locScroll(false) }} className={condition ? "overlay" : ""}></div>
 
         </>
     )

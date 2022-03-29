@@ -1,97 +1,115 @@
-.footerJoinContener{
-    background: #121212;
-    border-bottom: 2px solid #f8f8f8;
-    padding: 8px 0;
-    .wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
- 
-        .footerText {
-            font-weight: 600;
-            line-height: 18px;
-            letter-spacing: 0.06em;
-            color: #ffffff;
-          }
-  
-          .footerEmail {
-              display: flex;
-        
-              .footerInput {
-                min-width: 400px;
-                background: #414141;
-                border: none;
-                min-height: 32px;
-                display: flex;
-                align-items: center;
-                font-weight: 500;
-                font-size: 13px;
-                line-height: 18px;
-                color: #9c9c9c;
-                padding-left: 16px;
-                outline: 0;
-        
-                
-              }
-        
-              .footerBtn {
-                margin-left: 12px;
-                background: #121212;
-                border: 1px solid #ffffff;
-                color: #ffffff;
-                padding: 6px 24px;
-                cursor: pointer;
-                letter-spacing: 0.06em;
-                font-weight: 600;
-                line-height: 18px;
+.footerJoinContener {
+  background: #121212;
+  border-bottom: 2px solid #f8f8f8;
+  padding: 8px 0;
 
-                &:hover{
-                  background: #E6E6E6;
-                  color:#121212;
-                  transition: all 0.3s;
-                }
-              }
-            }
-    } 
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .footerText {
+      font-weight: 600;
+      line-height: 18px;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+    }
+
+    .footerEmail {
+      display: flex;
+      .error{
+        color: red;
+      }
+      .footerInput {
+        min-width: 400px;
+        background: #414141;
+        border: none;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 18px;
+        color: #9c9c9c;
+        padding-left: 16px;
+        outline: 0;
+
+
+      }
+
+      .footerBtnTrue,
+      .footerBtnFalse {
+        margin-left: 12px;
+        border: 1px solid #ffffff;
+        color: #ffffff;
+        padding: 6px 24px;
+        cursor: pointer;
+        letter-spacing: 0.06em;
+        font-weight: 600;
+        line-height: 18px;
+      }
+
+      .footerBtnTrue {
+        background: #121212;
+
+        &:hover {
+          background: #E6E6E6;
+          color: #121212;
+          transition: all 0.3s;
+        }
+      }
+
+      .footerBtnFalse {
+        background: #414141;
+        border: 0px solid #ffffff;
+      }
+
+      .responseOK,
+      .responseError {
+        margin-left: 15px;
+        color: #ffffff;
+      }
+    }
+  }
 }
 
 @media all and (max-width: 888px) {
-    .footerJoinContener {
-      .wrapper {
+  .footerJoinContener {
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 14px;
+    }
+  }
+}
+
+@media all and (max-width: 610px) {
+  .footerJoinContener {
+    .wrapper {
+      .footerEmail {
         display: flex;
         flex-direction: column;
         align-items: center;
         row-gap: 14px;
-      }
-    }
-  }
 
-  @media all and (max-width: 610px) {
-    .footerJoinContener {
-      .wrapper {
-        .footerEmail {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          row-gap: 14px;
-  
-          .footerBtn {
-            width: 100%;
-            margin-left: 0;
-          }
+        .footerBtn {
+          width: 100%;
+          margin-left: 0;
         }
       }
     }
   }
-  @media all and (max-width: 450px) {
-    .footerJoinContener {
-      .wrapper {
-        .footerEmail {
-          .footerInput {
-            min-width: 270px;
-          }
+}
+
+@media all and (max-width: 450px) {
+  .footerJoinContener {
+    .wrapper {
+      .footerEmail {
+        .footerInput {
+          min-width: 270px;
         }
       }
     }
   }
-  
+}
