@@ -26,7 +26,8 @@ export default createReducer(initialState, {
         state.data.id=action.payload.id;
         state.data.name=action.payload.name;
         state.data.text=action.payload.review;
-        state.data.rating=action.payload.stars;       
+        state.data.rating=action.payload.stars;    
+        state.error=false;    
     },
     [responseReview]: (state,action) => {
         state.responce=action.payload; 
@@ -37,5 +38,6 @@ export default createReducer(initialState, {
     },
     [closeForm]: (state,action) => {
         state.closeForm=action.payload; 
+        // state.error=false; 
     },
 })

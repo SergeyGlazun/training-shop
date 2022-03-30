@@ -1,24 +1,33 @@
 .conteberFormReview {
   position: fixed;
-  right: 20%;
+  left: 40%;
+
   top: 20%;
   z-index: 50;
   display: flex;
   flex-direction: column;
   max-width: 600px;
 
-
-  @media (max-width:800px) {
-    right: 10%;
+  @media (max-width:1000px) {
+    left: 34%;
   }
-
+  @media (max-width:900px) {
+    left: 29%;
+  }
+  @media (max-width:780px) {
+    left: 25%;
+  }
+  @media (max-width:700px) {
+    left: 20%;
+  }
   @media (max-width:650px) {
-    right: 5%;
+    left: 16%;
   }
 
   @media (max-width: 530px) {
     right: auto;
     left: auto;
+    left: 5%;
     width: 90%;
   }
 

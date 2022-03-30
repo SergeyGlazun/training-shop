@@ -13,8 +13,10 @@ import { arrMasterCard } from '../../../../db/ItemPages';
 import ProductSwiper from './swaper';
 import { addProduct, removeProduct, sumAddProductPrise, deleteProductPrise } from '../../../../reducers/actionBasket';
 import FormReview from '../../../../components/Form';
+// import { Loader } from '../../../../components/loader/loader';
 import './mainProductItem.scss';
 
+import { getIDProductID } from '../../../../reducers/actionGetProductId';
 const MainProductItem = ({ productItem, filteredArray }) => {
 
   const dispatch = useDispatch();
@@ -23,7 +25,8 @@ const MainProductItem = ({ productItem, filteredArray }) => {
   const category = productItem.category;
   let arr = [];
   arr.push(productItem);
-
+  // const producrID = useSelector(state => state.getIDProduct.getProductIDODJECT);
+  // const loadingIdProduct = useSelector(state => state.getIDProduct.loadingIDProduct);
   const items = useSelector(state => state.toolkit.arrProduct)
 
   productItem.images.forEach(item => {
@@ -31,11 +34,33 @@ const MainProductItem = ({ productItem, filteredArray }) => {
       filteredArray.push(item);
     }
   });
-
+// let productItem1 ={};
+// productItem1 = Object.assign(productItem1,productItem);
   useEffect(() => {
     colorCheck(filteredArray[0].color);
     sizeCheck(productItem.sizes[0]);
     imgCheck(productItem.images[0].url);
+//       if (loadingIdProduct) {
+       
+//         // productItem=producrID;
+//         if(productItem!==undefined && producrID!==undefined){
+        
+//           // Object.assign(productItem, producrID);
+//           // productItem = productItem.map(o => {
+//           //   if (o.id === producrID.id) {
+//           //     return producrID;
+//           //   }
+//           //   return  productItem;
+//           // });
+//           // productItem.reviews = productItem.reviews.map(item => item.some(item=> item!==producrID.reviews ? item.push(producrID.reviews) : false));
+//           //////////////
+//           // productItem1 = Object.assign(productItem1,producrID);
+//           // console.log( productItem1);
+//         }
+      
+//     return <Loader />
+    
+// }
   },
     [productItem, filteredArray]
   );
@@ -54,9 +79,20 @@ const MainProductItem = ({ productItem, filteredArray }) => {
     );
   }
 
+//   dispatch(getIDProductID(productItem.id));
+//   if (loadingIdProduct) {
+//     console.log(producrID);
+//     return <Loader />
+// }
+
+// if(productItem!==undefined && producrID!==undefined){
+//   productItem1 = Object.assign(productItem1,producrID);
+//   console.log(productItem1);
+// }
+
   return (
     <div className='productSection wrapper'>
-      {formRevieew && <FormReview formRevieew={formRevieew} SetFormRevieew={SetFormRevieew} id={productItem.id}/>}  
+      {formRevieew && <FormReview formRevieew={formRevieew} SetFormRevieew={SetFormRevieew} id={productItem.id}  productItem={productItem}/>}
       <div className='slidecContener'>
 
         <ProductSwiper productItem={productItem} />
@@ -196,15 +232,16 @@ const MainProductItem = ({ productItem, filteredArray }) => {
                   <span className='amountRreviews'>{productItem.reviews.length} Reviews</span>
                 </div>
 
-                <div data-test-id='review-button' className='annotation' type="button" onClick={ () => {   
-                      SetFormRevieew(true);                  
-                }}>                              
+                <div data-test-id='review-button' className='annotation' type="button" onClick={() => {
+                  SetFormRevieew(true);
+                  dispatch(getIDProductID(productItem.id))
+                }}>
                   <img src={annotation} alt='annotation' className='annotationImg' />
                   <span className='writeReviews'>Write a review</span>
                 </div>
               </div>
             </div>
-          
+
             {productItem.reviews.map(({ id, name, text, rating }) => (
               <div key={id} className='reviewText'>
                 <div className='title'>

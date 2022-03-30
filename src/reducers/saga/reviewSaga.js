@@ -21,7 +21,9 @@ function* reviewSagaPost(action) {
             rating: Number(action.payload.stars)
         });     
         const { data } = yield call(axios.get, 'https://training.cleverland.by/shop/products');              
-        yield put(getArr(data));        
+        yield put(getArr(data));  
+
+        yield put(loadingActionReview(true));  
     } catch (err) {
         yield put(responseReview(err.message))
         console.log(err.message);

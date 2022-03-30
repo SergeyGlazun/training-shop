@@ -5,23 +5,26 @@ import { locScroll } from '../function/locScroll';
 import { useDispatch, useSelector } from "react-redux";
 import { postReview } from '../../reducers/actionReview';
 import LoaderButtom from '../loader/loaderButton/loaderButton';
+// import { getIDProductID } from '../../reducers/actionGetProductId';
+
 import './formReview.scss';
 
-const FormReview = ({ formRevieew, SetFormRevieew, id }) => {
+const FormReview = ({ formRevieew, SetFormRevieew, id ,productItem}) => {
     const dispatch = useDispatch();
+   
     const loding = useSelector(state => state.postReviewReducer.loading);
     const error = useSelector(state => state.postReviewReducer.error);
     const responce = useSelector(state => state.postReviewReducer.responce);
     const closeForm = useSelector(state => state.postReviewReducer.closeForm);
+   
     locScroll(formRevieew);
-    console.log(error);
     useEffect(() => {     
         if(closeForm === true && error===false){
             SetFormRevieew(false);
             locScroll(false);
-        }    
+        }       
     });
-    
+  
     return (
         <div className='container'>
             <div className='conteberFormReview' data-test-id='review-modal'>
@@ -92,12 +95,15 @@ const FormReview = ({ formRevieew, SetFormRevieew, id }) => {
                                 />
                                 {touched.review && errors.review && <span className="error">{errors.review}</span>}
                             </div>
-
+                        {/* {   console.log(values)} */}
+                        {/* console.log(productItem.reviews) */}
+                        {/* productItem.reviews.push(values) ; console.log(productItem.reviews) */}
                             <button
                             data-test-id='review-submit-button'
                                 type='submit'
-                                onClick={() => { handleSubmit();}}
-                                disabled={!isValid || !dirty || loding || error}
+                                onClick={() => { handleSubmit();    }}
+                              
+                                disabled={!isValid || !dirty || loding}
                             >
                                 {loding && <LoaderButtom/>}                       
                                 Send</button>

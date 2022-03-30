@@ -10,6 +10,7 @@ import appReducer from "./reducers/appReducer";
 import selectTipeProductAction from './reducers/selectedProductType';
 import actionEmailPost from "./reducers/actionEmailPost";
 import actionReviesPost from "./reducers/actionReview";
+import actionProductId from "./reducers/actionGetProductId";
 import {rootSaga} from "./reducers/saga/index";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     app: appReducer,
     selectProductTipe: selectTipeProductAction,
     validationChek:actionEmailPost,
-    postReviewReducer:actionReviesPost
+    postReviewReducer:actionReviesPost,
+    getIDProduct:actionProductId
 })
 
 const store = configureStore({
