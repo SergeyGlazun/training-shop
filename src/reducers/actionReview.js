@@ -28,7 +28,7 @@ export default createReducer(initialState, {
         state.data.text=action.payload.review;
         state.data.rating=action.payload.stars;       
     },
-    [loadingActionReview]: (state,action) => {
+    [responseReview]: (state,action) => {
         state.responce=action.payload; 
         state.error=true; 
     },

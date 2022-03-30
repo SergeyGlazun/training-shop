@@ -5,7 +5,6 @@ import ForEmail from '../../Form/FormEmail/formEmail';
 import './mainSpecialOffer.scss';
 
 const MainSpecialOffer = () => {
-
   return (
     <div className='mainSpecialOfferBlock'>
       <div className='smallBlockWrapper'>
@@ -54,7 +53,8 @@ const MainSpecialOffer = () => {
           classButtonDisebleFalse={"buttonDisebleTrue"}
           classError={"error"}
           idInput={'main-subscribe-mail-field'}
-          idButton={'main-subscribe-mail-button'}
+          idButton={'main-subscribe-mail-button'}  
+         
           />
         </div>
         <img src={woman} alt='woman' className='woman' />

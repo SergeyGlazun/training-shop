@@ -3,6 +3,7 @@ import ForEmail from "../../Form/FormEmail/formEmail";
 import './footeJoin.scss';
 
 const FooteJoin = () => {
+    
     return (
         <div className="footerJoinContener">
             <div className="wrapper">
@@ -14,7 +15,8 @@ const FooteJoin = () => {
                  classButtonDisebleFalse={"footerBtnTrue"}
                  classError={"error"}
                  idInput={'footer-mail-field'}
-                 idButton={'footer-subscribe-mail-button'}
+                 idButton={'footer-subscribe-mail-button'} 
+            
                  />
               
                 <NetworkContact />

@@ -14,9 +14,9 @@ const FormReview = ({ formRevieew, SetFormRevieew, id }) => {
     const responce = useSelector(state => state.postReviewReducer.responce);
     const closeForm = useSelector(state => state.postReviewReducer.closeForm);
     locScroll(formRevieew);
-
+    console.log(error);
     useEffect(() => {     
-        if(closeForm === true){
+        if(closeForm === true && error===false){
             SetFormRevieew(false);
             locScroll(false);
         }    
@@ -97,10 +97,11 @@ const FormReview = ({ formRevieew, SetFormRevieew, id }) => {
                             data-test-id='review-submit-button'
                                 type='submit'
                                 onClick={() => { handleSubmit();}}
-                                disabled={!isValid || !dirty || loding}
+                                disabled={!isValid || !dirty || loding || error}
                             >
                                 {loding && <LoaderButtom/>}                       
                                 Send</button>
+                               
                             {error && <span className="error">{responce}</span>}
                         </div>
 
