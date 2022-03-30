@@ -18,8 +18,8 @@ const FormReview = ({ formRevieew, SetFormRevieew, id ,productItem}) => {
     const closeForm = useSelector(state => state.postReviewReducer.closeForm);
    
     locScroll(formRevieew);
-    useEffect(() => {     
-        if(closeForm === true && error===false){
+    useEffect(() => {       
+        if(closeForm === true && error===false){            
             SetFormRevieew(false);
             locScroll(false);
         }       
