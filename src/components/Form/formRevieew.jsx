@@ -28,9 +28,8 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
     });
     
     return (
-        <>
-              {/* // <div className="container" data-test-id='review-modal' onClick={() => { SetFormRevieew(false); locScroll(false); }}> */}
-            <div className='conteberFormReview' data-test-id='review-modal' onClick={() => { SetFormRevieew(false); locScroll(false); } }>
+        <div className="container" data-test-id='review-modal' onClick={() => { SetFormRevieew(false); locScroll(false); }}>
+            <div className='conteberFormReview' data-test-id='review-modal' >
                 <Formik
                     initialValues={{
                         id: id,
@@ -122,9 +121,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
             </div>
 
             <div onClick={() => { SetFormRevieew(false); locScroll(false); }} className={formRevieew ? "overlay" : ""}></div>
-        {/* // </div> */}
-        </>
-  
+        </div>
     );
 }
 
