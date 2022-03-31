@@ -14,6 +14,7 @@ const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classB
     const loadingAction = useSelector(state => state.validationChek.loading);
     const responce = useSelector(state => state.validationChek.responce);
     const [count, setCount] = useState("");
+    // const [error, setError] = useState("");
 
 
     return (
@@ -30,7 +31,7 @@ const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classB
         >
             {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) =>
             (
-                <div className={classFooterEmail + " contenerForm"}  onMouseOut={ ()=>{setCount("");}}>
+                <div className={classFooterEmail + " contenerForm"}  onMouseOut={ ()=>{setCount(""); }}>
 
                     <input
                         data-test-id={idInput}
@@ -50,7 +51,7 @@ const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classB
                         data-test-id={idButton}
                         className={isValid && values.email.length > 0 ? `${classButtonDisebleFalse}` : `${classButtonDisebleTrue}`}
                         disabled={!isValid || !dirty || loadingAction || values.email === ""}
-                        onClick={() => { handleSubmit(); if(responce === "OK")  values.email = "" ; setCount("Почта успешно отправлена")}}
+                        onClick={() => { handleSubmit();   values.email = "" ; setCount("Почта успешно отправлена"); }}
                         type="submit"
                     > {loadingAction && <LoaderButtom />}SUBSCRIBE</button>
 
