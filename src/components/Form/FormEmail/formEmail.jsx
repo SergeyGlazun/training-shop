@@ -50,7 +50,7 @@ const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classB
                         data-test-id={idButton}
                         className={isValid && values.email.length > 0 ? `${classButtonDisebleFalse}` : `${classButtonDisebleTrue}`}
                         disabled={!isValid || !dirty || loadingAction || values.email === ""}
-                        onClick={() => { handleSubmit(); values.email = ""; setCount("Почта успешно отправлена")}}
+                        onClick={() => { handleSubmit(); if(responce === "OK")  values.email = "" ; setCount("Почта успешно отправлена")}}
                         type="submit"
                     > {loadingAction && <LoaderButtom />}SUBSCRIBE</button>
 
