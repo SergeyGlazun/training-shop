@@ -16,7 +16,7 @@ const FooteJoin = () => {
                  classError={"error"}
                  idInput={'footer-mail-field'}
                  idButton={'footer-subscribe-mail-button'} 
-            
+                 inputOK={'inputOKFuter'}
                  />
               
                 <NetworkContact />

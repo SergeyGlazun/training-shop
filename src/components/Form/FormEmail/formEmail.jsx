@@ -8,22 +8,22 @@ import { responseAction } from '../../../reducers/actionEmailPost';
 import './formEmail.scss';
 
 
-const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classButtonDisebleFalse, classError, idInput, idButton }) => {
+const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classButtonDisebleFalse, classError, idInput, idButton , inputOK}) => {
     const dispatch = useDispatch();
-   
+  
+
     const loadingAction = useSelector(state => state.validationChek.loading);
-    const responce = useSelector(state => state.validationChek.responce);
-    const [count, setCount] = useState("");
-    // const [error, setError] = useState("");
-
-
+    const responce= useSelector(state => state.validationChek.responce);
+    let chek= useSelector(state => state.validationChek.disable);
+    const [OK, setCount] = useState("");
+    const [error, setError] = useState("");
     return (
         <Formik
             initialValues={{
                 email: ""
             }}
             validateOnBlur
-            onSubmit={values => dispatch(userEmailAction(values))}
+            onSubmit={values => {dispatch(userEmailAction(values));}}          
             validationSchema={Yup.object().shape({
                 email: Yup.string().email('Введите верный email')
             })}
@@ -31,32 +31,40 @@ const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classB
         >
             {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) =>
             (
-                <div className={classFooterEmail + " contenerForm"}  onMouseOut={ ()=>{setCount(""); }}>
-
+                <div className={classFooterEmail + "contenerForm"}  onMouseOut={ ()=>{setCount(""); setError("") }}>
+  
                     <input
+                    
                         data-test-id={idInput}
                         className={classInput}
                         placeholder="Введите ваш Email"
                         type="email"
                         name="email"
                         onChange={handleChange}
-                        onClick={() => { dispatch(responseAction(null));}}
+                        onClick={() => {dispatch(responseAction(null)); }}
                         onBlur={handleBlur}
-                        value={values.email}
-
+                        value={responce === "OK" ?  "" : values.email }                      
                     />
+
                     {touched.email && errors.email && <span className={classError}>{errors.email}</span>}
 
                     <button
                         data-test-id={idButton}
-                        className={isValid && values.email.length > 0 ? `${classButtonDisebleFalse}` : `${classButtonDisebleTrue}`}
-                        disabled={!isValid || !dirty || loadingAction || values.email === ""}
-                        onClick={() => { handleSubmit();   values.email = "" ; setCount("Почта успешно отправлена"); }}
+                        className={isValid && values.email.length > 0 && document.querySelector(`.${classInput}`).value!=='' ?  `${classButtonDisebleFalse}` : `${classButtonDisebleTrue}`}
+                        disabled={!isValid || !dirty || loadingAction || document.querySelector(`.${classInput}`).value===''  }
+                        onClick={() => { 
+                            handleSubmit(); 
+                            setCount("Почта успешно отправлена");  
+                            setError("Ошибка Отправки");
+                            document.querySelector(`.${classInput}`).value="";
+                        }}                 
                         type="submit"
-                    > {loadingAction && <LoaderButtom />}SUBSCRIBE</button>
+                    > {loadingAction&&<LoaderButtom />}SUBSCRIBE</button>
 
-                    <div className={responce === null ? "" : responce === "OK" ? "responseOK" : `${classError}`}>                     
-                        {responce === null ? "" : dirty===true && responce === "OK" ?count : !dirty && responce === "OK" ? "" : `${responce}`}                       
+                    {/* <div className={responce === null ? "" : responce === "OK" ? "responseOK" : `${classError}`}>                                           */}
+                    <div className={chek==="" ? `${inputOK}`: `${classError}`}>
+                        {/* {responce === null ? "" : dirty===true && responce === "OK" ?count : !dirty && responce === "OK" ? "" : `${responce}`} */}
+                        {chek==="" ? OK : error}
                     </div>
                 </div>
             )}

@@ -20,7 +20,7 @@ const MainSpecialOffer = () => {
           classError={"error"}
           idInput={'main-subscribe-mail-field'}
           idButton={'main-subscribe-mail-button'}  
-         
+          inputOK={'inputOKMain'}
           />
         </div>
         <img src={woman} alt='woman' className='woman' />

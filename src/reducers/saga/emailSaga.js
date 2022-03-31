@@ -8,17 +8,24 @@ import axios from 'axios';
 import {
     userEmailAction,
     responseAction,
-    loadingAction
+    loadingAction,
+    validationChek
 } from '../actionEmailPost';
 
 
 function* emailSagaPost(action) {
+    console.log(action.payload);
     yield put(loadingAction(true));
     try {
         const responce = yield call(axios.post, "https://training.cleverland.by/shop/email", action);     
-        yield put(responseAction(responce.statusText))
+        yield put(responseAction(responce.statusText));
+      
+        yield put(validationChek(""));
     } catch (err) {
-        yield put(responseAction(err.message))
+      
+        yield put(validationChek(action.payload.email));
+         put(responseAction(err.message));
+      
         console.log(err.message);
     }
     yield put(loadingAction(false));

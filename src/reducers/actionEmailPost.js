@@ -9,7 +9,7 @@ export const responseAction = createAction('REAPONSE');
 export const loadingAction = createAction('LOADING');
 
 const initialState ={   
-    disable:true,
+    disable:"",
     userEmail:"",
     responce:null,
     loading:false
