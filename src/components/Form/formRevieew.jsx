@@ -28,9 +28,10 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
     });
     
     return (
-        <div className="container" data-test-id='review-modal' onClick={() => { SetFormRevieew(false); locScroll(false); }}>
-            <div className='conteberFormReview' data-test-id='review-modal' >
+        <div className="container"  onClick={() => { SetFormRevieew(false); locScroll(false); }}>
+            <div className='conteberFormReview' >
                 <Formik
+                
                     initialValues={{
                         id: id,
                         name: '',
@@ -47,7 +48,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
 
                 >
                     {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
-                        <div className='form' onClick={e => e.stopPropagation()}>
+                        <div className='form' onClick={e => e.stopPropagation()}  data-test-id='review-modal'>
                             <span className="heandel">Write a review</span>
                             <div className='raiting'>
                                 <div className='itemsReitings'>
