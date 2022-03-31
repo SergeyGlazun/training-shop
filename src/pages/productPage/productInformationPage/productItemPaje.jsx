@@ -7,8 +7,6 @@ import ButtonProductTipe from './buttonProductTipe';
 
 import './productItemPaje.scss';
 
-
-
 const ProductItem = ({productType}) =>{
    const PRODUCTS = useSelector(state => state.getproduct.productsArr);
 

@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from "formik";
 import * as Yup from 'yup';
 import { locScroll } from '../function/locScroll';
@@ -6,28 +6,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { postReview } from '../../reducers/actionReview';
 import LoaderButtom from '../loader/loaderButton/loaderButton';
 // import { getIDProductID } from '../../reducers/actionGetProductId';
-
 import './formReview.scss';
 
-const FormReview = ({ formRevieew, SetFormRevieew, id ,productItem}) => {
+
+
+const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
     const dispatch = useDispatch();
-   
+
     const loding = useSelector(state => state.postReviewReducer.loading);
     const error = useSelector(state => state.postReviewReducer.error);
     const responce = useSelector(state => state.postReviewReducer.responce);
     const closeForm = useSelector(state => state.postReviewReducer.closeForm);
-   
+
     locScroll(formRevieew);
-    useEffect(() => {       
-        if(closeForm === true && error===false){            
+
+    useEffect(() => {
+        if (closeForm === true && error === false) {
             SetFormRevieew(false);
             locScroll(false);
-        }       
+        }
     });
-  
     return (
-        <div className='container'>
-            <div className='conteberFormReview' data-test-id='review-modal'>
+        <div data-test-id='review-modal' onClick={() => { SetFormRevieew(false); locScroll(false); }} className={formRevieew ? "container" : ""}>
+            <div className='conteberFormReview' >
                 <Formik
                     initialValues={{
                         id: id,
@@ -45,7 +46,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id ,productItem}) => {
 
                 >
                     {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
-                        <div className='form'>
+                        <div className='form' onClick={e => e.stopPropagation()}>
                             <span className="heandel">Write a review</span>
                             <div className='raiting'>
                                 <div className='itemsReitings'>
@@ -68,7 +69,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id ,productItem}) => {
                             <div className="inputForm">
                                 <label htmlFor='name'>Имя</label><br />
                                 <input
-                                data-test-id='review-name-field'
+                                    data-test-id='review-name-field'
                                     className='input'
                                     placeholder="Имя"
                                     type="text"
@@ -81,12 +82,10 @@ const FormReview = ({ formRevieew, SetFormRevieew, id ,productItem}) => {
                                 {touched.name && errors.name && <span className="error">{errors.name}</span>}
                             </div>
 
-
-
                             <div className="inputForm">
                                 <label htmlFor='review'>Комментарий</label><br />
                                 <textarea
-                                data-test-id='review-text-field'
+                                    data-test-id='review-text-field'
                                     name="review"
                                     onChange={handleChange}
                                     value={values.review}
@@ -94,27 +93,32 @@ const FormReview = ({ formRevieew, SetFormRevieew, id ,productItem}) => {
                                     placeholder="Комментарий"
                                 />
                                 {touched.review && errors.review && <span className="error">{errors.review}</span>}
+                                {error && <span className="error">{responce}</span>}
                             </div>
-                        {/* {   console.log(values)} */}
-                        {/* console.log(productItem.reviews) */}
-                        {/* productItem.reviews.push(values) ; console.log(productItem.reviews) */}
+                            {/* {   console.log(values)} */}
+                            {/* console.log(productItem.reviews) */}
+                            {/* productItem.reviews.push(values) ; console.log(productItem.reviews) */}
+
+                            {/* dispatch(getIDProductID(productItem.id))  */}
+
                             <button
-                            data-test-id='review-submit-button'
+                                data-test-id='review-submit-button'
                                 type='submit'
-                                onClick={() => { handleSubmit();    }}
-                              
+                                onClick={() => { handleSubmit(); }}
+
                                 disabled={!isValid || !dirty || loding}
                             >
-                                {loding && <LoaderButtom/>}                       
-                                Send</button>
-                               
-                            {error && <span className="error">{responce}</span>}
+                                {loding && <LoaderButtom />}
+                                Send
+                            </button>
                         </div>
 
                     )}
 
+
                 </Formik>
             </div>
+
             <div onClick={() => { SetFormRevieew(false); locScroll(false); }} className={formRevieew ? "overlay" : ""}></div>
         </div>
     );

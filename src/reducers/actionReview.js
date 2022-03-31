@@ -38,6 +38,5 @@ export default createReducer(initialState, {
     },
     [closeForm]: (state,action) => {
         state.closeForm=action.payload; 
-        // state.error=false; 
     },
 })

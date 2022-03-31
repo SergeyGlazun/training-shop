@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Raiting from '../../../../components/reiting/raiting';
@@ -13,10 +14,8 @@ import { arrMasterCard } from '../../../../db/ItemPages';
 import ProductSwiper from './swaper';
 import { addProduct, removeProduct, sumAddProductPrise, deleteProductPrise } from '../../../../reducers/actionBasket';
 import FormReview from '../../../../components/Form';
-// import { Loader } from '../../../../components/loader/loader';
 import './mainProductItem.scss';
 
-import { getIDProductID } from '../../../../reducers/actionGetProductId';
 const MainProductItem = ({ productItem, filteredArray }) => {
 
   const dispatch = useDispatch();
@@ -25,8 +24,6 @@ const MainProductItem = ({ productItem, filteredArray }) => {
   const category = productItem.category;
   let arr = [];
   arr.push(productItem);
-  // const producrID = useSelector(state => state.getIDProduct.getProductIDODJECT);
-  // const loadingIdProduct = useSelector(state => state.getIDProduct.loadingIDProduct);
   const items = useSelector(state => state.toolkit.arrProduct)
 
   productItem.images.forEach(item => {
@@ -34,33 +31,11 @@ const MainProductItem = ({ productItem, filteredArray }) => {
       filteredArray.push(item);
     }
   });
-// let productItem1 ={};
-// productItem1 = Object.assign(productItem1,productItem);
+
   useEffect(() => {
     colorCheck(filteredArray[0].color);
     sizeCheck(productItem.sizes[0]);
-    imgCheck(productItem.images[0].url);
-//       if (loadingIdProduct) {
-       
-//         // productItem=producrID;
-//         if(productItem!==undefined && producrID!==undefined){
-        
-//           // Object.assign(productItem, producrID);
-//           // productItem = productItem.map(o => {
-//           //   if (o.id === producrID.id) {
-//           //     return producrID;
-//           //   }
-//           //   return  productItem;
-//           // });
-//           // productItem.reviews = productItem.reviews.map(item => item.some(item=> item!==producrID.reviews ? item.push(producrID.reviews) : false));
-//           //////////////
-//           // productItem1 = Object.assign(productItem1,producrID);
-//           // console.log( productItem1);
-//         }
-      
-//     return <Loader />
-    
-// }
+    imgCheck(productItem.images[0].url); 
   },
     [productItem, filteredArray]
   );
@@ -79,20 +54,19 @@ const MainProductItem = ({ productItem, filteredArray }) => {
     );
   }
 
-//   dispatch(getIDProductID(productItem.id));
-//   if (loadingIdProduct) {
-//     console.log(producrID);
-//     return <Loader />
-// }
-
-// if(productItem!==undefined && producrID!==undefined){
-//   productItem1 = Object.assign(productItem1,producrID);
-//   console.log(productItem1);
-// }
-
   return (
     <div className='productSection wrapper'>
-      {formRevieew && <FormReview formRevieew={formRevieew} SetFormRevieew={SetFormRevieew} id={productItem.id}  productItem={productItem}/>}
+     
+     {formRevieew &&
+       ReactDOM.createPortal(
+         <FormReview 
+         formRevieew={formRevieew}
+          SetFormRevieew={SetFormRevieew}
+           id={productItem.id} 
+            productItem={productItem}/>,
+         document.getElementById('portal'))
+      }
+
       <div className='slidecContener'>
 
         <ProductSwiper productItem={productItem} />
@@ -223,7 +197,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
         </div>
         <div className='reviewsContener'>
           <div className='reviews'>
-
+         
             <div className='reviewsAbove'>
               <div className='title'>REVIEWS</div>
               <div className='subtitleText'>
@@ -233,12 +207,13 @@ const MainProductItem = ({ productItem, filteredArray }) => {
                 </div>
 
                 <div data-test-id='review-button' className='annotation' type="button" onClick={() => {
-                  SetFormRevieew(true);
-                  dispatch(getIDProductID(productItem.id))
+                  SetFormRevieew(true);                  
                 }}>
                   <img src={annotation} alt='annotation' className='annotationImg' />
                   <span className='writeReviews'>Write a review</span>
+                 
                 </div>
+               
               </div>
             </div>
 
@@ -246,7 +221,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               <div key={id} className='reviewText'>
                 <div className='title'>
                   <div className='name'>{name}</div>
-                  <div className='timeRating'>
+                  <div className='timeRating'>               
                     <Raiting rating={rating} size={14} />
                   </div>
                 </div>
