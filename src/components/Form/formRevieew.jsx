@@ -26,9 +26,9 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
             locScroll(false);
         }
     });
-    
+
     return (
-        <div className="container" data-test-id='review-modal' onClick={() => { SetFormRevieew(false); locScroll(false); }}>
+        <div className="container"  onClick={() => { SetFormRevieew(false); locScroll(false); }}>
             <div className='conteberFormReview' >
                 <Formik
                     initialValues={{
