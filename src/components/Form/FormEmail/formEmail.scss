@@ -15,3 +15,12 @@
 .error{
     color: #fa0808;
 }
+.footerEmailcontenerForm{
+  width: 100%;
+display: flex;
+justify-content: center;
+    .footerInput {
+      width: 50%;
+         margin-right: 10px;
+       }
+}
