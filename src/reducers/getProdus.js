@@ -3,9 +3,8 @@ import {
     createReducer
 } from "@reduxjs/toolkit";
 
-
 const defaultState = {
-  
+   
     products: {
         productsArr:[],
     },
@@ -15,8 +14,10 @@ const defaultState = {
 export const getArr = createAction('GETPRODUCT');
 
 export default createReducer(defaultState, {
-    [getArr]: (state, action) => {
+    [getArr]: (state, action) => {   
+      
         state.productsArr = action.payload;        
     },
+
 })
 

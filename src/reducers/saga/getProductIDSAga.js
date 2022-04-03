@@ -11,17 +11,20 @@ import { getIDProductIDObject, getIDProductID,loadingIDProduct } from '../action
 function* getProductIDWorker(action) {  
     yield put(loadingIDProduct(true));  
     try {     
+        yield put(loadingIDProduct(true));  
         const { data } = yield call(axios.get, `https://training.cleverland.by/shop/product/${action.payload}`);      
-        yield put(getIDProductIDObject(data));        
+        yield put(loadingIDProduct(false));      
+        yield put(getIDProductIDObject(data));
+      
     } catch (err) {
      
         console.log(err.message);
     }
-    yield put(loadingIDProduct(false)); 
+    yield put(loadingIDProduct(false));   
 }
 
 function* getProductIDWatcher() {
-    yield all([takeLatest( getIDProductID().type, getProductIDWorker)]);
+    yield all([takeLatest( getIDProductID().type, getProductIDWorker)]);  
 }
 
 export default getProductIDWatcher;

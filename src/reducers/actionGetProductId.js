@@ -22,10 +22,10 @@ export default createReducer(defaultState, {
     [getIDProductID]: (state, action) => {   
         state.getProductId = action.payload;           
     },
-    [getIDProductIDObject]: (state, action) => {
-        state.getProductIDODJECT = action.payload;           
+    [getIDProductIDObject]: (state, action) => {          
+        state.getProductIDODJECT = action.payload;     
     },
     [loadingIDProduct]: (state, action) => {
-        state.loadingIDProduct = action.payload;           
+        state.loading = action.payload;           
     },
 })

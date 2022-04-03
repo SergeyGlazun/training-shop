@@ -79,7 +79,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
           </span>
           <div className='colorItem'>
             {
-              filteredArray.map(({ id, url, color }) => (
+              filteredArray?.map(({ id, url, color }) => (
                 <div key={id} onClick={() => { colorCheck(color); imgCheck(url) }}>
                   <img src={`https://training.cleverland.by/shop${url}`} alt='imgUser' className={colors === color ? "coloChek" : "coloChekHover"} />
                 </div>
@@ -91,7 +91,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
           </div>
           <div className='sizeBtn'>
             {
-              productItem.sizes.map((sizes, id) =>
+              productItem?.sizes.map((sizes, id) =>
                 <button type='button'
                   key={id}
                   onClick={() => sizeCheck(sizes)}
@@ -161,7 +161,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
             GUARANTEED SAFE CHECKOUT <hr />
           </span>
           <div className='checkoutImg'>
-            {arrMasterCard.map(({ id: idImage, imageSrc, imgName }) => (
+            {arrMasterCard?.map(({ id: idImage, imageSrc, imgName }) => (
               <img key={idImage} src={imageSrc} alt={imgName} />
             ))}
           </div>
@@ -175,7 +175,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               <div className='textColor'>
                 Color:<span className='black'>
                   {
-                    filteredArray.map(({ color, id }) =>
+                    filteredArray?.map(({ color, id }) =>
                       <span key={id}>{color}{id !== filteredArray[filteredArray.length - 1].id ? `, ` : ``}</span>
                     )
                   }
@@ -183,7 +183,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               </div>
               <div className='textSize'>
                 Size:<span className='black'>{
-                  productItem.sizes.map((sizes, id) =>
+                  productItem?.sizes.map((sizes, id) =>
                     <span key={id}>{sizes}{id !== productItem.sizes.length - 1 ? `, ` : ``}</span>
                   )
                 }</span>
@@ -217,7 +217,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               </div>
             </div>
 
-            {productItem.reviews.map(({ id, name, text, rating }) => (
+            {productItem?.reviews.map(({ id, name, text, rating }) => (
               <div key={id} className='reviewText'>
                 <div className='title'>
                   <div className='name'>{name}</div>

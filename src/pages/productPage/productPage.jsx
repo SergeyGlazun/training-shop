@@ -22,6 +22,7 @@ const ProductsPage = ({ productType ,condition,setCondition}) => {
   let [countSetings, setCountSetings] = useState(0);
 
   const loading = useSelector(state => state.app.loading);
+
   if (PRODUCTS===undefined) {
 
      if (loading) {

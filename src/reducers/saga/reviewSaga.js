@@ -6,8 +6,7 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 import { postReview, loadingActionReview,responseReview,closeForm} from '../actionReview';
-import { getArr } from '../getProdus';
-
+import { getIDProductIDObject} from '../actionGetProductId';
 
 function* reviewSagaPost(action) {
  
@@ -17,12 +16,13 @@ function* reviewSagaPost(action) {
          yield call(axios.post, "https://training.cleverland.by/shop/product/review", {
             id: action.payload.id,
             name: action.payload.name,
-            text: action.payload.review,
-            rating: Number(action.payload.stars)
+            text: action.payload.text,
+            rating: Number(action.payload.rating)
         });     
-        const { data } = yield call(axios.get, 'https://training.cleverland.by/shop/products');              
-        yield put(getArr(data));  
-
+     
+        const { data } = yield call(axios.get, `https://training.cleverland.by/shop/product/${action.payload.id}`);      
+        yield put(getIDProductIDObject(data));
+     
         yield put(loadingActionReview(true));  
     } catch (err) {
         yield put(responseReview(err.message))

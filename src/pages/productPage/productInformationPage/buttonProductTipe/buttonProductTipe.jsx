@@ -60,7 +60,7 @@ const ButtonProductTipe = ({ productType }) => {
                         className="relatedSwiper"
                     >
 
-                        {PRODUCTS[productType].map(({ name, price, images, rating, id, sizes, discount }) => (
+                        {PRODUCTS[productType]?.map(({ name, price, images, rating, id, sizes, discount }) => (
                             <SwiperSlide key={id} >
                                 <CardsItem                                 
                                     name={name}
