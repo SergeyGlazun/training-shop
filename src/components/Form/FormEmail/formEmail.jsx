@@ -6,15 +6,11 @@ import { userEmailAction } from '../../../reducers/actionEmailPost';
 import LoaderButtom from '../../loader/loaderButton';
 import './formEmail.scss';
 
-
 const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classButtonDisebleFalse, classError, idInput, idButton, inputOK }) => {
     const dispatch = useDispatch();
-
-          
-
+  
     const [OK, setCount] = useState("");
     const [error, setError] = useState("");
-
     const { responce, loading, numberFor,  errorEmail } = useSelector(state => state.validationChek);
 
     return (
