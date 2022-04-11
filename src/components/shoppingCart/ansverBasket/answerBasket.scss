@@ -1,0 +1,25 @@
+.basketOK {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .titleAnswerBasket {
+        font-family: 'Spartan';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 150%;
+        text-align: center;
+    }
+
+    .textAnswerBasket {
+        font-family: 'Spartan';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+        margin-top: 15px;
+    }
+}

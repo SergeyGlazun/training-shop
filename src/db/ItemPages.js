@@ -1,7 +1,3 @@
-// import tipe1 from '../Img/productItemPage/slider/item_1.png';
-// import tipe2 from '../Img/productItemPage/slider/item_2.png';
-// import tipe3 from '../Img/productItemPage/slider/item_3.png';
-// import tipe4 from '../Img/productItemPage/slider/item_4.png';
 import tipe0 from '../Img/productItemPage/slider/pants.png';
 
 import color1 from '../Img/productItemPage/slider/itemColor4.png';

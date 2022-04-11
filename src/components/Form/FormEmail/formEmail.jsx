@@ -38,8 +38,7 @@ const ForEmail = ({ classFooterEmail, classInput, classButtonDisebleTrue, classB
             (
                 <div className={classFooterEmail + "contenerForm"} onMouseOut={() => { setCount(""); setError("") }}>
 
-                    <input
-                        // autoComplete="off"
+                    <input       
                         data-test-id={idInput}
                         className={classInput}
                         placeholder="Введите ваш Email"

@@ -1,4 +1,40 @@
-.PaymentContener{
-    flex: 1;
-    overflow: auto;
+.contwnerCard {
+    display: flex;
+
+    .contenerInput {
+        position: relative;
+        justify-content: space-between;
+
+        .password,
+        .text {
+            position: absolute;
+            right: 10px;
+            top: 25px;
+            z-index: 10;
+        }
+    }
+
+    .contenerInput:last-child {
+        margin-left: 46px;
+        min-width: 140px;
+    }
+
+    .contenerInput:last-child ::-webkit-inner-spin-button {
+        display: none;
+    }
+}
+
+.shopingFooter {
+    .btnShoping {
+        position: relative;
+    }
+}
+
+@media all and (max-width: 350px) {
+    .contwnerCard {
+        .contenerInput:last-child {
+            margin-left: 46px;
+            min-width: 100px;
+        }
+    }
 }
