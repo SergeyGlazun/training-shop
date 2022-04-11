@@ -1,5 +1,5 @@
 import close from './img/close.svg';
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import ItemInCart from './ItemInCard';
 import DeliveryInfo from './deliveryInfo/deliveryInfo';
 import { useState } from 'react';
@@ -7,15 +7,16 @@ import Payment from './payment';
 import { locScroll } from '../function/locScroll';
 import ClearBasket from '../function/clearBasket';
 import AnswerBasket from './ansverBasket/answerBasket';
+import { countriesLocalstorageAction } from '../../reducers/getCountries';
 import './shopping.scss';
 
 const ShoppingCart = ({ setCondition, condition }) => {
-
+    const dispatch = useDispatch();
     locScroll(condition);
     const items = useSelector(state => state.toolkit.arrProduct);
     const prise = useSelector(state => state.toolkit.totapPrise);
     let [makingPurchase, setMakingPurchase] = useState('Item in cart');
-  
+    dispatch(countriesLocalstorageAction());
 
     return (
         <>
@@ -52,7 +53,7 @@ const ShoppingCart = ({ setCondition, condition }) => {
                                 <span className='title'>Total</span>
                                 <span className='prise'>{prise.toFixed(2)}</span>
                             </div>
-                            <button className='btnShoping' onClick={() => { setMakingPurchase('Delivery Info') }}>Further</button>
+                            <button className='btnShoping' onClick={() => { setMakingPurchase('Delivery Info');}}>Further</button>
                             <button className='btnShopingViseble'>View cart</button>
 
                         </div>

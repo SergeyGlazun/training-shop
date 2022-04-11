@@ -52,18 +52,31 @@ const DeliveryInfo = ({ prise, setMakingPurchase }) => {
    ///////////////////////////////////////
 
    const dispatch = useDispatch();
+   // const { countriesArr } = useSelector(state => state.getCountriesArr);
    const { countriesArr } = useSelector(state => state.getCountriesArr);
-
    const options = [];
-   if (countriesArr !== undefined) {
-      for (let i = 0; i < countriesArr.dataObject.length; i++) {
-         options.push(
-            {
-               value: countriesArr.dataObject[i].name, label: countriesArr.dataObject[i].name
-            }
-         )
+   
+
+ 
+   try{
+      if (countriesArr !== undefined) {
+         console.log(countriesArr.data.length);
+         for (let i = 0; i < countriesArr.data.length; i++) {
+         
+            options.push(
+               {
+                  value: countriesArr.data[i].name, label: countriesArr.data[i].name
+               }
+            )
+         }
+      }else{
+         
       }
+   }catch{
+     
    }
+ 
+
 
    const getCountrie = () => {
 
