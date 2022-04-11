@@ -15,6 +15,7 @@ export const removeProduct = createAction('REMOVE')
 export const sumAddProductPrise = createAction('ADDPRODUCTPRISE')
 export const deleteProductPrise = createAction('DELETEPRODUCTPRISE')
 export const clicBasket = createAction('CLIKBASKET')
+export const clear = createAction('CLEAR')
 
 export default createReducer(initialState, {
   [increment]: (state, action) => {
@@ -47,5 +48,8 @@ export default createReducer(initialState, {
   },
   [clicBasket]: (state, action) => {
     state.arrProduct = state.arrProduct.filter((item) => item.Id !== action.payload)
+  },
+  [clear]: (state) => {
+    state.arrProduct = [];
   },
 })

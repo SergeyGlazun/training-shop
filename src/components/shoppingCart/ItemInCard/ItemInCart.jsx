@@ -1,15 +1,22 @@
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import deleteProductImg from './../img/delete.svg';
 import { increment, decriment, sumAddProductPrise, deleteProductPrise, clicBasket } from '../../../reducers/actionBasket';
-
+import { postProductBasketActionProduct,postCastumerTotalPrise } from '../../../reducers/productBasket';
 import './itemInCart.scss';
 
-const ItemInCart = () => {
+const ItemInCart = ({prise}) => {
 
     const dispatch = useDispatch();
     const items = useSelector(state => state.toolkit.arrProduct);
 
+    useEffect(() => {    
+        if(items.length!==0){
+            dispatch(postProductBasketActionProduct(items));  
+            dispatch(postCastumerTotalPrise(prise));       
+        }     
+      },[dispatch,prise,items]);
     return (
         <div className='shopingMain'>
             <div className="items">

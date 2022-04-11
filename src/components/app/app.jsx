@@ -14,7 +14,7 @@ import './app.scss';
 const App = () => {  
     const [condition, setCondition] = useState(false);
     const alert = useSelector(state => state.app.alert);
- 
+   
     return (
         <div className='app' data-test-id='app'>
             <ScrollUp top={{ scroll: 0 }} />        

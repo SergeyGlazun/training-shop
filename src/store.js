@@ -11,6 +11,8 @@ import selectTipeProductAction from './reducers/selectedProductType';
 import actionEmailPost from "./reducers/actionEmailPost";
 import actionReviesPost from "./reducers/actionReview";
 import actionProductId from "./reducers/actionGetProductId";
+import getCountries from "./reducers/getCountries";
+import productBasketActions from "./reducers/productBasket";
 import {rootSaga} from "./reducers/saga/index";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -22,7 +24,9 @@ const rootReducer = combineReducers({
     selectProductTipe: selectTipeProductAction,
     validationChek:actionEmailPost,
     postReviewReducer:actionReviesPost,
-    getIDProduct:actionProductId
+    getIDProduct:actionProductId,
+    getCountriesArr:getCountries,
+    postProductBasket:productBasketActions
 })
 
 const store = configureStore({

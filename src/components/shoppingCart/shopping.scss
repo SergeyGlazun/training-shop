@@ -66,6 +66,9 @@
     .ItemInCart{
       font-weight:bold
     }
+    .ItemInCartNoChek{
+        opacity: 0.4;
+    }
   }
 }
 
@@ -96,7 +99,7 @@
             }
         }
 
-        .btnShoping, .btnShopingBack {
+        .btnShoping,.btnShopingBack.btnShopingHidden {
             display: inline-block;
             width: 100%;
             height: 64px;
@@ -119,6 +122,10 @@
             }
            
         }
+        .btnShopingViseble{
+            visibility: hidden;
+        }
+
         .btnShoping:last-child {
             background-color: #f8f8f8;
             color: #121212;
