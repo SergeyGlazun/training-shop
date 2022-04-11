@@ -17,7 +17,8 @@ export const citiArrAction = createAction('GETCITTI');
 export const countriesLocalstorageAction = createAction('GETCOUNTRIESLOCALSTORIGE');
 
 export default createReducer(defaultState, {
-    [countriesArrAction]: (state, action) => {        
+    [countriesArrAction]: (state, action) => {  
+        // console.log(action.payload) ;     
         state.countriesArr = action.payload;      
     },
     [citiArrAction]: (state, action) => {        
