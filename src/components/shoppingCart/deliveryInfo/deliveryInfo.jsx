@@ -1,46 +1,25 @@
 import React, { useState } from 'react';
-import { Formik, Field } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 import InputMask from 'react-input-mask';
-import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
+import { getCharacters } from '../../../reducers/actionGetCity';
 import { countriesLocalstorageAction } from '../../../reducers/getCountries';
 import { getDataDelivery } from '../../../reducers/productBasket';
 
 import './deliveryInfo.scss';
 
 const DeliveryInfo = ({ price, setMakingPurchase }) => {
+  const dispatch = useDispatch();
   const { dataBuy } = useSelector((state) => state.postProductBasket);
+  const { cities } = useSelector((state) => state.getCity.city);
   const [checkedDelivery, setCheckedDelivery] = useState('offices');
   const [agree, setAgree] = useState('notAgree');
 
   const textNotValid = 'Поле должно быть заполнено';
-  //////////////////////////////////////////////////////////
-  const [currentCountry, setCurrentCountry] = useState('');
-  const [currentCountryInput, setCurrentCountryInput] = useState('');
-  ///////////////////////////////////////
-  const [currentCity, setCurrentCity] = useState([]);
-  const [currentCityInput, setCurrentCityInput] = useState('');
-  const getCitiArr = () => {
-    if (currentCity.length !== 0) {
-      try {
-        for (let i = 0; i < currentCity.length; i++) {
-          if (currentCity[i].city === currentCityInput) {
-            return currentCityInput;
-          }
-        }
-        return '';
-      } catch {
-        return '';
-      }
-    } else {
-      return '';
-    }
-  };
-  ///////////////////////////////////////
 
-  const dispatch = useDispatch();
+  const [sityInput, setSityInput] = useState('');
+
   const { countriesArr } = useSelector((state) => state.getCountriesArr);
 
   const options = [];
@@ -57,42 +36,19 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
     }
   } catch {}
 
-  const getCountrie = () => {
-    return currentCountry ? options.find((item) => item.value === currentCountry) : '';
-  };
-
-  const onChange = (newValue) => {
-    setCurrentCountryInput(newValue.value);
-    setCurrentCountry(newValue.value);
-  };
-
-  const onChangeCiti = async (newValue) => {
-    setCurrentCityInput(newValue.target.value);
-
-    if (newValue.target.value.length === 3) {
-      await axios
-        .post('https://training.cleverland.by/shop/search/cities', {
-          city: newValue.target.value,
-          country: currentCountryInput,
+  const validate = (value) => {
+    if (value.length === 3) {
+      dispatch(
+        getCharacters({
+          city: value,
+          country: sityInput,
         })
-        .then(function (response) {
-          setCurrentCity(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      );
     }
-
-    if (newValue.target.value.length > 3) {
-      if (currentCity.length === 0) {
-        newValue.target.value = 'Store adress not founded';
-        currentCity.length = 2;
-      } else {
-        currentCity.sort();
-      }
+    if (value.length >= 3 && cities.length === 0) {
+      return (value = 'Store adress not founded');
     }
   };
-
   return (
     <Formik
       initialValues={{
@@ -116,7 +72,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
           ? pickup
           : null
       }
-      onSubmit={(values, { setSubmitting, resetForm }) => {
+      onSubmit={(values) => {
         setMakingPurchase('Payment');
 
         dispatch(
@@ -190,7 +146,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                 </div>
               </div>
 
-              <div className='containerDeliveryInput'>
+              <Form className='containerDeliveryInput'>
                 <div className='contenerInput'>
                   <label className='labelDelivery'>Phone</label>
                   <InputMask
@@ -221,12 +177,9 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         ? `inputDeliveryError`
                         : `inputDelivery`
                     }
-                    placeholder='Введите ваш Email'
+                    placeholder='e-mail'
                     type='email'
                     name='email'
-                    // onChange={handleChange}
-                    // onBlur={handleBlur}
-                    // value={values.email}
                   />
                   {touched.email && errors.email && <span className='error'>{errors.email}</span>}
                 </div>
@@ -242,9 +195,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                           placeholder='Country'
                           type='text'
                           name='adress'
-                          // onChange={handleChange}
-                          // onBlur={handleBlur}
-                          // value={values.adress}
                         />
                         {touched.adress && errors.adress && <span className='error'>{errors.adress}</span>}
                       </div>
@@ -259,8 +209,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                           placeholder='Country'
                           type='text'
                           name='adress'
-                          // onChange={handleChange}
-                          // onBlur={handleBlur}
+
                           // value={(values.adress = 'Беларусь')}
                         />
                         {touched.adress && errors.adress && <span className='error'>{errors.adress}</span>}
@@ -275,9 +224,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         placeholder='City'
                         type='text'
                         name='city'
-                        // onChange={handleChange}
-                        // onBlur={handleBlur}
-                        // value={values.city}
                       />
                       {touched.city && errors.city && <span className='error'>{errors.city}</span>}
                     </div>
@@ -289,9 +235,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         placeholder='Street'
                         type='text'
                         name='street'
-                        // onChange={handleChange}
-                        // onBlur={handleBlur}
-                        // value={values.street}
                       />
                       {touched.street && errors.street && <span className='error'>{errors.street}</span>}
                     </div>
@@ -304,20 +247,9 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         placeholder='House'
                         type='text'
                         name='house'
-                        // onChange={handleChange}
-                        // onBlur={handleBlur}
-                        // value={values.house}
                       />
 
-                      <Field
-                        className='inputDeliveryHouse'
-                        placeholder='Apartment'
-                        type='text'
-                        name='apartment'
-                        // onChange={handleChange}
-                        // onBlur={handleBlur}
-                        // value={values.apartment}
-                      />
+                      <Field className='inputDeliveryHouse' placeholder='Apartment' type='text' name='apartment' />
                     </div>
                     {touched.house && errors.house && <span className='error'>{errors.house}</span>}
 
@@ -344,43 +276,57 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                   <>
                     <div className='contenerInput'>
                       <label className='labelDelivery'>ADRESS OF STORE</label>
-                      <Select
-                        options={options}
-                        styles={styles}
+                      <Field
+                        as='select'
+                        className={
+                          touched.adress && errors.adress === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                        }
                         name='adress'
-                        onChange={onChange}
-                        onBlur={handleBlur}
-                        value={getCountrie()}
-                      />
+                      >
+                        <option></option>
+                        {options.map((item, id) => (
+                          <option key={id} value={item.value}>
+                            {item.label}
+                          </option>
+                        ))}
+                      </Field>
+
                       {touched.adress && errors.adress && <span className='error'>{errors.adress}</span>}
-                      {/*////////////////////////////////////////////////////////////////*/}
-                      <div className='NotVisible'> {(values.adress = currentCountryInput)}</div>
                     </div>
-                    {/*////////////////////////////////////////////////////////////////*/}
+
                     <div className='contenerInput'>
-                      <input
+                      <Field
                         className={
                           touched.adressStore && errors.adressStore === textNotValid
                             ? `inputDeliveryError`
                             : `inputDelivery`
                         }
-                        disabled={currentCountryInput === ''}
+                        disabled={values.adress === ''}
                         placeholder='Store adress'
                         name='adressStore'
                         type='text'
-                        onChange={onChangeCiti}
-                        onBlur={handleBlur}
                         list='city-list'
+                        validate={validate}
+                        onClick={() => {
+                          setSityInput(values.adress);
+                        }}
                       />
-                      <datalist id='city-list'>
-                        {currentCity.map(({ city, _id }) => (
-                          <option key={_id} value={city}>
-                            {city}
-                          </option>
-                        ))}
-                      </datalist>
+
+                      {values.adressStore.length >= 3 ? (
+                        <datalist id='city-list'>
+                          {cities
+                            ?.map((item, _id) => (
+                              <option key={_id} value={item.city}>
+                                {item.city}
+                              </option>
+                            ))
+                            .sort()}
+                        </datalist>
+                      ) : (
+                        <option></option>
+                      )}
+
                       {touched.adressStore && errors.adressStore && <span className='error'>{errors.adressStore}</span>}
-                      <div className='NotVisible'> {(values.adressStore = getCitiArr())} </div>
                     </div>
                   </>
                 )}
@@ -413,9 +359,10 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                 {agree === 'notAgree' && touched.personalInformation && errors.personalInformation && (
                   <span className='error'>{errors.personalInformation}</span>
                 )}
-              </div>
+              </Form>
             </div>
           </div>
+
           <div className='shopingFooter'>
             <div className='shopingPrice'>
               <span className='title'>Total</span>
@@ -477,26 +424,6 @@ function resetStatus(error) {
   error.street = false;
   error.adressStore = false;
 }
-
-const styles = {
-  menu: (provided, state) => ({
-    ...provided,
-    background: '#f8f8f8',
-  }),
-
-  control: (base, state) => ({
-    ...base,
-    background: '#f8f8f8',
-    border: 'none',
-    height: '50px',
-    boxShadow: state.isFocused ? null : null,
-  }),
-  option: (base) => ({
-    ...base,
-    background: '#f8f8f8',
-    color: '#141414',
-  }),
-};
 
 const textNotValid = 'Поле должно быть заполнено';
 
