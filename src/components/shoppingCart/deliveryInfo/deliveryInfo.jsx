@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import InputMask from 'react-input-mask';
@@ -212,7 +212,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                 </div>
                 <div className='contenerInput'>
                   <label className='labelDelivery'>e-mail</label>
-                  <input
+                  <Field
                     className={
                       touched.email &&
                       (errors.email === textNotValid ||
@@ -224,9 +224,9 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     placeholder='Введите ваш Email'
                     type='email'
                     name='email'
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
+                    // onChange={handleChange}
+                    // onBlur={handleBlur}
+                    // value={values.email}
                   />
                   {touched.email && errors.email && <span className='error'>{errors.email}</span>}
                 </div>
@@ -235,16 +235,16 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     {checkedDelivery === 'delivery' && (
                       <div className='contenerInput'>
                         <label className='labelDelivery'>ADRESS</label>
-                        <input
+                        <Field
                           className={
                             touched.adress && errors.adress === textNotValid ? `inputDeliveryError` : `inputDelivery`
                           }
                           placeholder='Country'
                           type='text'
                           name='adress'
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.adress}
+                          // onChange={handleChange}
+                          // onBlur={handleBlur}
+                          // value={values.adress}
                         />
                         {touched.adress && errors.adress && <span className='error'>{errors.adress}</span>}
                       </div>
@@ -254,69 +254,69 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                       <div className='contenerInput'>
                         <label className='labelDelivery'>ADRESS</label>
 
-                        <input
+                        <Field
                           className='inputDelivery'
                           placeholder='Country'
                           type='text'
                           name='adress'
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={(values.adress = 'Беларусь')}
+                          // onChange={handleChange}
+                          // onBlur={handleBlur}
+                          // value={(values.adress = 'Беларусь')}
                         />
                         {touched.adress && errors.adress && <span className='error'>{errors.adress}</span>}
                       </div>
                     )}
 
                     <div className='contenerInput'>
-                      <input
+                      <Field
                         className={
                           touched.city && errors.city === textNotValid ? `inputDeliveryError` : `inputDelivery`
                         }
                         placeholder='City'
                         type='text'
                         name='city'
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.city}
+                        // onChange={handleChange}
+                        // onBlur={handleBlur}
+                        // value={values.city}
                       />
                       {touched.city && errors.city && <span className='error'>{errors.city}</span>}
                     </div>
                     <div className='contenerInput'>
-                      <input
+                      <Field
                         className={
                           touched.street && errors.street === textNotValid ? `inputDeliveryError` : `inputDelivery`
                         }
                         placeholder='Street'
                         type='text'
                         name='street'
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.street}
+                        // onChange={handleChange}
+                        // onBlur={handleBlur}
+                        // value={values.street}
                       />
                       {touched.street && errors.street && <span className='error'>{errors.street}</span>}
                     </div>
 
                     <div className='hoeseApartment'>
-                      <input
+                      <Field
                         className={
                           touched.house && errors.house === textNotValid ? `inputDeliveryError` : `inputDeliveryHouse`
                         }
                         placeholder='House'
                         type='text'
                         name='house'
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.house}
+                        // onChange={handleChange}
+                        // onBlur={handleBlur}
+                        // value={values.house}
                       />
 
-                      <input
+                      <Field
                         className='inputDeliveryHouse'
                         placeholder='Apartment'
                         type='text'
                         name='apartment'
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.apartment}
+                        // onChange={handleChange}
+                        // onBlur={handleBlur}
+                        // value={values.apartment}
                       />
                     </div>
                     {touched.house && errors.house && <span className='error'>{errors.house}</span>}
