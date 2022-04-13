@@ -10,6 +10,7 @@ import actionReviesPost from './reducers/actionReview';
 import actionProductId from './reducers/actionGetProductId';
 import getCountries from './reducers/getCountries';
 import productBasketActions from './reducers/productBasket';
+import actionGetCity from './reducers/actionGetCity';
 import { rootSaga } from './reducers/saga/index';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   getIDProduct: actionProductId,
   getCountriesArr: getCountries,
   postProductBasket: productBasketActions,
+  getCity: actionGetCity,
 });
 
 const store = configureStore({
