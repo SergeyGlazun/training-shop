@@ -1,123 +1,100 @@
-import {
-    createAction,
-    createReducer
-} from "@reduxjs/toolkit";
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
 const defaultState = {
+  dataBuy: {
+    product: [],
+    deliveryMethod: '',
+    paymentMethod: '',
+    totalPrice: '',
+    phone: '',
+    email: '',
+    country: '',
+    cashEmail: '',
+    city: '',
+    street: '',
+    house: '',
+    apartment: '',
+    postcode: '',
+    storeAddress: '',
+    card: '',
+    cardDate: '',
+    cardCVV: '',
+  },
+  loading: false,
+  respons: '',
+};
 
-    dataBuy: {
-        product: [],
-        deliveryMethod: "",
-        paymentMethod: "", 
-        totalPrice: "",
-        phone: "",
-        email: "",
-        country: "",
-        cashEmail: "",
-        city: "",
-        street: "",
-        house: "",
-        apartment: "",
-        postcode: "",
-        storeAddress: "",
-        card: "", 
-        cardDate: "", 
-        cardCVV: "" 
-    },
-    loading:false,
-    responsBasket:""
+export const postProductBasketActionProduct = createAction('POST_PRODUCT_BASKETACT_ON_PRODUCT');
+export const clearBasket = createAction('CLEAR_BASKET');
 
-}
+export const postCastumerTotalPrise = createAction('POST_CASTUMER_TOTALPRISE');
+export const postCastumerDeliveryMethod = createAction('POST_CASTUMER_DELIVERY_METHOD');
 
-export const postProductBasketActionProduct = createAction('POSTPRODUCTBASKETACTION_PRODUCT');
-export const postCastumerPhone = createAction('POSTCASTUMER_PHONE');
-export const postCastumerEmail = createAction('POSTCASTUM_EMAIL');
-export const postCastumerCity = createAction('POSTCASTUM_CITY');
-export const postCastumerStreet = createAction('POSTCASTUM_STREET');
-export const postCastumerHouse = createAction('POSTCASTUM_HOUSE');
-export const postCastumerApartment = createAction('POSTCASTUMAP_APARTMENT');
-export const postCastumerPostcod = createAction('POSTCASTUMAP_POSTCOD');
-export const postCastumerTotalPrise = createAction('POSTCASTUMAP_TOTALPRISE');
-export const postCastumerCountry = createAction('POSTCASTUMAP_COUNTRY');
-export const postCastumerStoryAdress = createAction('POSTCASTUMAP_STORYADRESS');
-
-export const postCastumerStoryCashEmaik = createAction('POSTCASTUMAP_CASHEMAIL');
-export const postCastumerStoryCard = createAction('POSTCASTUMAP_CARD');
-export const postCastumerCardDate = createAction('POSTCASTUMAP_CARDDATA');
-export const postCastumerCardCVV = createAction('POSTCASTUMAP_CARDDCW');
-
-export const postCastumerDeliveryMethod = createAction('POSTCASTUMAP_DELIVERYMETHOD');
-export const postCastumerPaymentMethod = createAction('POSTCASTUMAP_PAYMENTMETOD');
-
-export const  getObjectBasket = createAction('GETPROJECTBASKET'); 
-
-export const  lodingPostBasket = createAction('LOADINGPOSTSAGA');
-export const  responsBasketAction = createAction('RESPONSBASKETACTION');
+export const getDataDelivery = createAction('GET_DATA_DELIVERY');
+export const getDataCard = createAction('GET_DATA_CARD');
+export const getObjectBasket = createAction('GET_PROJECT_BASKET');
+export const lodingPostBasket = createAction('LOADING_POSTSAGA');
+export const responsBasketAction = createAction('RESPONS_BASKET_ACTION');
 
 export default createReducer(defaultState, {
-    [postProductBasketActionProduct]: (state, action) => {
-        state.dataBuy.product = action.payload;
-    },
-    [postCastumerTotalPrise]: (state, action) => {
-        state.dataBuy.totalPrice = action.payload;
-    },
-    [postCastumerPhone]: (state, action) => {
-        state.dataBuy.phone = action.payload;
-    },
-    [postCastumerEmail]: (state, action) => {
-        state.dataBuy.email = action.payload;
-    },
-    [postCastumerCountry]: (state, action) => {
-        state.dataBuy.country = action.payload;
-    },
-    [postCastumerCity]: (state, action) => {
-        state.dataBuy.city = action.payload;
-    },
-    [postCastumerStreet]: (state, action) => {
-        state.dataBuy.street = action.payload;
-    },
-    [postCastumerHouse]: (state, action) => {
-        state.dataBuy.house = action.payload;
-    },
-    [postCastumerApartment]: (state, action) => {
-        state.dataBuy.apartment = action.payload;
-    },
-    [postCastumerPostcod]: (state, action) => {
-        state.dataBuy.postcode = action.payload;
-    },
-    [postCastumerStoryAdress]: (state, action) => {
-        state.dataBuy.storeAddress = action.payload;
-    },
+  [postProductBasketActionProduct]: (state, action) => {
+    state.dataBuy.product = action.payload;
+  },
 
-    [postCastumerStoryCashEmaik]: (state, action) => {
-        state.dataBuy.cashEmail = action.payload;
-    },
-    [postCastumerStoryCard]: (state, action) => {
-        state.dataBuy.card = action.payload;
-    },
-    [postCastumerCardDate]: (state, action) => {
-        state.dataBuy.cardDate = action.payload;
-    },
-    [postCastumerCardCVV]: (state, action) => {
-        state.dataBuy.cardCVV = action.payload;
-    },
+  [postCastumerTotalPrise]: (state, action) => {
+    state.dataBuy.totalPrice = action.payload;
+  },
+  [postCastumerDeliveryMethod]: (state, action) => {
+    state.dataBuy.deliveryMethod = action.payload;
+  },
 
-    [postCastumerDeliveryMethod]: (state, action) => {
-        state.dataBuy.deliveryMethod = action.payload;
-    },
-    [postCastumerPaymentMethod]: (state, action) => {
-        state.dataBuy.paymentMethod = action.payload;
-    },
+  [getObjectBasket]: () => {},
 
-    [getObjectBasket]: () => {     
-    },
+  [lodingPostBasket]: (state, action) => {
+    state.loading = action.payload;
+  },
 
-    [lodingPostBasket]: (state, action) => {  
-        state.loading = action.payload;   
-    },
+  [responsBasketAction]: (state, action) => {
+    state.respons = action.payload;
+  },
 
-    [responsBasketAction]: (state, action) => {  
-        state.responsBasket = action.payload;   
-    },
- 
-})
+  [clearBasket]: (state) => {
+    state.dataBuy.totalPrice = '';
+    state.dataBuy.phone = '';
+    state.dataBuy.email = '';
+    state.dataBuy.country = '';
+    state.dataBuy.city = '';
+    state.dataBuy.street = '';
+    state.dataBuy.house = '';
+    state.dataBuy.apartment = '';
+    state.dataBuy.postcode = '';
+    state.dataBuy.storeAddress = '';
+    state.dataBuy.cashEmail = '';
+    state.dataBuy.card = '';
+    state.dataBuy.cardDate = '';
+    state.dataBuy.cardCVV = '';
+    state.dataBuy.deliveryMethod = '';
+    state.dataBuy.paymentMethod = '';
+  },
+
+  [getDataCard]: (state, action) => {
+    state.dataBuy.phone = action.payload.phone;
+    state.dataBuy.cashEmail = action.payload.cashEmail;
+    state.dataBuy.card = action.payload.card;
+    state.dataBuy.cardDate = action.payload.cardDate;
+    state.dataBuy.cardCVV = action.payload.cardCVV;
+    state.dataBuy.paymentMethod = action.payload.checkedPayments;
+  },
+  [getDataDelivery]: (state, action) => {
+    state.dataBuy.phone = action.payload.phone;
+    state.dataBuy.email = action.payload.email;
+    state.dataBuy.country = action.payload.adress;
+    state.dataBuy.city = action.payload.city;
+    state.dataBuy.street = action.payload.street;
+    state.dataBuy.house = action.payload.house;
+    state.dataBuy.apartment = action.payload.apartment;
+    state.dataBuy.postcode = action.payload.post;
+    state.dataBuy.storeAddress = action.payload.storeAddress;
+    state.dataBuy.deliveryMethod = action.payload.deliveryMethod;
+  },
+});
