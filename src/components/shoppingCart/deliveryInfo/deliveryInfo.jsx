@@ -390,9 +390,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
             >
               Further
             </button>
-            {/* {console.log(isValid + '<<<')}
-            {console.log(values.personalInformation + 'oooo')} */}
-            {/* {console.log(values.personalInformation === true && isValid === false)} */}
+
             <button
               className='btnShoping'
               onClick={() => {

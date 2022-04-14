@@ -63,7 +63,7 @@ const AnswerBasket = ({ setMakingPurchase, setCondition }) => {
                 setMakingPurchase('Payment');
               }}
             >
-              BACK TO SHOPPING
+              BACK TO PAYMENT
             </button>
 
             <button
