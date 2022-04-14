@@ -102,13 +102,13 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     className='inputChooseDelivery'
                     name='ChooseDelivery'
                     type='radio'
-                    value='express delivery'
+                    value='pickup from post offices'
                     onClick={() => {
-                      setCheckedDelivery('express delivery');
+                      setCheckedDelivery('pickup from post offices');
                       resetStatus(touched);
                     }}
                     onChange={handleChange}
-                    checked={checkedDelivery === 'express delivery'}
+                    checked={checkedDelivery === 'pickup from post offices'}
                   />
                   <div className='radioButtonChooseDelivery'>Pickup from post offices</div>
                 </div>

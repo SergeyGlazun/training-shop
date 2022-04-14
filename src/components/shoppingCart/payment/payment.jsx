@@ -29,7 +29,7 @@ const Payment = ({ price, setMakingPurchase }) => {
         cardCVV: dataBuy.cardCVV,
       }}
       validationSchema={
-        checkedPayments === 'visa' || checkedPayments === 'card'
+        checkedPayments === 'visa' || checkedPayments === 'masterCard'
           ? cardValid
           : checkedPayments === 'paypal'
           ? payPalValid
@@ -71,7 +71,7 @@ const Payment = ({ price, setMakingPurchase }) => {
         );
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+      {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isValid, dirty }) => (
         <>
           <div className='containerDelivery'>
             <div className='ContenerChooseDeliveryItems'>
@@ -117,13 +117,13 @@ const Payment = ({ price, setMakingPurchase }) => {
                     className='inputChooseDelivery'
                     name='ChoosePayment'
                     type='radio'
-                    value='MasterCard'
+                    value='masterCard'
                     onClick={() => {
-                      setCheckedPayments('card');
+                      setCheckedPayments('masterCard');
                       resetStatus(touched);
                     }}
                     onChange={handleChange}
-                    checked={checkedPayments === 'card' ? true : false}
+                    checked={checkedPayments === 'masterCard' ? true : false}
                   />
                   <div className='radioButtonChooseDelivery'>
                     <img src={masterCard} alt='visa' className='visa' />
@@ -148,14 +148,14 @@ const Payment = ({ price, setMakingPurchase }) => {
               </div>
 
               <div className='containerDeliveryInput'>
-                {(checkedPayments === 'visa' || checkedPayments === 'card') && (
+                {(checkedPayments === 'visa' || checkedPayments === 'masterCard') && (
                   <>
                     <div className='containerDeliveryInput'>
                       <div className='contenerInput'>
                         <label className='labelDelivery'>card</label>
                         <InputMask
                           mask={'9999999999999999'}
-                          type='tel'
+                          type='text'
                           name='card'
                           placeholder='----------------'
                           className={
@@ -167,7 +167,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                           onBlur={handleBlur}
                           value={values.card}
                         />
-                        {console.log(errors.card)}
+
                         {touched.card && errors.card && <span className='error'>{errors.card}</span>}
                       </div>
                     </div>
@@ -258,20 +258,21 @@ const Payment = ({ price, setMakingPurchase }) => {
               </div>
             </div>
           </div>
-
+          {/* {console.log(isValid)}
+          {console.log(dirty)} */}
           <div className='shopingFooter'>
             <div className='shopingPrice'>
               <span className='title'>Total</span>
               <span className='price'>{price.toFixed(2)}</span>
             </div>
             <button
+              // disabled={!isValid || !dirty}
               type='submit'
               className='btnShoping'
               onClick={() => {
                 handleSubmit();
               }}
             >
-              {' '}
               {loading && <LoaderButtom />}
               {checkedPayments === 'cash' ? 'READY' : 'Check Out'}
             </button>
