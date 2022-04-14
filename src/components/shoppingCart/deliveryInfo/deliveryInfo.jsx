@@ -54,7 +54,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
       initialValues={{
         phone: dataBuy.phone,
         email: dataBuy.email,
-        adress: dataBuy.country,
+        country: dataBuy.country,
         city: dataBuy.city,
         street: dataBuy.street,
         house: dataBuy.house,
@@ -185,7 +185,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                 </div>
                 {(checkedDelivery === 'delivery' || checkedDelivery === 'offices') && (
                   <>
-                    {checkedDelivery === 'delivery' && (
+                    {/* {checkedDelivery === 'delivery' && (
                       <div className='contenerInput'>
                         <label className='labelDelivery'>ADRESS</label>
                         <Field
@@ -198,25 +198,25 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         />
                         {touched.country && errors.country && <span className='error'>{errors.country}</span>}
                       </div>
-                    )}
+                    )} */}
 
-                    {checkedDelivery === 'offices' && (
-                      <div className='contenerInput'>
-                        <label className='labelDelivery'>ADRESS</label>
+                    {/* {checkedDelivery === 'offices' && ( */}
+                    <div className='contenerInput'>
+                      <label className='labelDelivery'>ADRESS</label>
 
-                        <Field
-                          className={
-                            touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
-                          }
-                          placeholder='Country'
-                          type='text'
-                          name='country'
+                      <Field
+                        className={
+                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                        }
+                        placeholder='Country'
+                        type='text'
+                        name='country'
 
-                          // value={(values.adress = 'Беларусь')}
-                        />
-                        {touched.country && errors.country && <span className='error'>{errors.country}</span>}
-                      </div>
-                    )}
+                        // value={(values.adress = 'Беларусь')}
+                      />
+                      {touched.country && errors.country && <span className='error'>{errors.country}</span>}
+                    </div>
+                    {/* // )} */}
 
                     <div className='contenerInput'>
                       <Field
@@ -272,7 +272,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                           onBlur={handleBlur}
                           value={values.postcode}
                         />
-                        {console.log(values.postcode)}
+
                         {touched.postcode && errors.postcode && <span className='error'>{errors.postcode}</span>}
                       </div>
                     )}
@@ -355,13 +355,14 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                       name='personalInformation'
                       type='checkbox'
                       className='heckboxDelivery'
-                      checked={agree === 'setAgreeDelivery' ? true : false}
+                      checked={agree === 'setAgreeDelivery'}
                       onChange={handleChange}
                       value={values.personalInformation}
                     />
                     <span>I agree to the processing of my personal information</span>
                   </div>
                 </div>
+
                 {agree === 'notAgree' && touched.personalInformation && errors.personalInformation && (
                   <span className='error'>{errors.personalInformation}</span>
                 )}
@@ -380,13 +381,18 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
               className='btnShoping'
               onClick={() => {
                 handleSubmit();
-                isValid === false ? (values.personalInformation = false) : (values.personalInformation = true);
-                isValid === false ? setAgree('notAgree') : setAgree('setAgreeDelivery');
+
+                values.personalInformation === true && isValid === false ? setAgree('notAgree') : console.log();
+                values.personalInformation === true && isValid === false
+                  ? (values.personalInformation = false)
+                  : console.log();
               }}
             >
               Further
             </button>
-
+            {/* {console.log(isValid + '<<<')}
+            {console.log(values.personalInformation + 'oooo')} */}
+            {/* {console.log(values.personalInformation === true && isValid === false)} */}
             <button
               className='btnShoping'
               onClick={() => {

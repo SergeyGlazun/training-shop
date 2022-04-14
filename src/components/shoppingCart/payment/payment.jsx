@@ -167,6 +167,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                           onBlur={handleBlur}
                           value={values.card}
                         />
+                        {console.log(errors.card)}
                         {touched.card && errors.card && <span className='error'>{errors.card}</span>}
                       </div>
                     </div>
