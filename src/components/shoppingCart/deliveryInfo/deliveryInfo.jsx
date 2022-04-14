@@ -59,7 +59,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
         street: dataBuy.street,
         house: dataBuy.house,
         apartment: dataBuy.apartment,
-        post: dataBuy.postcode,
+        postcode: dataBuy.postcode,
         adressStore: dataBuy.storeAddress,
         personalInformation: false,
       }}
@@ -79,12 +79,12 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
           getDataDelivery({
             phone: values.phone,
             email: values.email,
-            adress: values.adress,
+            country: values.country,
             city: values.city,
             street: values.street,
             house: values.house,
             apartment: values.apartment,
-            post: values.post,
+            postcode: values.postcode,
             storeAddress: values.adressStore,
             deliveryMethod: checkedDelivery,
           })
@@ -190,13 +190,13 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         <label className='labelDelivery'>ADRESS</label>
                         <Field
                           className={
-                            touched.adress && errors.adress === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                            touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
                           }
                           placeholder='Country'
                           type='text'
-                          name='adress'
+                          name='country'
                         />
-                        {touched.adress && errors.adress && <span className='error'>{errors.adress}</span>}
+                        {touched.country && errors.country && <span className='error'>{errors.country}</span>}
                       </div>
                     )}
 
@@ -205,14 +205,16 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         <label className='labelDelivery'>ADRESS</label>
 
                         <Field
-                          className='inputDelivery'
+                          className={
+                            touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                          }
                           placeholder='Country'
                           type='text'
-                          name='adress'
+                          name='country'
 
                           // value={(values.adress = 'Беларусь')}
                         />
-                        {touched.adress && errors.adress && <span className='error'>{errors.adress}</span>}
+                        {touched.country && errors.country && <span className='error'>{errors.country}</span>}
                       </div>
                     )}
 
@@ -258,16 +260,20 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         <InputMask
                           mask={'BY999999'}
                           className={
-                            touched.post && errors.post === textNotValid ? `inputDeliveryError` : `inputDeliveryHouse`
+                            touched.postcode &&
+                            (errors.postcode === textNotValid || errors.postcode === 'Не правильный номер')
+                              ? `inputDeliveryError`
+                              : `inputDeliveryHouse`
                           }
                           type='text'
-                          name='post'
+                          name='postcode'
                           placeholder='BY ______'
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          value={values.post}
+                          value={values.postcode}
                         />
-                        {touched.post && errors.post && <span className='error'>{errors.post}</span>}
+                        {console.log(values.postcode)}
+                        {touched.postcode && errors.postcode && <span className='error'>{errors.postcode}</span>}
                       </div>
                     )}
                   </>
@@ -279,9 +285,9 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                       <Field
                         as='select'
                         className={
-                          touched.adress && errors.adress === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
                         }
-                        name='adress'
+                        name='country'
                       >
                         <option></option>
                         {options.map((item, id) => (
@@ -291,7 +297,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         ))}
                       </Field>
 
-                      {touched.adress && errors.adress && <span className='error'>{errors.adress}</span>}
+                      {touched.country && errors.country && <span className='error'>{errors.country}</span>}
                     </div>
 
                     <div className='contenerInput'>
@@ -301,14 +307,14 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                             ? `inputDeliveryError`
                             : `inputDelivery`
                         }
-                        disabled={values.adress === ''}
+                        disabled={values.country === ''}
                         placeholder='Store adress'
                         name='adressStore'
                         type='text'
                         list='city-list'
                         validate={validate}
                         onClick={() => {
-                          setSityInput(values.adress);
+                          setSityInput(values.country);
                         }}
                       />
 
@@ -413,14 +419,14 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 export default DeliveryInfo;
 
 function resetStatus(error) {
-  error.adress = false;
+  error.country = false;
   error.apartment = false;
   error.city = false;
   error.email = false;
   error.house = false;
   error.personalInformation = false;
   error.phone = false;
-  error.post = false;
+  error.postcode = false;
   error.street = false;
   error.adressStore = false;
 }
@@ -436,12 +442,14 @@ const offices = Yup.object().shape({
     .required(textNotValid)
     .email('Введите верный email')
     .matches(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/, 'смените язык'),
-  adress: Yup.string().required(textNotValid),
+  country: Yup.string().required(textNotValid),
   city: Yup.string().required(textNotValid),
   street: Yup.string().required(textNotValid),
   house: Yup.number().required(textNotValid),
   apartment: Yup.number(),
-  post: Yup.string().required(textNotValid),
+  postcode: Yup.string()
+    .required(textNotValid)
+    .matches(/[0-9]{6,}/, 'Не правильный номер'),
   personalInformation: Yup.bool().oneOf([true], 'Вы должны согласиться на обработку личной информации'),
 });
 
@@ -454,7 +462,7 @@ const delivery = Yup.object().shape({
     .required(textNotValid)
     .email('Введите верный email')
     .matches(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/, 'смените язык'),
-  adress: Yup.string().required(textNotValid),
+  country: Yup.string().required(textNotValid),
   city: Yup.string().required(textNotValid),
   street: Yup.string().required(textNotValid),
   house: Yup.number().required(textNotValid),
@@ -471,7 +479,7 @@ const pickup = Yup.object().shape({
     .required(textNotValid)
     .email('Введите верный email')
     .matches(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/, 'смените язык'),
-  adress: Yup.string().required(textNotValid),
+  country: Yup.string().required(textNotValid),
   adressStore: Yup.string().required(textNotValid),
   personalInformation: Yup.bool().oneOf([true], 'Вы должны согласиться на обработку личной информации'),
 });

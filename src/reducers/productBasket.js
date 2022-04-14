@@ -88,12 +88,12 @@ export default createReducer(defaultState, {
   [getDataDelivery]: (state, action) => {
     state.dataBuy.phone = action.payload.phone;
     state.dataBuy.email = action.payload.email;
-    state.dataBuy.country = action.payload.adress;
+    state.dataBuy.country = action.payload.country;
     state.dataBuy.city = action.payload.city;
     state.dataBuy.street = action.payload.street;
     state.dataBuy.house = action.payload.house;
     state.dataBuy.apartment = action.payload.apartment;
-    state.dataBuy.postcode = action.payload.post;
+    state.dataBuy.postcode = action.payload.postcode;
     state.dataBuy.storeAddress = action.payload.storeAddress;
     state.dataBuy.deliveryMethod = action.payload.deliveryMethod;
   },
