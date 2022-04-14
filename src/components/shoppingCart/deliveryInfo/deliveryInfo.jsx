@@ -13,7 +13,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
   const dispatch = useDispatch();
   const { dataBuy } = useSelector((state) => state.postProductBasket);
   const { cities } = useSelector((state) => state.getCity.city);
-  const [checkedDelivery, setCheckedDelivery] = useState('offices');
+  const [checkedDelivery, setCheckedDelivery] = useState('pickup from post offices');
   const [agree, setAgree] = useState('notAgree');
 
   const textNotValid = 'Поле должно быть заполнено';
@@ -64,11 +64,11 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
         personalInformation: false,
       }}
       validationSchema={
-        checkedDelivery === 'offices'
+        checkedDelivery === 'pickup from post offices'
           ? offices
-          : checkedDelivery === 'delivery'
+          : checkedDelivery === 'express delivery'
           ? delivery
-          : checkedDelivery === 'pickup'
+          : checkedDelivery === 'store pickup'
           ? pickup
           : null
       }
@@ -102,13 +102,13 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     className='inputChooseDelivery'
                     name='ChooseDelivery'
                     type='radio'
-                    value='offices'
+                    value='express delivery'
                     onClick={() => {
-                      setCheckedDelivery('offices');
+                      setCheckedDelivery('express delivery');
                       resetStatus(touched);
                     }}
                     onChange={handleChange}
-                    checked={checkedDelivery === 'offices' ? true : false}
+                    checked={checkedDelivery === 'express delivery'}
                   />
                   <div className='radioButtonChooseDelivery'>Pickup from post offices</div>
                 </div>
@@ -117,13 +117,13 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     className='inputChooseDelivery'
                     name='ChooseDelivery'
                     type='radio'
-                    value='delivery'
+                    value='express delivery'
                     onClick={() => {
-                      setCheckedDelivery('delivery');
+                      setCheckedDelivery('express delivery');
                       resetStatus(touched);
                     }}
                     onChange={handleChange}
-                    checked={checkedDelivery === 'delivery' ? true : false}
+                    checked={checkedDelivery === 'express delivery'}
                   />
                   <div className='radioButtonChooseDelivery'>Express delivery</div>
                 </div>
@@ -133,14 +133,14 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     className='inputChooseDelivery'
                     name='ChooseDelivery'
                     type='radio'
-                    value='pickup'
+                    value='store pickup'
                     onClick={() => {
-                      setCheckedDelivery('pickup');
+                      setCheckedDelivery('store pickup');
                       resetStatus(touched);
                       dispatch(countriesLocalstorageAction());
                     }}
                     onChange={handleChange}
-                    checked={checkedDelivery === 'pickup' ? true : false}
+                    checked={checkedDelivery === 'store pickup'}
                   />
                   <div className='radioButtonChooseDelivery'>Store pickup</div>
                 </div>
@@ -183,7 +183,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                   />
                   {touched.email && errors.email && <span className='error'>{errors.email}</span>}
                 </div>
-                {(checkedDelivery === 'delivery' || checkedDelivery === 'offices') && (
+                {(checkedDelivery === 'express delivery' || checkedDelivery === 'pickup from post offices') && (
                   <>
                     {/* {checkedDelivery === 'delivery' && (
                       <div className='contenerInput'>
@@ -255,7 +255,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     </div>
                     {touched.house && errors.house && <span className='error'>{errors.house}</span>}
 
-                    {checkedDelivery === 'offices' && (
+                    {checkedDelivery === 'pickup from post offices' && (
                       <div className='contenerInput'>
                         <InputMask
                           mask={'BY999999'}
@@ -278,7 +278,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     )}
                   </>
                 )}
-                {checkedDelivery === 'pickup' && (
+                {checkedDelivery === 'store pickup' && (
                   <>
                     <div className='contenerInput'>
                       <label className='labelDelivery'>ADRESS OF STORE</label>
