@@ -7,7 +7,7 @@ function* basketSagaPost(action) {
   console.log(action.payload);
   try {
     const responce = yield call(axios.post, 'https://training.cleverland.by/shop/cart', {
-      product: action.payload.product,
+      products: action.payload.product,
       deliveryMethod: action.payload.deliveryMethod,
       paymentMethod: action.payload.paymentMethod,
       totalPrice: action.payload.totalPrice,
@@ -25,11 +25,12 @@ function* basketSagaPost(action) {
       cardDate: action.payload.cardDate,
       cardCVV: action.payload.cardCVV,
     });
-
+    console.log(responce);
     yield put(responsBasketAction(responce.statusText));
 
     yield put(lodingPostBasket(false));
   } catch (err) {
+    console.log('ошибка');
     yield put(responsBasketAction(err.message));
   }
 }

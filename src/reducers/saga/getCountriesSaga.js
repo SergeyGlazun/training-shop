@@ -1,6 +1,6 @@
 import { all, put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import { countriesArrAction, countriesLocalstorageAction } from '../getCountries';
+import { countriesArrAction, countriesLocalstorageAction, getErrorCountry } from '../getCountries';
 
 function* getCountriesWorker() {
   let store = require('store');
@@ -15,7 +15,7 @@ function* getCountriesWorker() {
       yield put(countriesArrAction(store.get('countriesArr')));
     }
   } catch (err) {
-    console.log(err.message);
+    yield put(countriesArrAction(getErrorCountry(err.message)));
   }
 }
 
