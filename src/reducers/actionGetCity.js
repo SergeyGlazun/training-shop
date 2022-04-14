@@ -16,7 +16,6 @@ export const getErorr = createAction('GET_ERROR_CITY');
 export default createReducer(defaultState, {
   [getArrSity]: (state, action) => {
     state.city.cities = action.payload;
-    console.log(state.city.cities);
   },
   [getCharacters]: (state, action) => {
     state.city.fersTreeCharacters = action.payload.fersTreeCharacters;
