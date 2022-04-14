@@ -135,7 +135,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                     className='inputChooseDelivery'
                     name='ChoosePayment'
                     type='radio'
-                    value='Cash'
+                    value='cash'
                     onClick={() => {
                       setCheckedPayments('cash');
                       resetStatus(touched);
@@ -258,24 +258,39 @@ const Payment = ({ price, setMakingPurchase }) => {
               </div>
             </div>
           </div>
-          {/* {console.log(isValid)}
-          {console.log(dirty)} */}
+
           <div className='shopingFooter'>
             <div className='shopingPrice'>
               <span className='title'>Total</span>
               <span className='price'>{price.toFixed(2)}</span>
             </div>
-            <button
-              // disabled={!isValid || !dirty}
-              type='submit'
-              className='btnShoping'
-              onClick={() => {
-                handleSubmit();
-              }}
-            >
-              {loading && <LoaderButtom />}
-              {checkedPayments === 'cash' ? 'READY' : 'Check Out'}
-            </button>
+            {(checkedPayments === 'paypal' || checkedPayments === 'masterCard' || checkedPayments === 'visa') && (
+              <button
+                // disabled={!isValid || !dirty}
+                type='submit'
+                className='btnShoping'
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                {loading && <LoaderButtom />}
+                {/* {checkedPayments === 'cash' ? 'READY' : 'Check Out'} */}
+                {'CHECK OUT'}
+              </button>
+            )}
+            {checkedPayments === 'cash' && (
+              <button
+                type='submit'
+                className='btnShoping'
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                {loading && <LoaderButtom />}
+
+                {'READY'}
+              </button>
+            )}
             <button
               className='btnShoping'
               onClick={() => {
