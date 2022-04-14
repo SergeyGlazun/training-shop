@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import InputMask from 'react-input-mask';
@@ -76,18 +76,17 @@ const Payment = ({ price, setMakingPurchase }) => {
           <div className='containerDelivery'>
             <div className='ContenerChooseDeliveryItems'>
               <label className='TextDeliveryItems'>Method of payments</label>
-              <div className='radioBattonChooseDeliveryItems'>
+              <Form className='radioBattonChooseDeliveryItems'>
                 <div className='contenerRadio'>
-                  <input
+                  <Field
                     className='inputChooseDelivery'
                     name='ChoosePayment'
                     type='radio'
-                    value='PayPal'
+                    value='paypal'
                     onClick={() => {
                       setCheckedPayments('paypal');
                       resetStatus(touched);
                     }}
-                    onChange={handleChange}
                     checked={checkedPayments === 'paypal'}
                   />
                   <div className='radioButtonChooseDelivery'>
@@ -95,16 +94,16 @@ const Payment = ({ price, setMakingPurchase }) => {
                   </div>
                 </div>
                 <div className='contenerRadio'>
-                  <input
+                  <Field
+                    // checked='checked'
                     className='inputChooseDelivery'
                     name='ChoosePayment'
                     type='radio'
-                    value='Visa'
+                    value='visa'
                     onClick={() => {
                       setCheckedPayments('visa');
                       resetStatus(touched);
                     }}
-                    onChange={handleChange}
                     checked={checkedPayments === 'visa' ? true : false}
                   />
                   <div className='radioButtonChooseDelivery'>
@@ -113,7 +112,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                 </div>
 
                 <div className='contenerRadio'>
-                  <input
+                  <Field
                     className='inputChooseDelivery'
                     name='ChoosePayment'
                     type='radio'
@@ -122,7 +121,6 @@ const Payment = ({ price, setMakingPurchase }) => {
                       setCheckedPayments('masterCard');
                       resetStatus(touched);
                     }}
-                    onChange={handleChange}
                     checked={checkedPayments === 'masterCard' ? true : false}
                   />
                   <div className='radioButtonChooseDelivery'>
@@ -131,7 +129,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                 </div>
 
                 <div className='contenerRadio'>
-                  <input
+                  <Field
                     className='inputChooseDelivery'
                     name='ChoosePayment'
                     type='radio'
@@ -140,12 +138,11 @@ const Payment = ({ price, setMakingPurchase }) => {
                       setCheckedPayments('cash');
                       resetStatus(touched);
                     }}
-                    onChange={handleChange}
                     checked={checkedPayments === 'cash' ? true : false}
                   />
                   <div className='radioButtonChooseDelivery'>Cash</div>
                 </div>
-              </div>
+              </Form>
 
               <div className='containerDeliveryInput'>
                 {(checkedPayments === 'visa' || checkedPayments === 'masterCard') && (
@@ -153,7 +150,8 @@ const Payment = ({ price, setMakingPurchase }) => {
                     <div className='containerDeliveryInput'>
                       <div className='contenerInput'>
                         <label className='labelDelivery'>card</label>
-                        <InputMask
+                        <Field
+                          as={InputMask}
                           mask={'9999999999999999'}
                           type='text'
                           name='card'
@@ -174,7 +172,8 @@ const Payment = ({ price, setMakingPurchase }) => {
 
                     <div className='contwnerCard'>
                       <div className='contenerInput'>
-                        <InputMask
+                        <Field
+                          as={InputMask}
                           className={
                             touched.cardDate &&
                             (errors.cardDate === textNotValid || errors.cardDate === 'не верные данные карты')
@@ -185,15 +184,14 @@ const Payment = ({ price, setMakingPurchase }) => {
                           mask={'99/99'}
                           type='text'
                           name='cardDate'
-                          onChange={handleChange}
-                          onBlur={handleBlur}
                           value={chekYear(values.cardDate)}
                         />
                         {touched.cardDate && errors.cardDate && <span className='error'>{errors.cardDate}</span>}
                       </div>
 
                       <div className='contenerInput'>
-                        <input
+                        <Field
+                          as={InputMask}
                           className={
                             touched.cardCVV && errors.cardCVV === textNotValid
                               ? `inputDeliveryError`
@@ -204,9 +202,6 @@ const Payment = ({ price, setMakingPurchase }) => {
                           min='99'
                           max='9999'
                           name='cardCVV'
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.cardCVV}
                         />
                         {visiblePasword === false ? (
                           <img
@@ -236,7 +231,8 @@ const Payment = ({ price, setMakingPurchase }) => {
                 {checkedPayments === 'paypal' && (
                   <div className='contenerInput'>
                     <label className='labelDelivery'>e-mail</label>
-                    <input
+                    <Field
+                      as={InputMask}
                       className={
                         touched.cashEmail &&
                         (errors.cashEmail === textNotValid ||
@@ -248,9 +244,6 @@ const Payment = ({ price, setMakingPurchase }) => {
                       placeholder='e-mail'
                       type='email'
                       name='cashEmail'
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.cashEmail}
                     />
                     {touched.cashEmail && errors.cashEmail && <span className='error'>{errors.cashEmail}</span>}
                   </div>

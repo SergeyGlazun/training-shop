@@ -25,12 +25,12 @@ function* basketSagaPost(action) {
       cardDate: action.payload.cardDate,
       cardCVV: action.payload.cardCVV,
     });
-    console.log(responce);
+    // console.log(responce);
     yield put(responsBasketAction(responce.statusText));
 
     yield put(lodingPostBasket(false));
   } catch (err) {
-    console.log('ошибка');
+    // console.log('ошибка');
     yield put(responsBasketAction(err.message));
   }
 }

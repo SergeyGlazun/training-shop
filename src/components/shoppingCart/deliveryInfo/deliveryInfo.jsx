@@ -96,42 +96,40 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
           <div className='containerDelivery'>
             <div className='ContenerChooseDeliveryItems'>
               <label className='TextDeliveryItems'>Choose the method of delivery of the items</label>
-              <div className='radioBattonChooseDeliveryItems'>
+              <Form className='radioBattonChooseDeliveryItems'>
                 <div className='contenerRadio'>
-                  <input
+                  <Field
                     className='inputChooseDelivery'
-                    name='ChooseDelivery'
+                    name='deliveryMethod'
                     type='radio'
                     value='pickup from post offices'
                     onClick={() => {
                       setCheckedDelivery('pickup from post offices');
                       resetStatus(touched);
                     }}
-                    onChange={handleChange}
                     checked={checkedDelivery === 'pickup from post offices'}
                   />
                   <div className='radioButtonChooseDelivery'>Pickup from post offices</div>
                 </div>
                 <div className='contenerRadio'>
-                  <input
+                  <Field
                     className='inputChooseDelivery'
-                    name='ChooseDelivery'
+                    name='deliveryMethod'
                     type='radio'
                     value='express delivery'
                     onClick={() => {
                       setCheckedDelivery('express delivery');
                       resetStatus(touched);
                     }}
-                    onChange={handleChange}
                     checked={checkedDelivery === 'express delivery'}
                   />
                   <div className='radioButtonChooseDelivery'>Express delivery</div>
                 </div>
 
                 <div className='contenerRadio'>
-                  <input
+                  <Field
                     className='inputChooseDelivery'
-                    name='ChooseDelivery'
+                    name='deliveryMethod'
                     type='radio'
                     value='store pickup'
                     onClick={() => {
@@ -139,17 +137,17 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                       resetStatus(touched);
                       dispatch(countriesLocalstorageAction());
                     }}
-                    onChange={handleChange}
                     checked={checkedDelivery === 'store pickup'}
                   />
                   <div className='radioButtonChooseDelivery'>Store pickup</div>
                 </div>
-              </div>
+              </Form>
 
               <Form className='containerDeliveryInput'>
                 <div className='contenerInput'>
                   <label className='labelDelivery'>Phone</label>
-                  <InputMask
+                  <Field
+                    as={InputMask}
                     mask={'+375 (99) 9999999'}
                     type='tel'
                     name='phone'
@@ -159,9 +157,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         ? `inputDeliveryError`
                         : `inputDelivery`
                     }
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.phone}
                   />
 
                   {touched.phone && errors.phone && <span className='error'>{errors.phone}</span>}
@@ -185,22 +180,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                 </div>
                 {(checkedDelivery === 'express delivery' || checkedDelivery === 'pickup from post offices') && (
                   <>
-                    {/* {checkedDelivery === 'delivery' && (
-                      <div className='contenerInput'>
-                        <label className='labelDelivery'>ADRESS</label>
-                        <Field
-                          className={
-                            touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
-                          }
-                          placeholder='Country'
-                          type='text'
-                          name='country'
-                        />
-                        {touched.country && errors.country && <span className='error'>{errors.country}</span>}
-                      </div>
-                    )} */}
-
-                    {/* {checkedDelivery === 'offices' && ( */}
                     <div className='contenerInput'>
                       <label className='labelDelivery'>ADRESS</label>
 
@@ -216,7 +195,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                       />
                       {touched.country && errors.country && <span className='error'>{errors.country}</span>}
                     </div>
-                    {/* // )} */}
 
                     <div className='contenerInput'>
                       <Field
@@ -257,8 +235,9 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 
                     {checkedDelivery === 'pickup from post offices' && (
                       <div className='contenerInput'>
-                        <InputMask
-                          mask={'BY999999'}
+                        <Field
+                          as={InputMask}
+                          mask={'BY 999999'}
                           className={
                             touched.postcode &&
                             (errors.postcode === textNotValid || errors.postcode === 'Не правильный номер')
@@ -268,9 +247,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                           type='text'
                           name='postcode'
                           placeholder='BY ______'
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.postcode}
                         />
 
                         {touched.postcode && errors.postcode && <span className='error'>{errors.postcode}</span>}
@@ -351,12 +327,12 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         : (values.personalInformation = true);
                     }}
                   >
-                    <input
+                    <Field
                       name='personalInformation'
                       type='checkbox'
                       className='heckboxDelivery'
                       checked={agree === 'setAgreeDelivery'}
-                      onChange={handleChange}
+                      // onChange={handleChange}
                       value={values.personalInformation}
                     />
                     <span>I agree to the processing of my personal information</span>
