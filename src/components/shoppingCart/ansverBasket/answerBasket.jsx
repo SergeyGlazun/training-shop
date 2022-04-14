@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clear } from '../../../reducers/actionBasket';
 import { clearBasket } from '../../../reducers/productBasket';
+import LoaderButtom from '../../loader/loaderButton';
 import './answerBasket.scss';
 
 const AnswerBasket = ({ setMakingPurchase, setCondition }) => {
-  const { respons } = useSelector((state) => state.postProductBasket);
+  const { respons, loading } = useSelector((state) => state.postProductBasket);
   const dispatch = useDispatch();
   useEffect(() => {
     if (respons === 'OK') {
@@ -13,6 +14,10 @@ const AnswerBasket = ({ setMakingPurchase, setCondition }) => {
       dispatch(clearBasket());
     }
   }, [dispatch, respons]);
+
+  if (loading) {
+    return <LoaderButtom />;
+  }
   return (
     <>
       {respons === 'OK' ? (
