@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import InputMask from 'react-input-mask';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,21 +20,9 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 
   const [sityInput, setSityInput] = useState('');
 
-  const { countriesArr } = useSelector((state) => state.getCountriesArr);
+  let { loading } = useSelector((state) => state.getCountriesArr.countries);
 
-  const options = [];
-
-  try {
-    if (countriesArr !== undefined) {
-      for (let i = 0; i < countriesArr.data.length; i++) {
-        options.push({
-          value: countriesArr.data[i].name,
-          label: countriesArr.data[i].name,
-        });
-      }
-    } else {
-    }
-  } catch {}
+  let options = [];
 
   const validate = (value) => {
     if (value.length === 3) {
@@ -49,6 +37,19 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
       return (value = 'Store adress not founded');
     }
   };
+  let store = require('store');
+
+  if (checkedDelivery === 'store pickup') {
+    if (localStorage.getItem('countriesArr') === null) {
+      dispatch(countriesLocalstorageAction(options));
+    } else {
+      options = store.get('countriesArr').data;
+    }
+  }
+
+  if (loading) {
+    options = store.get('countriesArr').data;
+  }
   return (
     <Formik
       initialValues={{
@@ -135,7 +136,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     onClick={() => {
                       setCheckedDelivery('store pickup');
                       resetStatus(touched);
-                      dispatch(countriesLocalstorageAction());
+                      // dispatch(countriesLocalstorageAction());
                     }}
                     checked={checkedDelivery === 'store pickup'}
                   />
@@ -158,8 +159,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         : `inputDelivery`
                     }
                   />
-
-                  {touched.phone && errors.phone && <span className='error'>{errors.phone}</span>}
+                  <ErrorMessage name='phone' component='span' style={{ color: 'red' }} />
                 </div>
                 <div className='contenerInput'>
                   <label className='labelDelivery'>e-mail</label>
@@ -176,7 +176,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     type='email'
                     name='email'
                   />
-                  {touched.email && errors.email && <span className='error'>{errors.email}</span>}
+                  <ErrorMessage name='email' component='span' style={{ color: 'red' }} />
+                  {/* {touched.email && errors.email && <span className='error'>{errors.email}</span>} */}
                 </div>
                 {(checkedDelivery === 'express delivery' || checkedDelivery === 'pickup from post offices') && (
                   <>
@@ -193,7 +194,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 
                         // value={(values.adress = 'Беларусь')}
                       />
-                      {touched.country && errors.country && <span className='error'>{errors.country}</span>}
+                      <ErrorMessage name='country' component='span' style={{ color: 'red' }} />
+                      {/* {touched.country && errors.country && <span className='error'>{errors.country}</span>} */}
                     </div>
 
                     <div className='contenerInput'>
@@ -205,7 +207,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         type='text'
                         name='city'
                       />
-                      {touched.city && errors.city && <span className='error'>{errors.city}</span>}
+                      <ErrorMessage name='city' component='span' style={{ color: 'red' }} />
+                      {/* {touched.city && errors.city && <span className='error'>{errors.city}</span>} */}
                     </div>
                     <div className='contenerInput'>
                       <Field
@@ -216,7 +219,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         type='text'
                         name='street'
                       />
-                      {touched.street && errors.street && <span className='error'>{errors.street}</span>}
+                      <ErrorMessage name='street' component='span' style={{ color: 'red' }} />
+                      {/* {touched.street && errors.street && <span className='error'>{errors.street}</span>} */}
                     </div>
 
                     <div className='hoeseApartment'>
@@ -231,8 +235,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 
                       <Field className='inputDeliveryHouse' placeholder='Apartment' type='text' name='apartment' />
                     </div>
-                    {touched.house && errors.house && <span className='error'>{errors.house}</span>}
-
+                    {/* {touched.house && errors.house && <span className='error'>{errors.house}</span>} */}
+                    <ErrorMessage name='house' component='span' style={{ color: 'red' }} />
                     {checkedDelivery === 'pickup from post offices' && (
                       <div className='contenerInput'>
                         <Field
@@ -248,8 +252,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                           name='postcode'
                           placeholder='BY ______'
                         />
-
-                        {touched.postcode && errors.postcode && <span className='error'>{errors.postcode}</span>}
+                        <ErrorMessage name='postcode' component='span' style={{ color: 'red' }} />
+                        {/* {touched.postcode && errors.postcode && <span className='error'>{errors.postcode}</span>} */}
                       </div>
                     )}
                   </>
@@ -266,14 +270,18 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         name='country'
                       >
                         <option></option>
-                        {options.map((item, id) => (
-                          <option key={id} value={item.value}>
-                            {item.label}
+                        {/* {options.length > 0 ? ( */}
+                        {options.map((item) => (
+                          <option key={item._id} value={item.name}>
+                            {item.name}
                           </option>
                         ))}
+                        {/* ) : (
+                          <option></option>
+                        )} */}
                       </Field>
-
-                      {touched.country && errors.country && <span className='error'>{errors.country}</span>}
+                      <ErrorMessage name='country' component='span' style={{ color: 'red' }} />
+                      {/* {touched.country && errors.country && <span className='error'>{errors.country}</span>} */}
                     </div>
 
                     <div className='contenerInput'>
@@ -307,8 +315,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                       ) : (
                         <option></option>
                       )}
-
-                      {touched.adressStore && errors.adressStore && <span className='error'>{errors.adressStore}</span>}
+                      <ErrorMessage name='adressStore' component='span' style={{ color: 'red' }} />
+                      {/* {touched.adressStore && errors.adressStore && <span className='error'>{errors.adressStore}</span>} */}
                     </div>
                   </>
                 )}

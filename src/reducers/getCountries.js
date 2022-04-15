@@ -2,10 +2,10 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 
 const defaultState = {
   countries: {
-    countriesArr: [],
+    // countriesArr: [],
     citiArr: [],
     errpr: '',
-    loading: '',
+    loading: false,
   },
 };
 
@@ -17,9 +17,9 @@ export const getErrorCountry = createAction('GET_ERROR_COUNTRY');
 export const lodingCity = createAction('LOADING_CITY');
 
 export default createReducer(defaultState, {
-  [countriesArrAction]: (state, action) => {
-    state.countriesArr = action.payload;
-  },
+  // [countriesArrAction]: (state, action) => {
+  //   state.countriesArr = action.payload;
+  // },
   [citiArrAction]: (state, action) => {
     state.citiArrAction = action.payload;
   },
@@ -27,7 +27,7 @@ export default createReducer(defaultState, {
     state.errpr = action.payload;
   },
   [lodingCity]: (state, action) => {
-    state.loading = action.payload;
+    state.countries.loading = action.payload;
   },
   [countriesLocalstorageAction]: () => {},
 });

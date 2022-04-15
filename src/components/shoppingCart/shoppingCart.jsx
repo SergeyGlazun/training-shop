@@ -1,20 +1,24 @@
-import close from './img/close.svg';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ItemInCart from './ItemInCard';
 import DeliveryInfo from './deliveryInfo/deliveryInfo';
 import { useState } from 'react';
 import Payment from './payment';
+import { clearBasket } from '../../reducers/productBasket';
 import { locScroll } from '../function/locScroll';
 import AnswerBasket from './ansverBasket/answerBasket';
+import close from './img/close.svg';
 import './shopping.scss';
-import { clearBasket } from '../../reducers/productBasket';
 
 const ShoppingCart = ({ setCondition, condition }) => {
   const dispatch = useDispatch();
-  locScroll(condition);
   const items = useSelector((state) => state.toolkit.arrProduct);
   const price = useSelector((state) => state.toolkit.totapPrise);
   let [makingPurchase, setMakingPurchase] = useState('Item in cart');
+
+  useEffect(() => {
+    locScroll(condition);
+  }, [condition]);
 
   return (
     <>
