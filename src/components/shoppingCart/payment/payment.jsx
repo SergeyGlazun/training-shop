@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import InputMask from 'react-input-mask';
@@ -165,7 +165,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                           onBlur={handleBlur}
                           value={values.card}
                         />
-
+                        <ErrorMessage name='card' component='span' style={{ color: 'red' }} />
                         {touched.card && errors.card && <span className='error'>{errors.card}</span>}
                       </div>
                     </div>
@@ -186,7 +186,8 @@ const Payment = ({ price, setMakingPurchase }) => {
                           name='cardDate'
                           value={chekYear(values.cardDate)}
                         />
-                        {touched.cardDate && errors.cardDate && <span className='error'>{errors.cardDate}</span>}
+                        <ErrorMessage name='cardDate' component='span' style={{ color: 'red' }} />
+                        {/* {touched.cardDate && errors.cardDate && <span className='error'>{errors.cardDate}</span>} */}
                       </div>
 
                       <div className='contenerInput'>
@@ -222,8 +223,8 @@ const Payment = ({ price, setMakingPurchase }) => {
                             }}
                           />
                         )}
-
-                        {touched.cardCVV && errors.cardCVV && <span className='error'>{errors.cardCVV}</span>}
+                        <ErrorMessage name='cardCVV' component='span' style={{ color: 'red' }} />
+                        {/* {touched.cardCVV && errors.cardCVV && <span className='error'>{errors.cardCVV}</span>} */}
                       </div>
                     </div>
                   </>
@@ -245,7 +246,8 @@ const Payment = ({ price, setMakingPurchase }) => {
                       type='email'
                       name='cashEmail'
                     />
-                    {touched.cashEmail && errors.cashEmail && <span className='error'>{errors.cashEmail}</span>}
+                    <ErrorMessage name='cashEmail' component='span' style={{ color: 'red' }} />
+                    {/* {touched.cashEmail && errors.cashEmail && <span className='error'>{errors.cashEmail}</span>} */}
                   </div>
                 )}
               </div>

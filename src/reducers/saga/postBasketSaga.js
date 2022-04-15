@@ -4,7 +4,7 @@ import { getObjectBasket, lodingPostBasket, responsBasketAction } from '../produ
 
 function* basketSagaPost(action) {
   yield put(lodingPostBasket(true));
-  console.log(action.payload);
+
   try {
     const responce = yield call(axios.post, 'https://training.cleverland.by/shop/cart', {
       products: action.payload.product,
@@ -25,12 +25,11 @@ function* basketSagaPost(action) {
       cardDate: action.payload.cardDate,
       cardCVV: action.payload.cardCVV,
     });
-    // console.log(responce);
+
     yield put(responsBasketAction(responce.statusText));
 
     yield put(lodingPostBasket(false));
   } catch (err) {
-    // console.log('ошибка');
     yield put(responsBasketAction(err.message));
   }
 }
