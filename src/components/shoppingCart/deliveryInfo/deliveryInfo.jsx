@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import InputMask from 'react-input-mask';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCharacters } from '../../../reducers/actionGetCity';
 import { countriesLocalstorageAction } from '../../../reducers/getCountries';
 import { getDataDelivery } from '../../../reducers/productBasket';
-
+import { offices, delivery, pickup, textNotValid, textPhone, lenguage } from '../../../db/BasketData';
+// import resetStatus from '../../../db/BasketData';
+import Input from '../input/inputField';
 import './deliveryInfo.scss';
 
 const DeliveryInfo = ({ price, setMakingPurchase }) => {
@@ -15,8 +16,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
   const { cities } = useSelector((state) => state.getCity.city);
   const [checkedDelivery, setCheckedDelivery] = useState('pickup from post offices');
   const [agree, setAgree] = useState('notAgree');
-
-  const textNotValid = 'Поле должно быть заполнено';
 
   const [sityInput, setSityInput] = useState('');
 
@@ -50,6 +49,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
   if (loading) {
     options = store.get('countriesArr').data;
   }
+
   return (
     <Formik
       initialValues={{
@@ -61,7 +61,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
         house: dataBuy.house,
         apartment: dataBuy.apartment,
         postcode: dataBuy.postcode,
-        adressStore: dataBuy.storeAddress,
+        storeAddress: dataBuy.storeAddress,
         personalInformation: false,
       }}
       validationSchema={
@@ -86,13 +86,13 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
             house: values.house,
             apartment: values.apartment,
             postcode: values.postcode,
-            storeAddress: values.adressStore,
+            storeAddress: values.storeAddress,
             deliveryMethod: checkedDelivery,
           })
         );
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit }) => (
+      {({ values, errors, touched, isValid, handleSubmit }) => (
         <>
           <div className='containerDelivery'>
             <div className='ContenerChooseDeliveryItems'>
@@ -106,7 +106,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     value='pickup from post offices'
                     onClick={() => {
                       setCheckedDelivery('pickup from post offices');
-                      resetStatus(touched);
+                      resetStatus(touched, errors);
                     }}
                     checked={checkedDelivery === 'pickup from post offices'}
                   />
@@ -120,7 +120,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     value='express delivery'
                     onClick={() => {
                       setCheckedDelivery('express delivery');
-                      resetStatus(touched);
+                      resetStatus(touched, errors);
                     }}
                     checked={checkedDelivery === 'express delivery'}
                   />
@@ -135,8 +135,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     value='store pickup'
                     onClick={() => {
                       setCheckedDelivery('store pickup');
-                      resetStatus(touched);
-                      // dispatch(countriesLocalstorageAction());
+                      resetStatus(touched, errors);
                     }}
                     checked={checkedDelivery === 'store pickup'}
                   />
@@ -145,83 +144,58 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
               </Form>
 
               <Form className='containerDeliveryInput'>
-                <div className='contenerInput'>
-                  <label className='labelDelivery'>Phone</label>
-                  <Field
-                    as={InputMask}
-                    mask={'+375 (99) 9999999'}
-                    type='tel'
-                    name='phone'
-                    placeholder='+375 (__) _______'
-                    className={
-                      touched.phone && (errors.phone === textNotValid || errors.phone === 'Не правильный номер')
-                        ? `inputDeliveryError`
-                        : `inputDelivery`
-                    }
-                  />
-                  <ErrorMessage name='phone' component='span' style={{ color: 'red' }} />
-                </div>
-                <div className='contenerInput'>
-                  <label className='labelDelivery'>e-mail</label>
-                  <Field
-                    className={
-                      touched.email &&
-                      (errors.email === textNotValid ||
-                        errors.email === 'Введите верный email' ||
-                        errors.email === 'смените язык')
-                        ? `inputDeliveryError`
-                        : `inputDelivery`
-                    }
-                    placeholder='e-mail'
-                    type='email'
-                    name='email'
-                  />
-                  <ErrorMessage name='email' component='span' style={{ color: 'red' }} />
-                  {/* {touched.email && errors.email && <span className='error'>{errors.email}</span>} */}
-                </div>
+                <Input
+                  mask={'+375 (99) 9999999'}
+                  type='tel'
+                  name='phone'
+                  placeholder='+375 (__) _______'
+                  className={
+                    touched.phone && (errors.phone === textNotValid || errors.phone === textPhone)
+                      ? `inputDeliveryError`
+                      : `inputDelivery`
+                  }
+                  lable='Phone'
+                />
+                <Input
+                  className={
+                    touched.email &&
+                    (errors.email === textNotValid ||
+                      errors.email === 'Введите верный email' ||
+                      errors.email === lenguage)
+                      ? `inputDeliveryError`
+                      : `inputDelivery`
+                  }
+                  placeholder='e-mail'
+                  type='email'
+                  name='email'
+                  lable={'e-mail'}
+                />
                 {(checkedDelivery === 'express delivery' || checkedDelivery === 'pickup from post offices') && (
                   <>
-                    <div className='contenerInput'>
-                      <label className='labelDelivery'>ADRESS</label>
+                    <Input
+                      className={
+                        touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                      }
+                      placeholder='Country'
+                      type='text'
+                      name='country'
+                      lable='ADRESS'
+                    />
 
-                      <Field
-                        className={
-                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
-                        }
-                        placeholder='Country'
-                        type='text'
-                        name='country'
-
-                        // value={(values.adress = 'Беларусь')}
-                      />
-                      <ErrorMessage name='country' component='span' style={{ color: 'red' }} />
-                      {/* {touched.country && errors.country && <span className='error'>{errors.country}</span>} */}
-                    </div>
-
-                    <div className='contenerInput'>
-                      <Field
-                        className={
-                          touched.city && errors.city === textNotValid ? `inputDeliveryError` : `inputDelivery`
-                        }
-                        placeholder='City'
-                        type='text'
-                        name='city'
-                      />
-                      <ErrorMessage name='city' component='span' style={{ color: 'red' }} />
-                      {/* {touched.city && errors.city && <span className='error'>{errors.city}</span>} */}
-                    </div>
-                    <div className='contenerInput'>
-                      <Field
-                        className={
-                          touched.street && errors.street === textNotValid ? `inputDeliveryError` : `inputDelivery`
-                        }
-                        placeholder='Street'
-                        type='text'
-                        name='street'
-                      />
-                      <ErrorMessage name='street' component='span' style={{ color: 'red' }} />
-                      {/* {touched.street && errors.street && <span className='error'>{errors.street}</span>} */}
-                    </div>
+                    <Input
+                      className={touched.city && errors.city === textNotValid ? `inputDeliveryError` : `inputDelivery`}
+                      placeholder='City'
+                      type='text'
+                      name='city'
+                    />
+                    <Input
+                      className={
+                        touched.street && errors.street === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                      }
+                      placeholder='Street'
+                      type='text'
+                      name='street'
+                    />
 
                     <div className='hoeseApartment'>
                       <Field
@@ -235,26 +209,21 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 
                       <Field className='inputDeliveryHouse' placeholder='Apartment' type='text' name='apartment' />
                     </div>
-                    {/* {touched.house && errors.house && <span className='error'>{errors.house}</span>} */}
                     <ErrorMessage name='house' component='span' style={{ color: 'red' }} />
                     {checkedDelivery === 'pickup from post offices' && (
-                      <div className='contenerInput'>
-                        <Field
-                          as={InputMask}
-                          mask={'BY 999999'}
-                          className={
-                            touched.postcode &&
-                            (errors.postcode === textNotValid || errors.postcode === 'Не правильный номер')
-                              ? `inputDeliveryError`
-                              : `inputDeliveryHouse`
-                          }
-                          type='text'
-                          name='postcode'
-                          placeholder='BY ______'
-                        />
-                        <ErrorMessage name='postcode' component='span' style={{ color: 'red' }} />
-                        {/* {touched.postcode && errors.postcode && <span className='error'>{errors.postcode}</span>} */}
-                      </div>
+                      <Input
+                        as={InputMask}
+                        mask={'BY 999999'}
+                        className={
+                          touched.postcode && (errors.postcode === textNotValid || errors.postcode === textPhone)
+                            ? `inputDeliveryError`
+                            : `inputDeliveryHouse`
+                        }
+                        type='text'
+                        name='postcode'
+                        placeholder='BY ______'
+                        lable={'POSTCODE'}
+                      />
                     )}
                   </>
                 )}
@@ -267,33 +236,31 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         className={
                           touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
                         }
+                        placeholder='Сountry'
                         name='country'
                       >
-                        <option></option>
-                        {/* {options.length > 0 ? ( */}
+                        <option>{'Сountry'}</option>
+
                         {options.map((item) => (
                           <option key={item._id} value={item.name}>
                             {item.name}
                           </option>
                         ))}
-                        {/* ) : (
-                          <option></option>
-                        )} */}
                       </Field>
                       <ErrorMessage name='country' component='span' style={{ color: 'red' }} />
-                      {/* {touched.country && errors.country && <span className='error'>{errors.country}</span>} */}
                     </div>
 
                     <div className='contenerInput'>
                       <Field
                         className={
-                          touched.adressStore && errors.adressStore === textNotValid
+                          touched.storeAddress && errors.storeAddress === textNotValid
                             ? `inputDeliveryError`
                             : `inputDelivery`
                         }
+                        autoComplete='off'
                         disabled={values.country === ''}
                         placeholder='Store adress'
-                        name='adressStore'
+                        name='storeAddress'
                         type='text'
                         list='city-list'
                         validate={validate}
@@ -302,7 +269,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         }}
                       />
 
-                      {values.adressStore.length >= 3 ? (
+                      {values.storeAddress.length >= 3 ? (
                         <datalist id='city-list'>
                           {cities
                             ?.map((item, _id) => (
@@ -315,8 +282,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                       ) : (
                         <option></option>
                       )}
-                      <ErrorMessage name='adressStore' component='span' style={{ color: 'red' }} />
-                      {/* {touched.adressStore && errors.adressStore && <span className='error'>{errors.adressStore}</span>} */}
+                      <ErrorMessage name='storeAddress' component='span' style={{ color: 'red' }} />
                     </div>
                   </>
                 )}
@@ -340,7 +306,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                       type='checkbox'
                       className='heckboxDelivery'
                       checked={agree === 'setAgreeDelivery'}
-                      // onChange={handleChange}
                       value={values.personalInformation}
                     />
                     <span>I agree to the processing of my personal information</span>
@@ -418,56 +383,3 @@ function resetStatus(error) {
   error.street = false;
   error.adressStore = false;
 }
-
-const textNotValid = 'Поле должно быть заполнено';
-
-const offices = Yup.object().shape({
-  phone: Yup.string()
-    .required(textNotValid)
-    .matches(/^(\+375|80)\s\((29|25|44|33)\)\s[0-9]{3}[0-9]{2}[0-9]{2}/, 'Не правильный номер'),
-
-  email: Yup.string()
-    .required(textNotValid)
-    .email('Введите верный email')
-    .matches(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/, 'смените язык'),
-  country: Yup.string().required(textNotValid),
-  city: Yup.string().required(textNotValid),
-  street: Yup.string().required(textNotValid),
-  house: Yup.number().required(textNotValid),
-  apartment: Yup.number(),
-  postcode: Yup.string()
-    .required(textNotValid)
-    .matches(/[0-9]{6,}/, 'Не правильный номер'),
-  personalInformation: Yup.bool().oneOf([true], 'Вы должны согласиться на обработку личной информации'),
-});
-
-const delivery = Yup.object().shape({
-  phone: Yup.string()
-    .required(textNotValid)
-    .matches(/^(\+375|80)\s\((29|25|44|33)\)\s[0-9]{3}[0-9]{2}[0-9]{2}/, 'Не правильный номер'),
-
-  email: Yup.string()
-    .required(textNotValid)
-    .email('Введите верный email')
-    .matches(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/, 'смените язык'),
-  country: Yup.string().required(textNotValid),
-  city: Yup.string().required(textNotValid),
-  street: Yup.string().required(textNotValid),
-  house: Yup.number().required(textNotValid),
-  apartment: Yup.number(),
-  personalInformation: Yup.bool().oneOf([true], 'Вы должны согласиться на обработку личной информации'),
-});
-
-const pickup = Yup.object().shape({
-  phone: Yup.string()
-    .required(textNotValid)
-    .matches(/^(\+375|80)\s\((29|25|44|33)\)\s[0-9]{3}[0-9]{2}[0-9]{2}/, 'Не правильный номер'),
-
-  email: Yup.string()
-    .required(textNotValid)
-    .email('Введите верный email')
-    .matches(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/, 'смените язык'),
-  country: Yup.string().required(textNotValid),
-  adressStore: Yup.string().required(textNotValid),
-  personalInformation: Yup.bool().oneOf([true], 'Вы должны согласиться на обработку личной информации'),
-});
