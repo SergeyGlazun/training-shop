@@ -37,8 +37,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
       const abjArr = Object.entries(cities);
       abjArr.forEach((e) => {
         if (e[1].city.toLowerCase() !== value.toLowerCase()) {
-          console.log(value);
-
           return (buf = 'Store adress not founded');
         }
       });
@@ -257,6 +255,9 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         }
                         placeholder='Сountry'
                         name='country'
+                        onClick={() => {
+                          setSityInput((values.storeAddress = ''));
+                        }}
                       >
                         <option>{'Сountry'}</option>
 
