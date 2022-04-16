@@ -269,7 +269,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         }}
                       />
 
-                      {values.storeAddress.length >= 3 ? (
+                      {values.storeAddress.length >= 3 && (
                         <datalist id='city-list'>
                           {cities
                             ?.map((item, _id) => (
@@ -279,8 +279,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                             ))
                             .sort()}
                         </datalist>
-                      ) : (
-                        <option></option>
                       )}
                       <ErrorMessage name='storeAddress' component='span' style={{ color: 'red' }} />
                     </div>
