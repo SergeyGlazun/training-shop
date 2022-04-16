@@ -24,7 +24,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
   let options = [];
 
   const validate = (value) => {
-    if (value.length === 3) {
+    if (value.length >= 3) {
       dispatch(
         getCharacters({
           city: value,
@@ -32,8 +32,17 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
         })
       );
     }
+    if (cities.length !== 0) {
+      const abjArr = Object.entries(cities);
+      abjArr.forEach((e) => {
+        if (e[1].city.toLowerCase() !== value.toLowerCase()) {
+          cities.length = 0;
+          return 'Store adress not founded';
+        }
+      });
+    }
     if (value.length >= 3 && cities.length === 0) {
-      return (value = 'Store adress not founded');
+      return 'Store adress not founded';
     }
   };
   let store = require('store');
@@ -49,6 +58,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
   if (loading) {
     options = store.get('countriesArr').data;
   }
+
+  function valide1(value) {}
 
   return (
     <Formik
@@ -267,6 +278,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         onClick={() => {
                           setSityInput(values.country);
                         }}
+                        blur={valide1(values.storeAddress)}
                       />
 
                       {values.storeAddress.length >= 3 && (
