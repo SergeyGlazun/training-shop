@@ -295,26 +295,6 @@ function resetStatus(error) {
   error.cardCVV = false;
 }
 
-// const textNotValid = 'Поле должно быть заполнено';
-
-// const cardValid = Yup.object().shape({
-//   card: Yup.string()
-//     .required(textNotValid)
-//     .matches(/(\d{4}([-]|)\d{4}([-]|)\d{4}([-]|)\d{4})/, 'не верная карта'),
-
-//   cardDate: Yup.string()
-//     .required(textNotValid)
-//     .matches(/^(0[1-9]|1[0-2])\/?([0-9]{2})/, 'не верные данные карты'),
-
-//   cardCVV: Yup.number().min(99, 'не меньше 3 символов').max(9999, 'не больше 3 символов').required(textNotValid),
-// });
-
-// const payPalValid = Yup.object().shape({
-//   cashEmail: Yup.string()
-//     .email('Введите верный email')
-//     .matches(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/, 'смените язык'),
-// });
-
 function chekYear(cardNumber) {
   const today = new Date();
   const year = today.getFullYear();
