@@ -69,20 +69,8 @@ export const payPalValid = Yup.object().shape({
   cashEmail: email,
 });
 
-export default function resetStatus(touched) {
-  touched.country = false;
-  touched.apartment = false;
-  touched.city = false;
-  touched.email = false;
-  touched.house = false;
-  touched.personalInformation = false;
-  touched.phone = false;
-  touched.postcode = false;
-  touched.street = false;
-  touched.adressStore = false;
-
-  touched.card = false;
-  touched.cashEmail = false;
-  touched.cardDate = false;
-  touched.cardCVV = false;
+export function resetStatus(touched, error, isValid) {
+  touched = {};
+  error = {};
+  isValid = true;
 }
