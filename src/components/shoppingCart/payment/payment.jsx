@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import InputMask from 'react-input-mask';
 import LoaderButtom from '../../loader/loaderButton';
+import { cardValid, payPalValid, textNotValid } from '../../../db/BasketData';
+import Input from '../input/inputField';
 import { getObjectBasket, getDataCard } from '../../../reducers/productBasket';
 import password from './img/pasword.svg';
 import text from './img/text.svg';
@@ -18,7 +19,6 @@ const Payment = ({ price, setMakingPurchase }) => {
   const [checkedPayments, setCheckedPayments] = useState('visa');
   const [visiblePasword, setviseblePasword] = useState(false);
   const dispatch = useDispatch();
-  const textNotValid = 'Поле должно быть заполнено';
 
   return (
     <Formik
@@ -148,26 +148,18 @@ const Payment = ({ price, setMakingPurchase }) => {
                 {(checkedPayments === 'visa' || checkedPayments === 'masterCard') && (
                   <>
                     <div className='containerDeliveryInput'>
-                      <div className='contenerInput'>
-                        <label className='labelDelivery'>card</label>
-                        <Field
-                          as={InputMask}
-                          mask={'9999999999999999'}
-                          type='text'
-                          name='card'
-                          placeholder='----------------'
-                          className={
-                            touched.card && (errors.card === textNotValid || errors.card === 'не верная карта')
-                              ? `inputDeliveryError`
-                              : `inputDelivery`
-                          }
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.card}
-                        />
-                        <ErrorMessage name='card' component='span' style={{ color: 'red' }} />
-                        {touched.card && errors.card && <span className='error'>{errors.card}</span>}
-                      </div>
+                      <Input
+                        mask={'9999999999999999'}
+                        type='text'
+                        name='card'
+                        placeholder='----------------'
+                        className={
+                          touched.card && (errors.card === textNotValid || errors.card === 'не верная карта')
+                            ? `inputDeliveryError`
+                            : `inputDelivery`
+                        }
+                        lable={'CARD'}
+                      />
                     </div>
 
                     <div className='contwnerCard'>
@@ -187,12 +179,11 @@ const Payment = ({ price, setMakingPurchase }) => {
                           value={chekYear(values.cardDate)}
                         />
                         <ErrorMessage name='cardDate' component='span' style={{ color: 'red' }} />
-                        {/* {touched.cardDate && errors.cardDate && <span className='error'>{errors.cardDate}</span>} */}
                       </div>
 
                       <div className='contenerInput'>
                         <Field
-                          as={InputMask}
+                          // as={InputMask}
                           className={
                             touched.cardCVV && errors.cardCVV === textNotValid
                               ? `inputDeliveryError`
@@ -224,31 +215,25 @@ const Payment = ({ price, setMakingPurchase }) => {
                           />
                         )}
                         <ErrorMessage name='cardCVV' component='span' style={{ color: 'red' }} />
-                        {/* {touched.cardCVV && errors.cardCVV && <span className='error'>{errors.cardCVV}</span>} */}
                       </div>
                     </div>
                   </>
                 )}
                 {checkedPayments === 'paypal' && (
-                  <div className='contenerInput'>
-                    <label className='labelDelivery'>e-mail</label>
-                    <Field
-                      as={InputMask}
-                      className={
-                        touched.cashEmail &&
-                        (errors.cashEmail === textNotValid ||
-                          errors.cashEmail === 'Введите верный email' ||
-                          errors.cashEmail === 'смените язык')
-                          ? `inputDeliveryError`
-                          : `inputDelivery`
-                      }
-                      placeholder='e-mail'
-                      type='email'
-                      name='cashEmail'
-                    />
-                    <ErrorMessage name='cashEmail' component='span' style={{ color: 'red' }} />
-                    {/* {touched.cashEmail && errors.cashEmail && <span className='error'>{errors.cashEmail}</span>} */}
-                  </div>
+                  <Input
+                    className={
+                      touched.cashEmail &&
+                      (errors.cashEmail === textNotValid ||
+                        errors.cashEmail === 'Введите верный email' ||
+                        errors.cashEmail === 'смените язык')
+                        ? `inputDeliveryError`
+                        : `inputDelivery`
+                    }
+                    placeholder='e-mail'
+                    type='email'
+                    name='cashEmail'
+                    lable={'E-MAIL'}
+                  />
                 )}
               </div>
             </div>
@@ -269,7 +254,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                 }}
               >
                 {loading && <LoaderButtom />}
-                {/* {checkedPayments === 'cash' ? 'READY' : 'Check Out'} */}
+
                 {'CHECK OUT'}
               </button>
             )}
@@ -310,39 +295,19 @@ function resetStatus(error) {
   error.cardCVV = false;
 }
 
-const textNotValid = 'Поле должно быть заполнено';
-
-const cardValid = Yup.object().shape({
-  card: Yup.string()
-    .required(textNotValid)
-    .matches(/(\d{4}([-]|)\d{4}([-]|)\d{4}([-]|)\d{4})/, 'не верная карта'),
-
-  cardDate: Yup.string()
-    .required(textNotValid)
-    .matches(/^(0[1-9]|1[0-2])\/?([0-9]{2})/, 'не верные данные карты'),
-
-  cardCVV: Yup.number().min(99, 'не меньше 3 символов').max(9999, 'не больше 3 символов').required(textNotValid),
-});
-
-const payPalValid = Yup.object().shape({
-  cashEmail: Yup.string()
-    .email('Введите верный email')
-    .matches(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/, 'смените язык'),
-});
-
-function chekYear(card) {
+function chekYear(cardNumber) {
   const today = new Date();
   const year = today.getFullYear();
   const yearNow = today.getMonth() + year.toString();
 
-  if (Number(card.slice(-2)) < Number(yearNow.slice(-2))) {
+  if (Number(cardNumber.slice(-2)) < Number(yearNow.slice(-2))) {
     return '';
   } else if (
-    Number(card.slice(-2)) === Number(yearNow.slice(-2)) &&
-    Number(card.substr(0, 2) < Number(yearNow.substr(0, 1)))
+    Number(cardNumber.slice(-2)) === Number(yearNow.slice(-2)) &&
+    Number(cardNumber.substr(0, 2) < Number(yearNow.substr(0, 1)))
   ) {
     return '';
   } else {
-    return card;
+    return cardNumber;
   }
 }

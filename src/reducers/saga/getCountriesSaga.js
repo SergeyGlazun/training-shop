@@ -5,23 +5,15 @@ import { countriesArrAction, countriesLocalstorageAction, getErrorCountry, lodin
 function* getCountriesWorker(action) {
   let store = require('store');
   try {
-    // if (localStorage.getItem('countriesArr') === null) {
     const { data } = yield call(axios.get, `https://training.cleverland.by/shop/countries`);
     yield store.set('countriesArr', {
       data,
     });
 
-    // yield put(countriesArrAction(store.get('countriesArr')));
-
     yield (action.payload = data);
 
     yield put(lodingCity(true));
     yield put(lodingCity(false));
-    // yield put(lodingCity(false));
-    // }
-    // else {
-    //   yield put(countriesArrAction(store.get('countriesArr')));
-    // }
   } catch (err) {
     yield put(countriesArrAction(getErrorCountry(err.message)));
   }
