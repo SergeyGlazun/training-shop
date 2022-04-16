@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import InputMask from 'react-input-mask';
 import LoaderButtom from '../../loader/loaderButton';
-import { cardValid, payPalValid, textNotValid } from '../../../db/BasketData';
+import { cardValid, payPalValid, textNotValid, resetStatus } from '../../../db/BasketData';
 import Input from '../input/inputField';
 import { getObjectBasket, getDataCard } from '../../../reducers/productBasket';
 import password from './img/pasword.svg';
@@ -85,7 +85,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                     value='paypal'
                     onClick={() => {
                       setCheckedPayments('paypal');
-                      resetStatus(touched);
+                      resetStatus(touched, errors, isValid);
                     }}
                     checked={checkedPayments === 'paypal'}
                   />
@@ -102,7 +102,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                     value='visa'
                     onClick={() => {
                       setCheckedPayments('visa');
-                      resetStatus(touched);
+                      resetStatus(touched, errors, isValid);
                     }}
                     checked={checkedPayments === 'visa' ? true : false}
                   />
@@ -119,7 +119,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                     value='masterCard'
                     onClick={() => {
                       setCheckedPayments('masterCard');
-                      resetStatus(touched);
+                      resetStatus(touched, errors, isValid);
                     }}
                     checked={checkedPayments === 'masterCard' ? true : false}
                   />
@@ -136,7 +136,7 @@ const Payment = ({ price, setMakingPurchase }) => {
                     value='cash'
                     onClick={() => {
                       setCheckedPayments('cash');
-                      resetStatus(touched);
+                      resetStatus(touched, errors, isValid);
                     }}
                     checked={checkedPayments === 'cash' ? true : false}
                   />
@@ -288,12 +288,12 @@ const Payment = ({ price, setMakingPurchase }) => {
 
 export default Payment;
 
-function resetStatus(error) {
-  error.card = false;
-  error.cashEmail = false;
-  error.cardDate = false;
-  error.cardCVV = false;
-}
+// function resetStatus(error) {
+//   error.card = false;
+//   error.cashEmail = false;
+//   error.cardDate = false;
+//   error.cardCVV = false;
+// }
 
 function chekYear(cardNumber) {
   const today = new Date();

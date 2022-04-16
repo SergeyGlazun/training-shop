@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCharacters } from '../../../reducers/actionGetCity';
 import { countriesLocalstorageAction } from '../../../reducers/getCountries';
 import { getDataDelivery } from '../../../reducers/productBasket';
-import { offices, delivery, pickup, textNotValid, textPhone, lenguage } from '../../../db/BasketData';
+import { offices, delivery, pickup, textNotValid, textPhone, lenguage, resetStatus } from '../../../db/BasketData';
 // import resetStatus from '../../../db/BasketData';
 import Input from '../input/inputField';
 import './deliveryInfo.scss';
@@ -24,6 +24,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
   let options = [];
 
   const validate = (value) => {
+    let buf = '';
     if (value.length >= 3) {
       dispatch(
         getCharacters({
@@ -36,15 +37,24 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
       const abjArr = Object.entries(cities);
       abjArr.forEach((e) => {
         if (e[1].city.toLowerCase() !== value.toLowerCase()) {
-          cities.length = 0;
-          return 'Store adress not founded';
+          console.log(value);
+
+          return (buf = 'Store adress not founded');
         }
       });
     }
+    if (buf !== '') {
+      return (buf = 'Store adress not founded');
+    }
+
     if (value.length >= 3 && cities.length === 0) {
       return 'Store adress not founded';
     }
+    if (value.length < 3 && cities.length !== 0) {
+      return 'Store adress not founded';
+    }
   };
+
   let store = require('store');
 
   if (checkedDelivery === 'store pickup') {
@@ -58,8 +68,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
   if (loading) {
     options = store.get('countriesArr').data;
   }
-
-  function valide1(value) {}
 
   return (
     <Formik
@@ -117,7 +125,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     value='pickup from post offices'
                     onClick={() => {
                       setCheckedDelivery('pickup from post offices');
-                      resetStatus(touched, errors);
+                      resetStatus(touched, errors, isValid);
                     }}
                     checked={checkedDelivery === 'pickup from post offices'}
                   />
@@ -131,7 +139,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     value='express delivery'
                     onClick={() => {
                       setCheckedDelivery('express delivery');
-                      resetStatus(touched, errors);
+                      resetStatus(touched, errors, isValid);
                     }}
                     checked={checkedDelivery === 'express delivery'}
                   />
@@ -146,7 +154,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     value='store pickup'
                     onClick={() => {
                       setCheckedDelivery('store pickup');
-                      resetStatus(touched, errors);
+                      resetStatus(touched, errors, isValid);
                     }}
                     checked={checkedDelivery === 'store pickup'}
                   />
@@ -278,7 +286,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         onClick={() => {
                           setSityInput(values.country);
                         }}
-                        blur={valide1(values.storeAddress)}
                       />
 
                       {values.storeAddress.length >= 3 && (
@@ -349,7 +356,9 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
             >
               Further
             </button>
-
+            {/* {console.log(touched)}
+            {console.log(errors)}
+            {console.log(isValid)} */}
             <button
               className='btnShoping'
               onClick={() => {
@@ -381,15 +390,15 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 
 export default DeliveryInfo;
 
-function resetStatus(error) {
-  error.country = false;
-  error.apartment = false;
-  error.city = false;
-  error.email = false;
-  error.house = false;
-  error.personalInformation = false;
-  error.phone = false;
-  error.postcode = false;
-  error.street = false;
-  error.adressStore = false;
-}
+// function resetStatus(error) {
+//   error.country = false;
+//   error.apartment = false;
+//   error.city = false;
+//   error.email = false;
+//   error.house = false;
+//   error.personalInformation = false;
+//   error.phone = false;
+//   error.postcode = false;
+//   error.street = false;
+//   error.adressStore = false;
+// }
