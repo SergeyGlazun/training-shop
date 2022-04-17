@@ -213,7 +213,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                           setSityInput((values.storeAddress = ''));
                         }}
                       >
-                        <option label='Сountry'></option>
+                        <option defaultValue disabled label='Сountry'></option>
 
                         {options.map((item) => (
                           <option key={item._id} value={item.name}>
