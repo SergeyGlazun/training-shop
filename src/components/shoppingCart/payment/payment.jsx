@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import InputMask from 'react-input-mask';
 import LoaderButtom from '../../loader/loaderButton';
-import { cardValid, payPalValid, textNotValid, resetStatus } from '../../../db/BasketData';
+import { cardValid, payPalValid, textNotValid, chekYear, resetStatusPayment } from '../../../db/BasketData';
 import Input from '../input/inputField';
 import { getObjectBasket, getDataCard } from '../../../reducers/productBasket';
 import password from './img/pasword.svg';
@@ -71,7 +71,7 @@ const Payment = ({ price, setMakingPurchase }) => {
         );
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isValid, dirty }) => (
+      {({ values, errors, touched, handleSubmit, isValid }) => (
         <>
           <div className='containerDelivery'>
             <div className='ContenerChooseDeliveryItems'>
@@ -81,66 +81,72 @@ const Payment = ({ price, setMakingPurchase }) => {
                   <Field
                     className='inputChooseDelivery'
                     name='ChoosePayment'
+                    id='ChoosePayment_1'
                     type='radio'
                     value='paypal'
                     onClick={() => {
                       setCheckedPayments('paypal');
-                      resetStatus(touched, errors, isValid);
+                      resetStatusPayment(touched, errors);
                     }}
                     checked={checkedPayments === 'paypal'}
                   />
-                  <div className='radioButtonChooseDelivery'>
+                  <label htmlFor='ChoosePayment_1' className='radioButtonChooseDelivery'>
                     <img src={payPal} alt='visa' className='visa' />
-                  </div>
+                  </label>
                 </div>
                 <div className='contenerRadio'>
                   <Field
                     // checked='checked'
                     className='inputChooseDelivery'
                     name='ChoosePayment'
+                    id='ChoosePayment_2'
                     type='radio'
                     value='visa'
                     onClick={() => {
                       setCheckedPayments('visa');
-                      resetStatus(touched, errors, isValid);
+                      resetStatusPayment(touched, errors);
                     }}
-                    checked={checkedPayments === 'visa' ? true : false}
+                    checked={checkedPayments === 'visa'}
                   />
-                  <div className='radioButtonChooseDelivery'>
+                  <label htmlFor='ChoosePayment_2' className='radioButtonChooseDelivery'>
                     <img src={visa} alt='visa' className='visa' />
-                  </div>
+                  </label>
                 </div>
 
                 <div className='contenerRadio'>
                   <Field
                     className='inputChooseDelivery'
                     name='ChoosePayment'
+                    id='ChoosePayment_3'
                     type='radio'
                     value='masterCard'
                     onClick={() => {
                       setCheckedPayments('masterCard');
-                      resetStatus(touched, errors, isValid);
+                      resetStatusPayment(touched, errors);
                     }}
-                    checked={checkedPayments === 'masterCard' ? true : false}
+                    checked={checkedPayments === 'masterCard'}
                   />
-                  <div className='radioButtonChooseDelivery'>
+                  <label htmlFor='ChoosePayment_3' className='radioButtonChooseDelivery'>
                     <img src={masterCard} alt='visa' className='visa' />
-                  </div>
+                  </label>
                 </div>
 
                 <div className='contenerRadio'>
                   <Field
                     className='inputChooseDelivery'
                     name='ChoosePayment'
+                    id='ChoosePayment_4'
                     type='radio'
                     value='cash'
                     onClick={() => {
                       setCheckedPayments('cash');
-                      resetStatus(touched, errors, isValid);
+                      resetStatusPayment(touched, errors);
                     }}
-                    checked={checkedPayments === 'cash' ? true : false}
+                    checked={checkedPayments === 'cash'}
                   />
-                  <div className='radioButtonChooseDelivery'>Cash</div>
+                  <label htmlFor='ChoosePayment_4' className='radioButtonChooseDelivery'>
+                    Cash
+                  </label>
                 </div>
               </Form>
 
@@ -287,27 +293,3 @@ const Payment = ({ price, setMakingPurchase }) => {
 };
 
 export default Payment;
-
-// function resetStatus(error) {
-//   error.card = false;
-//   error.cashEmail = false;
-//   error.cardDate = false;
-//   error.cardCVV = false;
-// }
-
-function chekYear(cardNumber) {
-  const today = new Date();
-  const year = today.getFullYear();
-  const yearNow = today.getMonth() + year.toString();
-
-  if (Number(cardNumber.slice(-2)) < Number(yearNow.slice(-2))) {
-    return '';
-  } else if (
-    Number(cardNumber.slice(-2)) === Number(yearNow.slice(-2)) &&
-    Number(cardNumber.substr(0, 2) < Number(yearNow.substr(0, 1)))
-  ) {
-    return '';
-  } else {
-    return cardNumber;
-  }
-}

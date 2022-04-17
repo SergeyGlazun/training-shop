@@ -69,8 +69,44 @@ export const payPalValid = Yup.object().shape({
   cashEmail: email,
 });
 
-export function resetStatus(touched, error, isValid) {
-  touched = {};
-  error = {};
-  isValid = true;
+export function resetStatusDelivery(touched) {
+  touched.country = false;
+  touched.apartment = false;
+  touched.city = false;
+  touched.email = false;
+  touched.house = false;
+  touched.personalInformation = false;
+  touched.phone = false;
+  touched.postcode = false;
+  touched.street = false;
+  touched.storeAddress = false;
+  touched.deliveryMethod = false;
+  touched.cashEmail = false;
+}
+
+export function resetStatusPayment(touched, errors) {
+  touched.card = false;
+  touched.cashEmail = false;
+  touched.cardDate = false;
+  touched.cardCVV = false;
+  // errors.cashEmail = false;
+  errors.card = false;
+  errors.cardDate = false;
+  errors.cardCVV = false;
+}
+export function chekYear(cardNumber) {
+  const today = new Date();
+  const year = today.getFullYear();
+  const yearNow = today.getMonth() + year.toString();
+
+  if (Number(cardNumber.slice(-2)) < Number(yearNow.slice(-2))) {
+    return '';
+  } else if (
+    Number(cardNumber.slice(-2)) === Number(yearNow.slice(-2)) &&
+    Number(cardNumber.substr(0, 2) < Number(yearNow.substr(0, 1)))
+  ) {
+    return '';
+  } else {
+    return cardNumber;
+  }
 }
