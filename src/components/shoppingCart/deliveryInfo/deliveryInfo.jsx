@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCharacters } from '../../../reducers/actionGetCity';
 import { countriesLocalstorageAction } from '../../../reducers/getCountries';
 import { getDataDelivery } from '../../../reducers/productBasket';
-import { offices, delivery, pickup, textNotValid, textPhone, lenguage, resetStatus } from '../../../db/BasketData';
-// import resetStatus from '../../../db/BasketData';
+import { offices, delivery, pickup, textNotValid, textPhone, resetStatusDelivery } from '../../../db/BasketData';
+import Adress from '../componentDelivery/adress/adress';
+import PhoneEmail from '../componentDelivery/phoneEmail/pnoneEmail';
 import Input from '../input/inputField';
 import './deliveryInfo.scss';
 
@@ -25,6 +26,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 
   const validate = (value) => {
     let buf = '';
+
     if (value.length >= 3) {
       dispatch(
         getCharacters({
@@ -45,7 +47,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
       return (buf = 'Store adress not founded');
     }
 
-    if (value.length >= 3 && cities.length === 0) {
+    if (value.length >= 3 && cities.length === 0 && value !== dataBuy.storeAddress) {
       return 'Store adress not founded';
     }
     if (value.length < 3 && cities.length !== 0) {
@@ -109,7 +111,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
         );
       }}
     >
-      {({ values, errors, touched, isValid, handleSubmit }) => (
+      {({ values, errors, touched, isValid, handleSubmit, dirty }) => (
         <>
           <div className='containerDelivery'>
             <div className='ContenerChooseDeliveryItems'>
@@ -120,132 +122,84 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     className='inputChooseDelivery'
                     name='deliveryMethod'
                     type='radio'
+                    id='deliveryMethod_1'
                     value='pickup from post offices'
                     onClick={() => {
                       setCheckedDelivery('pickup from post offices');
-                      resetStatus(touched, errors, isValid);
+                      resetStatusDelivery(touched);
                     }}
                     checked={checkedDelivery === 'pickup from post offices'}
                   />
-                  <div className='radioButtonChooseDelivery'>Pickup from post offices</div>
+                  <label htmlFor='deliveryMethod_1' className='radioButtonChooseDelivery'>
+                    Pickup from post offices
+                  </label>
                 </div>
                 <div className='contenerRadio'>
                   <Field
                     className='inputChooseDelivery'
                     name='deliveryMethod'
+                    id='deliveryMethod_2'
                     type='radio'
                     value='express delivery'
                     onClick={() => {
                       setCheckedDelivery('express delivery');
-                      resetStatus(touched, errors, isValid);
+                      resetStatusDelivery(touched);
                     }}
                     checked={checkedDelivery === 'express delivery'}
                   />
-                  <div className='radioButtonChooseDelivery'>Express delivery</div>
+                  <label htmlFor='deliveryMethod_2' className='radioButtonChooseDelivery'>
+                    Express delivery
+                  </label>
                 </div>
 
                 <div className='contenerRadio'>
                   <Field
                     className='inputChooseDelivery'
                     name='deliveryMethod'
+                    id='deliveryMethod_3'
                     type='radio'
                     value='store pickup'
                     onClick={() => {
                       setCheckedDelivery('store pickup');
-                      resetStatus(touched, errors, isValid);
+                      resetStatusDelivery(touched);
                     }}
                     checked={checkedDelivery === 'store pickup'}
                   />
-                  <div className='radioButtonChooseDelivery'>Store pickup</div>
+                  <label htmlFor='deliveryMethod_3' className='radioButtonChooseDelivery'>
+                    Store pickup
+                  </label>
                 </div>
               </Form>
 
               <Form className='containerDeliveryInput'>
-                <Input
-                  mask={'+375 (99) 9999999'}
-                  type='tel'
-                  name='phone'
-                  placeholder='+375 (__) _______'
-                  className={
-                    touched.phone && (errors.phone === textNotValid || errors.phone === textPhone)
-                      ? `inputDeliveryError`
-                      : `inputDelivery`
-                  }
-                  lable='Phone'
-                />
-                <Input
-                  className={
-                    touched.email &&
-                    (errors.email === textNotValid ||
-                      errors.email === 'Введите верный email' ||
-                      errors.email === lenguage)
-                      ? `inputDeliveryError`
-                      : `inputDelivery`
-                  }
-                  placeholder='e-mail'
-                  type='email'
-                  name='email'
-                  lable={'e-mail'}
-                />
-                {(checkedDelivery === 'express delivery' || checkedDelivery === 'pickup from post offices') && (
+                {checkedDelivery === 'pickup from post offices' && (
                   <>
+                    <PhoneEmail touched={touched} errors={errors} />
+                    <Adress touched={touched} errors={errors} />
                     <Input
+                      as={InputMask}
+                      mask={'BY 999999'}
                       className={
-                        touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                        touched.postcode && (errors.postcode === textNotValid || errors.postcode === textPhone)
+                          ? `inputDeliveryError`
+                          : `inputDeliveryHouse`
                       }
-                      placeholder='Country'
                       type='text'
-                      name='country'
-                      lable='ADRESS'
+                      name='postcode'
+                      placeholder='BY ______'
+                      lable={'POSTCODE'}
                     />
-
-                    <Input
-                      className={touched.city && errors.city === textNotValid ? `inputDeliveryError` : `inputDelivery`}
-                      placeholder='City'
-                      type='text'
-                      name='city'
-                    />
-                    <Input
-                      className={
-                        touched.street && errors.street === textNotValid ? `inputDeliveryError` : `inputDelivery`
-                      }
-                      placeholder='Street'
-                      type='text'
-                      name='street'
-                    />
-
-                    <div className='hoeseApartment'>
-                      <Field
-                        className={
-                          touched.house && errors.house === textNotValid ? `inputDeliveryError` : `inputDeliveryHouse`
-                        }
-                        placeholder='House'
-                        type='text'
-                        name='house'
-                      />
-
-                      <Field className='inputDeliveryHouse' placeholder='Apartment' type='text' name='apartment' />
-                    </div>
-                    <ErrorMessage name='house' component='span' style={{ color: 'red' }} />
-                    {checkedDelivery === 'pickup from post offices' && (
-                      <Input
-                        as={InputMask}
-                        mask={'BY 999999'}
-                        className={
-                          touched.postcode && (errors.postcode === textNotValid || errors.postcode === textPhone)
-                            ? `inputDeliveryError`
-                            : `inputDeliveryHouse`
-                        }
-                        type='text'
-                        name='postcode'
-                        placeholder='BY ______'
-                        lable={'POSTCODE'}
-                      />
-                    )}
+                  </>
+                )}
+                {checkedDelivery === 'express delivery' && (
+                  <>
+                    <PhoneEmail touched={touched} errors={errors} />
+                    <Adress touched={touched} errors={errors} />
                   </>
                 )}
                 {checkedDelivery === 'store pickup' && (
                   <>
+                    <PhoneEmail touched={touched} errors={errors} />
                     <div className='contenerInput'>
                       <label className='labelDelivery'>ADRESS OF STORE</label>
                       <Field
@@ -357,9 +311,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
             >
               Further
             </button>
-            {/* {console.log(touched)}
-            {console.log(errors)}
-            {console.log(isValid)} */}
+
             <button
               className='btnShoping'
               onClick={() => {
@@ -390,16 +342,3 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 };
 
 export default DeliveryInfo;
-
-// function resetStatus(error) {
-//   error.country = false;
-//   error.apartment = false;
-//   error.city = false;
-//   error.email = false;
-//   error.house = false;
-//   error.personalInformation = false;
-//   error.phone = false;
-//   error.postcode = false;
-//   error.street = false;
-//   error.adressStore = false;
-// }
