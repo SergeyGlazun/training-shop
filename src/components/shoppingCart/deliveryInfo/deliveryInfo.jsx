@@ -205,15 +205,15 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                       <Field
                         as='select'
                         className={
-                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery `
                         }
-                        placeholder='Сountry'
+                        placeholder='Country'
                         name='country'
                         onClick={() => {
                           setSityInput((values.storeAddress = ''));
                         }}
                       >
-                        <option defaultValue disabled label='Сountry'></option>
+                        <option disabled hidden label='Country'></option>
 
                         {options.map((item) => (
                           <option key={item._id} value={item.name}>
