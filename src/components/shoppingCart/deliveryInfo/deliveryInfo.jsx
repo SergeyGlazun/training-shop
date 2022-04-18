@@ -202,10 +202,10 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     <PhoneEmail touched={touched} errors={errors} />
                     <div className='contenerInput'>
                       <label className='labelDelivery'>ADRESS OF STORE</label>
-                      <Field
+                      {/* <Field
                         as='select'
                         className={
-                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery `
+                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
                         }
                         placeholder='Country'
                         name='country'
@@ -213,14 +213,41 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                           setSityInput((values.storeAddress = ''));
                         }}
                       >
-                        <option disabled hidden label='Country'></option>
+                        <option label='Country'></option>
 
                         {options.map((item) => (
                           <option key={item._id} value={item.name}>
                             {item.name}
                           </option>
                         ))}
-                      </Field>
+                      </Field> */}
+                      <Field
+                        // as='select'
+                        autoComplete='off'
+                        className={
+                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                        }
+                        placeholder='Country'
+                        name='country'
+                        onClick={() => {
+                          setSityInput((values.storeAddress = ''));
+                        }}
+                        validate={(value) => {
+                          if (options.some((value1) => value1.name === value)) {
+                          } else {
+                            values.country = '';
+                          }
+                        }}
+                        list='Conntry'
+                      />
+                      <datalist id='Conntry' className='selectCountry'>
+                        {options.map((item) => (
+                          <option key={item._id} value={item.name}>
+                            {item.name}
+                          </option>
+                        ))}
+                      </datalist>
+
                       <ErrorMessage name='country' component='span' style={{ color: 'red' }} />
                     </div>
 
