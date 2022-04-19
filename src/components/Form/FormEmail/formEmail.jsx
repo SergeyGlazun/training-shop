@@ -18,7 +18,7 @@ const ForEmail = ({
 }) => {
   const dispatch = useDispatch();
 
-  const [OK, setCount] = useState('');
+  const [responseOk, setresponseOk] = useState('');
   const [error, setError] = useState('');
   const { responce, loading, numberFor, errorEmail } = useSelector((state) => state.validationChek);
 
@@ -46,7 +46,7 @@ const ForEmail = ({
         <div
           className={classFooterEmail + 'contenerForm'}
           onMouseOut={() => {
-            setCount('');
+            setresponseOk('');
             setError('');
           }}
         >
@@ -70,17 +70,16 @@ const ForEmail = ({
             disabled={!isValid || !dirty || loading}
             onClick={() => {
               handleSubmit();
-              setCount('Почта успешно отправлена');
+              setresponseOk('Почта успешно отправлена');
               setError('Ошибка Отправки');
             }}
             type='submit'
           >
-            {' '}
             {loading && <LoaderButtom />}SUBSCRIBE
           </button>
           {numberFor === idInput && (
             <div className={responce === 'OK' ? `${inputOK}` : `${classError}`}>
-              {responce === 'OK' && OK}
+              {responce === 'OK' && responseOk}
               {errorEmail && error}
             </div>
           )}
