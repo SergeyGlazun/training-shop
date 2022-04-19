@@ -22,8 +22,7 @@ const AnswerBasket = ({ setMakingPurchase, setCondition }) => {
           <div className='containerDelivery'>
             <div className='basketOK'>
               <span className='titleAnswerBasket'>
-                Thank you <br />
-                for your order
+                <div>Thank</div> you for your order
               </span>
               <span className='textAnswerBasket'>Information about your order will appear in your e-mail. </span>
               <span className='textAnswerBasket'>Our manager will call you back.</span>
@@ -49,10 +48,9 @@ const AnswerBasket = ({ setMakingPurchase, setCondition }) => {
             <div className='basketOK'>
               <span className='titleAnswerBasket'>
                 Sorry,
-                <br />
-                your payment
-                <br /> has not been
-                <br /> processed.
+                <div> your payment</div>
+                <div> has not been</div>
+                <div> processed.</div>
               </span>
               <span className='textAnswerBasket'>{respons}</span>
             </div>

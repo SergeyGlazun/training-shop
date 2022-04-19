@@ -1,9 +1,9 @@
 import { all, put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import { countriesArrAction, countriesLocalstorageAction, getErrorCountry, lodingCity } from '../getCountries';
+let store = require('store');
 
 function* getCountriesWorker(action) {
-  let store = require('store');
   try {
     const { data } = yield call(axios.get, `https://training.cleverland.by/shop/countries`);
     yield store.set('countriesArr', {

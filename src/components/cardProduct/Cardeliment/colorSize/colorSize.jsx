@@ -1,11 +1,11 @@
 import React from 'react';
-import './colorSize.scss';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addProduct, removeProduct, sumAddProductPrise } from '../../../../reducers/actionBasket';
 import heart from '../../../../pages/productPage/productInformationPage/mainProductItem/img/heart.svg';
 import scale from '../../../../pages/productPage/productInformationPage/mainProductItem/img/scale.svg';
 
-import { addProduct, removeProduct, sumAddProductPrise } from '../../../../reducers/actionBasket';
+import './colorSize.scss';
 
 const ColorSize = ({ dataProductCard }) => {
   const dispatch = useDispatch();
@@ -14,9 +14,9 @@ const ColorSize = ({ dataProductCard }) => {
   const items = useSelector((state) => state.toolkit.arrProduct);
   let filteredArray = [];
 
-  const [colors, colorCheck] = useState(dataProductCard.images[0].color);
-  const [size, sizeCheck] = useState(dataProductCard.sizes[0]);
-  const [img, imgCheck] = useState(dataProductCard.images[0].url);
+  const [colors, setColors] = useState(dataProductCard.images[0].color);
+  const [size, setSize] = useState(dataProductCard.sizes[0]);
+  const [img, setImg] = useState(dataProductCard.images[0].url);
 
   if (dataProductCard !== undefined) {
     dataProductCard.images.forEach((item) => {
@@ -39,14 +39,14 @@ const ColorSize = ({ dataProductCard }) => {
           <div
             key={id}
             onClick={() => {
-              colorCheck(color);
-              imgCheck(url);
+              setColors(color);
+              setImg(url);
             }}
           >
             <img
               src={`https://training.cleverland.by/shop${url}`}
               alt='imgUser'
-              className={colors === color ? 'colorImg coloChek' : 'colorImg coloChekHover'}
+              className={`colorImg ${colors === color ? 'coloChek' : 'coloChekHover'}`}
             />
           </div>
         ))}
@@ -57,8 +57,8 @@ const ColorSize = ({ dataProductCard }) => {
           <button
             key={id}
             type='button'
-            onClick={() => sizeCheck(item)}
-            className={item === size ? 'coloChek size' : 'coloChekHover size'}
+            onClick={() => setSize(item)}
+            className={`size ${item === size ? 'coloChek' : 'coloChekHover'}`}
           >
             {item}
           </button>

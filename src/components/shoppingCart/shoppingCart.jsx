@@ -14,7 +14,7 @@ const ShoppingCart = ({ setCondition, condition }) => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.toolkit.arrProduct);
   const price = useSelector((state) => state.toolkit.totapPrise);
-  let [makingPurchase, setMakingPurchase] = useState('Item in cart');
+  const [makingPurchase, setMakingPurchase] = useState('Item in cart');
 
   useEffect(() => {
     locScroll(condition);
@@ -33,7 +33,7 @@ const ShoppingCart = ({ setCondition, condition }) => {
             }}
             className='close'
           >
-            <img src={close} alt='close'></img>
+            <img src={close} alt='close' />
           </div>
         </div>
         {items.length > 0 && makingPurchase !== 'AnswerBasket' ? (

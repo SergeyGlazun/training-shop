@@ -10,6 +10,7 @@ import Adress from '../componentDelivery/adress/adress';
 import PhoneEmail from '../componentDelivery/phoneEmail/pnoneEmail';
 import Input from '../input/inputField';
 import './deliveryInfo.scss';
+let store = require('store');
 
 const DeliveryInfo = ({ price, setMakingPurchase }) => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
 
   const [sityInput, setSityInput] = useState('');
 
-  let { loading } = useSelector((state) => state.getCountriesArr.countries);
+  const { loading } = useSelector((state) => state.getCountriesArr.countries);
 
   let options = [];
 
@@ -54,8 +55,6 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
       return 'Store adress not founded';
     }
   };
-
-  let store = require('store');
 
   if (checkedDelivery === 'store pickup') {
     if (localStorage.getItem('countriesArr') === null) {
@@ -111,7 +110,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
         );
       }}
     >
-      {({ values, errors, touched, isValid, handleSubmit, dirty }) => (
+      {({ values, errors, touched, isValid, handleSubmit }) => (
         <>
           <div className='containerDelivery'>
             <div className='ContenerChooseDeliveryItems'>
@@ -200,9 +199,9 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                 {checkedDelivery === 'store pickup' && (
                   <>
                     <PhoneEmail touched={touched} errors={errors} />
+                    <label className='labelDelivery'>ADRESS OF STORE</label>
                     <div className='contenerInput'>
-                      <label className='labelDelivery'>ADRESS OF STORE</label>
-                      {/* <Field
+                      <Field
                         as='select'
                         className={
                           touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
@@ -220,33 +219,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                             {item.name}
                           </option>
                         ))}
-                      </Field> */}
-                      <Field
-                        // as='select'
-                        autoComplete='off'
-                        className={
-                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
-                        }
-                        placeholder='Country'
-                        name='country'
-                        onClick={() => {
-                          setSityInput((values.storeAddress = ''));
-                        }}
-                        validate={(value) => {
-                          if (options.some((value1) => value1.name === value)) {
-                          } else {
-                            values.country = '';
-                          }
-                        }}
-                        list='Conntry'
-                      />
-                      <datalist id='Conntry' className='selectCountry'>
-                        {options.map((item) => (
-                          <option key={item._id} value={item.name}>
-                            {item.name}
-                          </option>
-                        ))}
-                      </datalist>
+                      </Field>
 
                       <ErrorMessage name='country' component='span' style={{ color: 'red' }} />
                     </div>
@@ -325,15 +298,19 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
             </div>
             <button
               type='submit'
-              // disabled={!isValid || !dirty}
               className='btnShoping'
               onClick={() => {
                 handleSubmit();
+                if (values.personalInformation && !isValid) {
+                  setAgree('notAgree');
+                }
+                if (values.personalInformation && !isValid) {
+                  setAgree('notAgree');
+                }
 
-                values.personalInformation === true && isValid === false ? setAgree('notAgree') : console.log();
-                values.personalInformation === true && isValid === false
-                  ? (values.personalInformation = false)
-                  : console.log();
+                if (values.personalInformation && !isValid) {
+                  values.personalInformation = false;
+                }
               }}
             >
               Further

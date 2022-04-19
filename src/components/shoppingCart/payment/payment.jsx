@@ -71,7 +71,7 @@ const Payment = ({ price, setMakingPurchase }) => {
         );
       }}
     >
-      {({ values, errors, touched, handleSubmit, isValid }) => (
+      {({ values, errors, touched, handleSubmit }) => (
         <>
           <div className='containerDelivery'>
             <div className='ContenerChooseDeliveryItems'>
@@ -96,7 +96,6 @@ const Payment = ({ price, setMakingPurchase }) => {
                 </div>
                 <div className='contenerRadio'>
                   <Field
-                    // checked='checked'
                     className='inputChooseDelivery'
                     name='ChoosePayment'
                     id='ChoosePayment_2'
@@ -201,22 +200,22 @@ const Payment = ({ price, setMakingPurchase }) => {
                           max='9999'
                           name='cardCVV'
                         />
-                        {visiblePasword === false ? (
-                          <img
-                            src={password}
-                            alt='password'
-                            className='password'
-                            onClick={() => {
-                              setviseblePasword(true);
-                            }}
-                          />
-                        ) : (
+                        {visiblePasword ? (
                           <img
                             src={text}
                             alt='password'
                             className='text'
                             onClick={() => {
                               setviseblePasword(false);
+                            }}
+                          />
+                        ) : (
+                          <img
+                            src={password}
+                            alt='password'
+                            className='password'
+                            onClick={() => {
+                              setviseblePasword(true);
                             }}
                           />
                         )}
@@ -252,7 +251,6 @@ const Payment = ({ price, setMakingPurchase }) => {
             </div>
             {(checkedPayments === 'paypal' || checkedPayments === 'masterCard' || checkedPayments === 'visa') && (
               <button
-                // disabled={!isValid || !dirty}
                 type='submit'
                 className='btnShoping'
                 onClick={() => {

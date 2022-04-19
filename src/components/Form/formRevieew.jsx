@@ -9,7 +9,7 @@ import { getIDProductID } from '../../reducers/actionGetProductId';
 
 import './formReview.scss';
 
-const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
+const FormReview = ({ formRevieew, SetFormRevieew, id }) => {
   const dispatch = useDispatch();
 
   const loding = useSelector((state) => state.postReviewReducer.loading);
@@ -20,7 +20,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
   locScroll(formRevieew);
 
   useEffect(() => {
-    if (closeForm === true && error === false) {
+    if (closeForm && !error) {
       SetFormRevieew(false);
       locScroll(false);
     }
@@ -65,7 +65,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
                     name='rating'
                     onChange={handleChange}
                   />
-                  <label htmlFor='simpleRaiting_5' className='simpleRaitingLabel'></label>
+                  <label htmlFor='simpleRaiting_5' className='simpleRaitingLabel' />
 
                   <input
                     id='simpleRaiting_4'
@@ -75,7 +75,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
                     name='rating'
                     onChange={handleChange}
                   />
-                  <label htmlFor='simpleRaiting_4' className='simpleRaitingLabel'></label>
+                  <label htmlFor='simpleRaiting_4' className='simpleRaitingLabel' />
 
                   <input
                     id='simpleRaiting_3'
@@ -85,7 +85,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
                     name='rating'
                     onChange={handleChange}
                   />
-                  <label htmlFor='simpleRaiting_3' className='simpleRaitingLabel'></label>
+                  <label htmlFor='simpleRaiting_3' className='simpleRaitingLabel' />
 
                   <input
                     id='simpleRaiting_2'
@@ -95,7 +95,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
                     name='rating'
                     onChange={handleChange}
                   />
-                  <label htmlFor='simpleRaiting_2' className='simpleRaitingLabel'></label>
+                  <label htmlFor='simpleRaiting_2' className='simpleRaitingLabel' />
 
                   <input
                     id='simpleRaiting_1'
@@ -105,7 +105,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
                     name='rating'
                     onChange={handleChange}
                   />
-                  <label htmlFor='simpleRaiting_1' className='simpleRaitingLabel'></label>
+                  <label htmlFor='simpleRaiting_1' className='simpleRaitingLabel' />
                 </div>
               </div>
               <div className='inputForm'>
@@ -127,7 +127,6 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
 
               <div className='inputForm'>
                 <label htmlFor='review'>Комментарий</label>
-                <br />
                 <textarea
                   data-test-id='review-text-field'
                   name='text'
@@ -162,7 +161,7 @@ const FormReview = ({ formRevieew, SetFormRevieew, id, productItem }) => {
           locScroll(false);
         }}
         className={formRevieew ? 'overlay' : ''}
-      ></div>
+      />
     </div>
   );
 };
