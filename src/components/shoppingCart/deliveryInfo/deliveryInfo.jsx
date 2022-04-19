@@ -9,8 +9,8 @@ import { offices, delivery, pickup, textNotValid, textPhone, resetStatusDelivery
 import Adress from '../componentDelivery/adress/adress';
 import PhoneEmail from '../componentDelivery/phoneEmail/pnoneEmail';
 import Input from '../input/inputField';
+import selectImg from './img/Vector 16.svg';
 import './deliveryInfo.scss';
-let store = require('store');
 
 const DeliveryInfo = ({ price, setMakingPurchase }) => {
   const dispatch = useDispatch();
@@ -18,10 +18,11 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
   const { cities } = useSelector((state) => state.getCity.city);
   const [checkedDelivery, setCheckedDelivery] = useState('pickup from post offices');
   const [agree, setAgree] = useState('notAgree');
-
+  const [showCountriesList, setShowCountriesList] = useState(false);
+  // const [countryInput, setCountryInput] = useState('');
   const [sityInput, setSityInput] = useState('');
 
-  const { loading } = useSelector((state) => state.getCountriesArr.countries);
+  let { loading } = useSelector((state) => state.getCountriesArr.countries);
 
   let options = [];
 
@@ -55,6 +56,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
       return 'Store adress not founded';
     }
   };
+
+  let store = require('store');
 
   if (checkedDelivery === 'store pickup') {
     if (localStorage.getItem('countriesArr') === null) {
@@ -110,7 +113,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
         );
       }}
     >
-      {({ values, errors, touched, isValid, handleSubmit }) => (
+      {({ values, errors, touched, isValid, handleSubmit, dirty }) => (
         <>
           <div className='containerDelivery'>
             <div className='ContenerChooseDeliveryItems'>
@@ -201,7 +204,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                     <PhoneEmail touched={touched} errors={errors} />
                     <label className='labelDelivery'>ADRESS OF STORE</label>
                     <div className='contenerInput'>
-                      <Field
+                      {/* <Field
                         as='select'
                         className={
                           touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
@@ -219,9 +222,62 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                             {item.name}
                           </option>
                         ))}
-                      </Field>
+                      </Field> */}
 
-                      <ErrorMessage name='country' component='span' style={{ color: 'red' }} />
+                      {/* onMouseOut={() => {
+                              setShowCountriesList(false);
+                            }} */}
+                      <Field
+                        // as='select'
+                        autoComplete='off'
+                        className={
+                          touched.country && errors.country === textNotValid ? `inputDeliveryError` : `inputDelivery`
+                        }
+                        placeholder='Country'
+                        name='country'
+                        onClick={() => {
+                          setSityInput((values.storeAddress = ''));
+                          setShowCountriesList(showCountriesList === false ? true : false);
+                        }}
+                        validate={(value) => {
+                          if (options.some((value1) => value1.name === value)) {
+                          } else {
+                            values.country = '';
+                          }
+                        }}
+                      />
+                      <img
+                        src={selectImg}
+                        alt='select'
+                        className={showCountriesList === false ? 'selectImg' : 'selectImgActive'}
+                        onClick={() => {
+                          setShowCountriesList(showCountriesList === false ? true : false);
+                        }}
+                      />
+
+                      <>
+                        {showCountriesList && (
+                          <ul className='countryList'>
+                            {options.map((item) => (
+                              <li key={item._id} value={item.name}>
+                                <button
+                                  onClick={() => {
+                                    values.country = item.name;
+                                    errors.country = '';
+                                    touched.country = false;
+
+                                    setShowCountriesList(false);
+                                  }}
+                                >
+                                  {item.name}
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </>
+
+                      {errors.country && touched.country && <span className='error'>{errors.country}</span>}
                     </div>
 
                     <div className='contenerInput'>
@@ -298,19 +354,15 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
             </div>
             <button
               type='submit'
+              // disabled={!isValid || !dirty}
               className='btnShoping'
               onClick={() => {
                 handleSubmit();
-                if (values.personalInformation && !isValid) {
-                  setAgree('notAgree');
-                }
-                if (values.personalInformation && !isValid) {
-                  setAgree('notAgree');
-                }
 
-                if (values.personalInformation && !isValid) {
-                  values.personalInformation = false;
-                }
+                values.personalInformation === true && isValid === false ? setAgree('notAgree') : console.log();
+                values.personalInformation === true && isValid === false
+                  ? (values.personalInformation = false)
+                  : console.log();
               }}
             >
               Further
