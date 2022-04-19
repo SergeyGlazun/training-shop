@@ -223,6 +223,10 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                           </option>
                         ))}
                       </Field> */}
+
+                      {/* onMouseOut={() => {
+                              setShowCountriesList(false);
+                            }} */}
                       <Field
                         // as='select'
                         autoComplete='off'
@@ -233,18 +237,14 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         name='country'
                         onClick={() => {
                           setSityInput((values.storeAddress = ''));
+                          setShowCountriesList(showCountriesList === false ? true : false);
                         }}
                         validate={(value) => {
-                          // console.log(countryInput);
-                          // console.log(value);
                           if (options.some((value1) => value1.name === value)) {
                           } else {
                             values.country = '';
                           }
                         }}
-                        // onFocus={() => setShowCountriesList(true)}
-                        // value={values.country}
-                        // list='Conntry'
                       />
                       <img
                         src={selectImg}
@@ -254,19 +254,19 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                           setShowCountriesList(showCountriesList === false ? true : false);
                         }}
                       />
+
                       <>
                         {showCountriesList && (
-                          <ul className='country-list'>
+                          <ul className='countryList'>
                             {options.map((item) => (
                               <li key={item._id} value={item.name}>
                                 <button
                                   onClick={() => {
                                     values.country = item.name;
-
-                                    // setCountryInput(item.name);
-                                    setShowCountriesList(false);
                                     errors.country = '';
                                     touched.country = false;
+
+                                    setShowCountriesList(false);
                                   }}
                                 >
                                   {item.name}
@@ -277,7 +277,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         )}
                       </>
 
-                      <ErrorMessage name='country' component='span' style={{ color: 'red' }} />
+                      {errors.country && touched.country && <span className='error'>{errors.country}</span>}
                     </div>
 
                     <div className='contenerInput'>

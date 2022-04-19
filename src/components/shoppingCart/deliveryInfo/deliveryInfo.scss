@@ -89,6 +89,7 @@
       flex-direction: column;
       margin-bottom: 10px;
       position: relative;
+
       .selectImg,
       .selectImgActive {
         position: absolute;
@@ -99,12 +100,13 @@
       .selectImgActive {
         transform: rotate(0.5turn);
       }
-      .country-list {
+      .countryList {
         font-weight: 400;
         font-size: 14px;
         line-height: 22px;
         margin-top: 0px;
         padding: 0px;
+
         li {
           list-style-type: none;
 
@@ -117,6 +119,7 @@
             color: #000000;
             text-align: left;
             padding: 15px 16px;
+
             &:hover {
               background: #f8f8f8;
             }
