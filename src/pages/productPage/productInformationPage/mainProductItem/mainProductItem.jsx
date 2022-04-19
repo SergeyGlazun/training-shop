@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Raiting from '../../../../components/reiting/raiting';
-import hanger from './img/hanger.svg'
+import hanger from './img/hanger.svg';
 import heart from './img/heart.svg';
 import scale from './img/scale.svg';
 import car from './img//sectionScope/car.svg';
@@ -12,21 +12,20 @@ import mail from './img//sectionScope/mail.svg';
 import annotation from './img/anotation.svg';
 import { arrMasterCard } from '../../../../db/ItemPages';
 import ProductSwiper from './swaper';
-import { addProduct, removeProduct, sumAddProductPrise, deleteProductPrise } from '../../../../reducers/actionBasket';
+import { addProduct, removeProduct, sumAddProductPrise } from '../../../../reducers/actionBasket';
 import FormReview from '../../../../components/Form';
 import './mainProductItem.scss';
 
 const MainProductItem = ({ productItem, filteredArray }) => {
-
   const dispatch = useDispatch();
-  const prise = productItem.price;
+  const price = productItem.price;
   const name = productItem.name;
   const category = productItem.category;
   let arr = [];
   arr.push(productItem);
-  const items = useSelector(state => state.toolkit.arrProduct)
+  const items = useSelector((state) => state.toolkit.arrProduct);
 
-  productItem.images.forEach(item => {
+  productItem.images.forEach((item) => {
     if (!filteredArray.some((element) => element.color === item.color)) {
       filteredArray.push(item);
     }
@@ -35,40 +34,34 @@ const MainProductItem = ({ productItem, filteredArray }) => {
   useEffect(() => {
     colorCheck(filteredArray[0].color);
     sizeCheck(productItem.sizes[0]);
-    imgCheck(productItem.images[0].url); 
-  },
-    [productItem, filteredArray]
-  );
+    imgCheck(productItem.images[0].url);
+  }, [productItem, filteredArray]);
 
   const [colors, colorCheck] = useState(filteredArray[0].color);
   const [size, sizeCheck] = useState(productItem.sizes[0]);
   const [img, imgCheck] = useState(productItem.images[0].url);
-  const [formRevieew, SetFormRevieew] = useState(false)
+  const [formRevieew, SetFormRevieew] = useState(false);
 
   const Id = `${productItem.id}-${colors}-${size}`;
 
-
   function compareProduct() {
-    return items.find(
-      (item) => item.Id === `${productItem.id}-${colors}-${size}`
-    );
+    return items.find((item) => item.Id === `${productItem.id}-${colors}-${size}`);
   }
 
   return (
     <div className='productSection wrapper'>
-     
-     {formRevieew &&
-       ReactDOM.createPortal(
-         <FormReview 
-         formRevieew={formRevieew}
-          SetFormRevieew={SetFormRevieew}
-           id={productItem.id} 
-            productItem={productItem}/>,
-         document.getElementById('portal'))
-      }
+      {formRevieew &&
+        ReactDOM.createPortal(
+          <FormReview
+            formRevieew={formRevieew}
+            SetFormRevieew={SetFormRevieew}
+            id={productItem.id}
+            productItem={productItem}
+          />,
+          document.getElementById('portal')
+        )}
 
       <div className='slidecContener'>
-
         <ProductSwiper productItem={productItem} />
       </div>
 
@@ -78,27 +71,36 @@ const MainProductItem = ({ productItem, filteredArray }) => {
             COLOR:<span className='bold'>{colors}</span>
           </span>
           <div className='colorItem'>
-            {
-              filteredArray?.map(({ id, url, color }) => (
-                <div key={id} onClick={() => { colorCheck(color); imgCheck(url) }}>
-                  <img src={`https://training.cleverland.by/shop${url}`} alt='imgUser' className={colors === color ? "coloChek" : "coloChekHover"} />
-                </div>
-              ))
-            }
+            {filteredArray?.map(({ id, url, color }) => (
+              <div
+                key={id}
+                onClick={() => {
+                  colorCheck(color);
+                  imgCheck(url);
+                }}
+              >
+                <img
+                  src={`https://training.cleverland.by/shop${url}`}
+                  alt='imgUser'
+                  className={colors === color ? 'coloChek' : 'coloChekHover'}
+                />
+              </div>
+            ))}
           </div>
           <div className='size'>
             SIZE:<span className='bold'>{size}</span>
           </div>
           <div className='sizeBtn'>
-            {
-              productItem?.sizes.map((sizes, id) =>
-                <button type='button'
-                  key={id}
-                  onClick={() => sizeCheck(sizes)}
-                  className={sizes === size ? "coloChek" : "coloChekHover"}
-                >{sizes}</button>
-              )
-            }
+            {productItem?.sizes.map((sizes, id) => (
+              <button
+                type='button'
+                key={id}
+                onClick={() => sizeCheck(sizes)}
+                className={sizes === size ? 'coloChek' : 'coloChekHover'}
+              >
+                {sizes}
+              </button>
+            ))}
           </div>
           <div className='hanger'>
             <img src={hanger} alt='hanger' />
@@ -107,30 +109,30 @@ const MainProductItem = ({ productItem, filteredArray }) => {
         </div>
         <div className='pay'>
           <div className='cost'>$ {productItem?.price}</div>
-          {!compareProduct() ?
-            <button type='button'
+          {!compareProduct() ? (
+            <button
+              type='button'
               className='payBtn'
-              data-test-id="add-cart-button"
+              data-test-id='add-cart-button'
               onClick={() => {
-                dispatch(sumAddProductPrise(prise));
-                dispatch(addProduct({ name, colors, size, img, prise, Id, quantity: 1, category }))
+                dispatch(sumAddProductPrise(price));
+                dispatch(addProduct({ name, colors, size, img, price, Id, quantity: 1, category }));
               }}
             >
               ADD TO CARD
             </button>
-            :
-            <button type='button'
+          ) : (
+            <button
+              type='button'
               className='payBtn'
-              data-test-id="add-cart-button"
+              data-test-id='add-cart-button'
               onClick={() => {
-                dispatch(deleteProductPrise(prise));
-                dispatch(removeProduct(compareProduct()))
+                dispatch(removeProduct(compareProduct()));
               }}
-
             >
               REMOVE TO CARD
             </button>
-          }
+          )}
 
           <div className='heard'>
             <img className='heartImg' src={heart} alt='heart' />
@@ -138,9 +140,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
           <div className='heard'>
             <img src={scale} alt='scale' className='scaleImg' />
           </div>
-
         </div>
-
 
         <div className='scope'>
           <div className='car'>
@@ -173,31 +173,35 @@ const MainProductItem = ({ productItem, filteredArray }) => {
             <div className='texTitle'>ADDITIONAL INFORMATION</div>
             <div className='specifications'>
               <div className='textColor'>
-                Color:<span className='black'>
-                  {
-                    filteredArray?.map(({ color, id }) =>
-                      <span key={id}>{color}{id !== filteredArray[filteredArray.length - 1].id ? `, ` : ``}</span>
-                    )
-                  }
+                Color:
+                <span className='black'>
+                  {filteredArray?.map(({ color, id }) => (
+                    <span key={id}>
+                      {color}
+                      {id !== filteredArray[filteredArray.length - 1].id ? `, ` : ``}
+                    </span>
+                  ))}
                 </span>
               </div>
               <div className='textSize'>
-                Size:<span className='black'>{
-                  productItem?.sizes.map((sizes, id) =>
-                    <span key={id}>{sizes}{id !== productItem.sizes.length - 1 ? `, ` : ``}</span>
-                  )
-                }</span>
+                Size:
+                <span className='black'>
+                  {productItem?.sizes.map((sizes, id) => (
+                    <span key={id}>
+                      {sizes}
+                      {id !== productItem.sizes.length - 1 ? `, ` : ``}
+                    </span>
+                  ))}
+                </span>
               </div>
               <div className='textMaterial'>
                 Material:<span className='black'>{productItem.material}</span>
               </div>
             </div>
-
           </div>
         </div>
         <div className='reviewsContener'>
           <div className='reviews'>
-         
             <div className='reviewsAbove'>
               <div className='title'>REVIEWS</div>
               <div className='subtitleText'>
@@ -206,14 +210,17 @@ const MainProductItem = ({ productItem, filteredArray }) => {
                   <span className='amountRreviews'>{productItem.reviews.length} Reviews</span>
                 </div>
 
-                <div data-test-id='review-button' className='annotation' type="button" onClick={() => {
-                  SetFormRevieew(true);                  
-                }}>
+                <div
+                  data-test-id='review-button'
+                  className='annotation'
+                  type='button'
+                  onClick={() => {
+                    SetFormRevieew(true);
+                  }}
+                >
                   <img src={annotation} alt='annotation' className='annotationImg' />
                   <span className='writeReviews'>Write a review</span>
-                 
                 </div>
-               
               </div>
             </div>
 
@@ -221,7 +228,7 @@ const MainProductItem = ({ productItem, filteredArray }) => {
               <div key={id} className='reviewText'>
                 <div className='title'>
                   <div className='name'>{name}</div>
-                  <div className='timeRating'>               
+                  <div className='timeRating'>
                     <Raiting rating={rating} size={14} />
                   </div>
                 </div>
@@ -233,6 +240,6 @@ const MainProductItem = ({ productItem, filteredArray }) => {
       </div>
     </div>
   );
-}
+};
 
 export default MainProductItem;
