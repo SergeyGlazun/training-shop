@@ -88,6 +88,41 @@
       display: flex;
       flex-direction: column;
       margin-bottom: 10px;
+      position: relative;
+      .selectImg,
+      .selectImgActive {
+        position: absolute;
+        right: 16.5px;
+        top: 30px;
+        z-index: 10;
+      }
+      .selectImgActive {
+        transform: rotate(0.5turn);
+      }
+      .country-list {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 0px;
+        padding: 0px;
+        li {
+          list-style-type: none;
+
+          cursor: pointer;
+          button {
+            width: 100%;
+            background-color: #ffffff;
+            border: 1px solid #ffffff;
+            box-sizing: border-box;
+            color: #000000;
+            text-align: left;
+            padding: 15px 16px;
+            &:hover {
+              background: #f8f8f8;
+            }
+          }
+        }
+      }
     }
 
     .contenerInputChek {
