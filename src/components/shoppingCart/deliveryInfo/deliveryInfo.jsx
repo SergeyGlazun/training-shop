@@ -19,7 +19,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
   const [checkedDelivery, setCheckedDelivery] = useState('pickup from post offices');
   const [agree, setAgree] = useState('notAgree');
   const [showCountriesList, setShowCountriesList] = useState(false);
-  // const [countryInput, setCountryInput] = useState('');
+  const [countryInput, setCountryInput] = useState('');
   const [sityInput, setSityInput] = useState('');
 
   let { loading } = useSelector((state) => state.getCountriesArr.countries);
@@ -245,6 +245,7 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                             values.country = '';
                           }
                         }}
+                        value={countryInput}
                       />
                       <img
                         src={selectImg}
@@ -261,10 +262,15 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                             {options.map((item) => (
                               <li key={item._id} value={item.name}>
                                 <button
+                                  onMouseOver={() => {
+                                    values.country = item.name;
+                                    setCountryInput(item.name);
+                                    console.log(item.name);
+                                  }}
                                   onClick={() => {
                                     values.country = item.name;
-                                    errors.country = '';
-                                    touched.country = false;
+                                    // errors.country = '';
+                                    // touched.country = false;
 
                                     setShowCountriesList(false);
                                   }}
@@ -277,7 +283,8 @@ const DeliveryInfo = ({ price, setMakingPurchase }) => {
                         )}
                       </>
 
-                      {errors.country && touched.country && <span className='error'>{errors.country}</span>}
+                      {/* {errors.country && touched.country && <span className='error'>{errors.country}</span>} */}
+                      <ErrorMessage name='country' component='span' style={{ color: 'red' }} />
                     </div>
 
                     <div className='contenerInput'>
